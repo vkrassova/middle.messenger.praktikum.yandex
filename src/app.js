@@ -15,4 +15,4 @@ const renderApp = () => {
   }
 }
 
-window.addEventListener('load', () => renderApp())
+document.addEventListener('load', () => renderApp())
