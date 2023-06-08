@@ -1,3 +1,3 @@
-import tmpl from './login.hbs'
+import loginPage from './login.hbs'
 
-export default tmpl
+export default loginPage

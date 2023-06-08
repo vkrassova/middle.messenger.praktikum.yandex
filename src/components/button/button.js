@@ -1,3 +1,3 @@
-import tmpl from './button.hbs'
+import button from './button.hbs'
 
-export default tmpl
+export default button

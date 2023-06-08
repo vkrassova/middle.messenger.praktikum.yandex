@@ -1,7 +1,9 @@
 import Handlebars from 'handlebars/runtime'
 
-import tmpl from './button/button'
+import button from './button/button'
+import { input } from './input/input'
 
-Handlebars.registerPartial('button', tmpl)
+Handlebars.registerPartial('button', button)
+Handlebars.registerPartial('input', input)
 
-export { tmpl }
+export { button, input }
