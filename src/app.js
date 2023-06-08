@@ -1,4 +1,5 @@
 import LoginPage from './pages/login/login'
+import './components'
 
 const renderTemplate = (page) => {
   const root = document.querySelector('#app')
@@ -21,9 +22,9 @@ const renderApp = () => {
   switch (pathname) {
     case '/login':
       console.log('login')
-      // renderTemplate(LoginPage())
+      renderTemplate(LoginPage())
       break
   }
 }
 
-document.addEventListener('DOMLoading', () => renderApp())
+document.addEventListener('DOMContentLoaded', () => renderApp())

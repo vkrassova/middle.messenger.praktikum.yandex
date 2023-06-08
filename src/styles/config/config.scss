@@ -1,0 +1,10 @@
+@import 'mixins';
+@import 'reset';
+
+// 1px ===  1rem
+
+html,
+body {
+    position: relative;
+    font-family: "montserrat", Arial, Helvetica, sans-serif;
+}
