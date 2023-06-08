@@ -1,6 +1,6 @@
 import { loginPage, registrationPage } from './pages'
 import './components'
-import smile from './img/smile.svg'
+import smile from './public/img/smile.svg'
 
 const renderTemplate = (page) => {
   const root = document.querySelector('#app')
