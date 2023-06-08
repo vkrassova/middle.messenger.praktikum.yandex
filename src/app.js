@@ -1,5 +1,6 @@
 import { loginPage, registrationPage } from './pages'
 import './components'
+import smile from './img/smile.svg'
 
 const renderTemplate = (page) => {
   const root = document.querySelector('#app')
@@ -12,7 +13,7 @@ const renderApp = () => {
   switch (pathname) {
     case '/login':
       console.log('login')
-      renderTemplate(loginPage())
+      renderTemplate(loginPage({ img: smile }))
       break
     case '/registration':
       renderTemplate(registrationPage())
