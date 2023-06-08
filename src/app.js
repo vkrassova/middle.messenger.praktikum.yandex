@@ -6,18 +6,8 @@ const renderTemplate = (page) => {
   root.innerHTML = page
 }
 
-const pathname = window.location.pathname
-
-if (pathname === '/login') {
-  console.log('login')
-}
-
 const renderApp = () => {
-  const pathname = window.location.pathname
-
-  // if (pathname === '/login') {
-  //   console.log('login')
-  // }
+  const { pathname } = window.location
 
   switch (pathname) {
     case '/login':
