@@ -1,18 +1,29 @@
 import LoginPage from './pages/login/login'
 
-// const renderTemplate = (page) => {
-//   const root = document.querySelector('#app')
-//   root.innerHTML = page
-// }
+const renderTemplate = (page) => {
+  const root = document.querySelector('#app')
+  root.innerHTML = page
+}
 
-// const renderApp = () => {
-//   const { pathname } = window.location
+const pathname = window.location.pathname
 
-//   switch (pathname) {
-//     case '/login':
-//       renderTemplate(LoginPage())
-//       break
-//   }
-// }
+if (pathname === '/login') {
+  console.log('login')
+}
 
-// document.addEventListener('load', () => renderApp())
+const renderApp = () => {
+  const pathname = window.location.pathname
+
+  // if (pathname === '/login') {
+  //   console.log('login')
+  // }
+
+  switch (pathname) {
+    case '/login':
+      console.log('login')
+      // renderTemplate(LoginPage())
+      break
+  }
+}
+
+document.addEventListener('DOMLoading', () => renderApp())

@@ -3,14 +3,9 @@ import { defineConfig } from 'vite'
 import handlebars from './vite-plagin-handlebars-precompile'
 
 export default defineConfig({
-  root: resolve(__dirname, 'src'),
+  // root: resolve(__dirname, '/'),
   build: {
-    rollupOptions: {
-      input: {
-        login: resolve(__dirname, 'src/pages/login/login.html'),
-      },
-    },
+    outDir: resolve(__dirname, 'dist'),
   },
   plugins: [handlebars()],
-  emptyOutDir: true,
 })
