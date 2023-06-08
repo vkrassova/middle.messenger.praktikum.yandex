@@ -1,10 +1,39 @@
 @import 'mixins';
 @import 'reset';
-
-// 1px ===  1rem
+@import 'fonts';
+@import 'variables';
 
 html,
 body {
     position: relative;
+    width: 100%;
+    height: 100vh;
     font-family: "montserrat", Arial, Helvetica, sans-serif;
+    color: var(--white-color);
+    background-color: var(--shark-color);
+
+    box-sizing: border-box;
+}
+
+#app {
+    @include flex-center;
+    width: 100%;
+    height: 100%;
+}
+
+.main-title {
+    margin-bottom: 54px;
+    font-family: 'pressStart', Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 1280px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+img {
+    background-color: aqua;
 }

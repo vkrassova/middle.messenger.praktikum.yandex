@@ -1,4 +1,4 @@
-import LoginPage from './pages/login/login'
+import { loginPage, registrationPage } from './pages'
 import './components'
 
 const renderTemplate = (page) => {
@@ -22,8 +22,10 @@ const renderApp = () => {
   switch (pathname) {
     case '/login':
       console.log('login')
-      renderTemplate(LoginPage())
+      renderTemplate(loginPage())
       break
+    case '/registration':
+      renderTemplate(registrationPage())
   }
 }
 
