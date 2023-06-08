@@ -1,0 +1,10 @@
+@mixin font($fname, $fstyle, $fweight, $furlwoff2, $furlwoff) {
+    @font-face {
+      font-family: $fname;
+      font-style: $fstyle;
+      font-weight: $fweight;
+      src: url($furlwoff2) format("woff2"), url($furlwoff) format("woff");
+    }
+}
+
+@include font("montserrat", normal, 700, "../fonts/montserrat-bold.woff2",  "../fonts/montserrat-bold.woff");
