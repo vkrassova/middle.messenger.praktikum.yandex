@@ -13,7 +13,7 @@ const renderApp = () => {
   const { pathname } = window.location
 
   switch (pathname) {
-    case '/':
+    case '/home':
       renderTemplate(homePage())
       break
     case '/login':

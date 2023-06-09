@@ -24,9 +24,10 @@
 
 ## Деплой проекта на Netlify
 
-1. [Home page](https://celebrated-choux-312fa4.netlify.app/)
-2. [Profile page](https://celebrated-choux-312fa4.netlify.app/profile)
-3. [Registration page](https://celebrated-choux-312fa4.netlify.app/registration)
-4. [Login page](https://celebrated-choux-312fa4.netlify.app/login)
-5. [404](https://celebrated-choux-312fa4.netlify.app/error404)
-6. [505](https://celebrated-choux-312fa4.netlify.app/error505)
+1. [Main](https://celebrated-choux-312fa4.netlify.app)
+2. [Home page](https://celebrated-choux-312fa4.netlify.app/home)
+3. [Profile page](https://celebrated-choux-312fa4.netlify.app/profile)
+4. [Registration page](https://celebrated-choux-312fa4.netlify.app/registration)
+5. [Login page](https://celebrated-choux-312fa4.netlify.app/login)
+6. [404](https://celebrated-choux-312fa4.netlify.app/error404)
+7. [505](https://celebrated-choux-312fa4.netlify.app/error505)
