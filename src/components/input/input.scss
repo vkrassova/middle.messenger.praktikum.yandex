@@ -1,18 +1,29 @@
 .form-input {
     display: inline-block;
-    width: 100%;
-    border-radius: 8px;
-    background-color: var(--woodsmoke-color);
-
+    @include ui-field;
+    
     input {
         width: 100%;
-        padding: 0;
+        padding-top: 16px;
+        padding-bottom: 16px;
+        padding-left: 24px;
+        padding-right: 10px;
         margin: 0;
+
         border: none;
         outline: none;
         border-radius: inherit;
         background-color: inherit;
-        font-size: inherit;
-        line-height: inherit;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 20px;
+        color: var(--white-color);
+
+        &::placeholder {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 17px;
+            color: var(--gray-color);
+        }
     }
 }
