@@ -1,14 +1,13 @@
 <section class="login">
     <div class="login__container">
-    <h1 class="main-title">Вход</h1>
-    <img src={{img}}>
+   {{>main-title title="Вход"}}
         <form>
             <div class="login__inputs">
-                {{>input name="login" placeholder="логин"}}
-                {{>input name="password" placeholder="пароль"}}
+                {{>input name="login" placeholder="Логин"}}
+                {{>input name="password" placeholder="Пароль" type="password"}}
             </div>
             <div class="login__buttons">
-                {{>button class="button--fill" title="Войти" link="/chat"}}
+                {{>button class="button--fill" title="Войти" link="/"}}
                 {{>button class="button--outline" title="Регистрация" link="/registration"}}
             </div>
         </form>

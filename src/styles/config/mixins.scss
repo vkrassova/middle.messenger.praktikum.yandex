@@ -6,8 +6,28 @@
   background-color: var(--shark-color);
 }
 
+@mixin page-container {
+  padding-top: 42px;
+  padding-bottom: 42px;
+  padding-left: 60px;
+  padding-right: 60px;
+  background-color: var(--shark-color);
+  border-radius: 13px;
+}
+
 @mixin flex-center {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+@mixin flex-buttons {
+  @include flex-center;
+  flex-direction: column;
+  gap: 22px;
+}
+
+@mixin ui-field {
+  width: 100%;
+  border-radius: 8px;
+  background-color: var(--woodsmoke-color);
 }

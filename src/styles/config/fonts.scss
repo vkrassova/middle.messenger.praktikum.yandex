@@ -8,4 +8,5 @@
 }
 
 @include font("montserrat", normal, 700, "../fonts/montserrat-bold.woff2",  "../fonts/montserrat-bold.woff");
+@include font("montserrat", normal, 400, "../fonts/montserrat-regular.woff2",  "../fonts/montserrat-regular.woff");
 @include font("pressStart", normal, 400, "../fonts/press-start2p-regular.woff2",  "../fonts/press-start2p-regular.woff");

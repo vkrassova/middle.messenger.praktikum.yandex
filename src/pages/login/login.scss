@@ -4,18 +4,11 @@
     max-width: 520px;
 
     &__container {
-        padding-top: 42px;
-        padding-bottom: 42px;
-        padding-left: 60px;
-        padding-right: 60px;
-        background-color: var(--shark-color);
-        border-radius: 13px;
+        @include page-container;
     }
 
     &__buttons {
-        @include flex-center;
-        flex-direction: column;
-        gap: 22px;
+        @include flex-buttons;
         padding-top: 97px;
     }
 

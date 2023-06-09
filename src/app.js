@@ -1,6 +1,8 @@
-import { loginPage, registrationPage } from './pages'
+import { loginPage, registrationPage, profilePage, errorPage, homePage } from './pages'
 import './components'
 import smile from './public/img/smile.svg'
+
+import exitIcon from './img/exit-icon.svg'
 
 const renderTemplate = (page) => {
   const root = document.querySelector('#app')
@@ -11,12 +13,34 @@ const renderApp = () => {
   const { pathname } = window.location
 
   switch (pathname) {
+    case '/':
+      renderTemplate(homePage())
+      break
     case '/login':
-      console.log('login')
-      renderTemplate(loginPage({ img: smile }))
+      renderTemplate(loginPage())
       break
     case '/registration':
       renderTemplate(registrationPage())
+      break
+    case '/profile':
+      renderTemplate(profilePage({ icon: exitIcon }))
+      break
+    case '/error404':
+      renderTemplate(
+        errorPage({
+          error: '404',
+          description: 'The page you are looking for can’t be found',
+        })
+      )
+      break
+    case '/error505':
+      renderTemplate(
+        errorPage({
+          error: '505',
+          description: 'We are already fixing',
+        })
+      )
+      break
   }
 }
 

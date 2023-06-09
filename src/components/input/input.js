@@ -1,3 +1,3 @@
 import input from './input.hbs'
 
-export { input }
+export default input
