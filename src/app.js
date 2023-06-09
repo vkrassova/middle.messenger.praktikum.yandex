@@ -2,6 +2,7 @@ import { loginPage, registrationPage, profilePage, errorPage, homePage } from '.
 import './components'
 
 import exitIcon from './img/exit-icon.svg'
+import smileIcon from './img/smile.svg'
 
 const renderTemplate = (page) => {
   const root = document.querySelector('#app')
@@ -22,7 +23,7 @@ const renderApp = () => {
       renderTemplate(registrationPage())
       break
     case '/profile':
-      renderTemplate(profilePage({ icon: exitIcon }))
+      renderTemplate(profilePage({ icon: exitIcon, avatarIcon: smileIcon }))
       break
     case '/error404':
       renderTemplate(
