@@ -22,11 +22,11 @@
 
 ---
 
-##Деплой проекта на Netlify
+## Деплой проекта на Netlify
 
-1. [Home page]()
-2. [Profile page]()
-3. [Registration page]()
-4. [Login page]()
-5. [404]()
-6. [505]()
+1. [Home page](https://celebrated-choux-312fa4.netlify.app/)
+2. [Profile page](https://celebrated-choux-312fa4.netlify.app/profile)
+3. [Registration page](https://celebrated-choux-312fa4.netlify.app/registration)
+4. [Login page](https://celebrated-choux-312fa4.netlify.app/login)
+5. [404](https://celebrated-choux-312fa4.netlify.app/error404)
+6. [505](https://celebrated-choux-312fa4.netlify.app/error505)
