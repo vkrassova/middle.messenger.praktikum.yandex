@@ -32,6 +32,14 @@ const renderApp = () => {
         })
       )
       break
+    case '/error505':
+      renderTemplate(
+        errorPage({
+          error: '505',
+          description: 'We are already fixing',
+        })
+      )
+      break
   }
 }
 
