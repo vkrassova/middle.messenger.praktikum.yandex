@@ -1,6 +1,5 @@
 import { loginPage, registrationPage, profilePage, errorPage, homePage } from './pages'
 import './components'
-import smile from './public/img/smile.svg'
 
 import exitIcon from './img/exit-icon.svg'
 
