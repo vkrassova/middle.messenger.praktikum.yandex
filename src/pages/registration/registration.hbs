@@ -1,0 +1,23 @@
+<section class="registration">
+    <div class="container registration__container">
+        {{>main-title title="Регистрация"}}
+        <form>
+            <div class="registration__inputs">
+                {{>input name="email" placeholder="Почта" type="email"}}
+                {{>input name="login" placeholder="Логин"}}
+                {{>input name="first_name" placeholder="Имя"}}
+                {{>input name="second_name" placeholder="Фамилия"}}
+                {{>input name="phone" placeholder="Телефон"}}
+                <div class="registration__passwords">
+                    {{>input name="password" placeholder="Пароль" type="password"}}
+                    {{>input name="password" placeholder="Пароль (еще раз)" type="password"}}
+                </div>
+            </div>
+
+            <div class="registration__buttons">
+                {{>button class="button--fill" title="Войти" type="button"}}
+                {{>button class="button--outline" title="Регистрация" type="submit"}}
+            </div>
+        </form>
+    </div>
+</section>
