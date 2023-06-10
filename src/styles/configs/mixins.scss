@@ -1,6 +1,6 @@
 @mixin ui-page {
   padding: 3px;
-  background: linear-gradient(-60deg, #753BBDBA 73%, #B40091 100%);
+  background: linear-gradient(-60deg, #753bbdba 73%, #b40091 100%);
   box-shadow: 0px 0px 115px rgba(117, 59, 189, 0.3);
   border-radius: 16px;
   background-color: var(--shark-color);
@@ -16,9 +16,9 @@
 }
 
 @mixin flex-center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 @mixin flex-buttons {
   @include flex-center;

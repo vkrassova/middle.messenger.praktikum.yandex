@@ -6,7 +6,7 @@
     "node": ">= 16.0.0"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --open",
     "start": "vite build && node server.js",
     "build": "vite build",
     "preview": "vite preview",
