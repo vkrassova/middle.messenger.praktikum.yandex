@@ -4,16 +4,28 @@
 @import 'variables';
 
 html,
-body,
-main {
+body {
   position: relative;
-  width: 100%;
-  height: 100vh;
   font-family: 'montserrat', Arial, Helvetica, sans-serif;
+  font-size: 0.078125vw;
   color: var(--white-color);
   background-color: var(--bastille-color);
 
   box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  min-height: 600rem;
+  max-width: 100vw;
+}
+
+main {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 #app {
@@ -23,20 +35,22 @@ main {
 }
 
 .main-title {
-  margin-bottom: 54px;
+  margin-bottom: 42rem;
   font-family: 'pressStart', Arial, Helvetica, sans-serif;
+  font-size: 20rem;
   text-align: center;
 }
 
 .container {
+  width: 100%;
   margin: 0 auto;
-  max-width: 1280px;
-  padding-left: 20px;
-  padding-right: 20px;
+  // max-width: 1280rem;
+  padding-left: 20rem;
+  padding-right: 20rem;
 }
 
 nav {
-  font-size: 24px;
+  font-size: 24rem;
 
   ul {
     list-style-type: circle;

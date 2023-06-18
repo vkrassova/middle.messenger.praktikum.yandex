@@ -1,6 +1,6 @@
 .registration {
   @include ui-page;
-  width: 947px;
+  width: 947rem;
 
   &__container {
     @include page-container;
@@ -9,16 +9,16 @@
   &__inputs {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
+    gap: 32rem;
   }
 
   &__passwords {
     @include flex-center;
-    gap: 20px;
+    gap: 20rem;
   }
 
   &__buttons {
     @include flex-buttons;
-    padding-top: 130px;
+    padding-top: 100rem;
   }
 }

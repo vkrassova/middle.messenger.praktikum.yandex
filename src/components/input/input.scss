@@ -4,10 +4,10 @@
 
   input {
     width: 100%;
-    padding-top: 16px;
-    padding-bottom: 16px;
-    padding-left: 24px;
-    padding-right: 10px;
+    padding-top: 16rem;
+    padding-bottom: 16rem;
+    padding-left: 24rem;
+    padding-right: 10rem;
     margin: 0;
 
     border: none;
@@ -15,14 +15,14 @@
     border-radius: inherit;
     background-color: inherit;
     font-weight: 700;
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 16rem;
+    line-height: 20rem;
     color: var(--white-color);
 
     &::placeholder {
       font-weight: 400;
-      font-size: 14px;
-      line-height: 17px;
+      font-size: 14rem;
+      line-height: 17rem;
       color: var(--gray-color);
     }
   }
