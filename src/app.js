@@ -1,8 +1,11 @@
 import { loginPage, registrationPage, profilePage, errorPage, homePage } from './pages'
+import templ from './pages/error/error.tmpl'
 import './components'
 
 import exitIcon from './img/exit-icon.svg'
 import smileIcon from './img/smile.svg'
+
+let a
 
 const renderTemplate = (page) => {
   const root = document.querySelector('#app')
@@ -27,7 +30,7 @@ const renderApp = () => {
       break
     case '/error404':
       renderTemplate(
-        errorPage({
+        templ({
           error: '404',
           description: 'The page you are looking for can’t be found',
         })
