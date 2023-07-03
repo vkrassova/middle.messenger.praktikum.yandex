@@ -1,5 +1,6 @@
 .form-input {
   display: inline-block;
+  position: relative;
   @include ui-field;
 
   input {

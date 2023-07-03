@@ -56,3 +56,19 @@ nav {
     list-style-type: circle;
   }
 }
+
+.error-message {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  position: absolute;
+  top: 55rem;
+  left: 50%;
+  transform: translateX(-50%);
+
+  color: var(--red-color);
+  font-size: 10rem;
+  text-align: center;
+}
