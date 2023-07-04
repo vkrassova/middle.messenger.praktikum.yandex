@@ -17,7 +17,7 @@ const template = `
                 </div>
 
                 <div class="registration__buttons">
-                    {{{buttonLogin}}}
+                    <a href="/login" class="button button--fill" type={{type}}>Войти</a>
                     {{{buttonSubmit}}}
                 </div>
             </form>

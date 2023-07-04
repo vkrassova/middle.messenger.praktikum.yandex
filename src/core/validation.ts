@@ -71,7 +71,7 @@ const nameValidation = (value: string) => {
   return isCheck ? null : ERROR_MESSAGES.name
 }
 
-const formValidate = (data: Block) => {
+const formValidate = (data: { [key: string]: string }) => {
   Object.entries(data).forEach(([key, value]) => {
     const error = document?.querySelector(`.error-message--${key}`)
 
