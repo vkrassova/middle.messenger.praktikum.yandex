@@ -1,7 +1,6 @@
 .profile {
   width: 100vw;
   height: 100vh;
-
   background-color: var(--shark-color);
 
   &__container {
@@ -9,15 +8,14 @@
     grid-template-columns: 58rem auto;
     width: 100%;
     height: 100%;
-
     margin: 0 auto;
   }
 
   &__nav {
-    padding-top: 20rem;
-    padding-left: 10rem;
-    padding-right: 10rem;
     width: 58rem;
+    padding-top: 20rem;
+    padding-right: 10rem;
+    padding-left: 10rem;
     border-right: 1rem solid var(--gray-color);
   }
 
@@ -35,25 +33,20 @@
 
   &__wrapper {
     @include flex-center;
+
     flex-direction: column;
     justify-content: space-around;
-
-    padding-top: 20rem;
-    padding-bottom: 20rem;
-    padding-left: 126rem;
-    padding-right: 126rem;
+    padding: 20rem 126rem;
   }
 
   &__avatar {
     position: relative;
-    margin: 0 auto;
-    margin-bottom: 16rem;
-
     width: 100rem;
     height: 100rem;
-
-    border-radius: 50%;
+    margin: 0 auto;
+    margin-bottom: 16rem;
     background-color: var(--trendy-pink-color);
+    border-radius: 50%;
 
     img {
       border-radius: inherit;
@@ -64,10 +57,9 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-
     width: 30rem;
     height: 30rem;
+    transform: translate(-50%, -50%);
 
     img {
       width: 100%;
@@ -77,7 +69,6 @@
 
   &__name {
     padding-bottom: 25rem;
-
     font-weight: 700;
     font-size: 20rem;
     line-height: 24rem;
@@ -86,33 +77,29 @@
 
   &__avatar-input {
     display: block;
-    padding: 0;
-    margin: 0;
-    border: none;
-
     width: 100%;
     height: 100%;
+    margin: 0;
+    padding: 0;
     background-color: transparent;
+    border: none;
     opacity: 0;
   }
 
   &__fields {
     display: grid;
     gap: 12rem;
-    margin: 0 auto;
     min-width: 600rem;
+    margin: 0 auto;
   }
 
   &__fields-item {
     @include ui-field;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    padding-top: 8rem;
-    padding-bottom: 8rem;
-    padding-left: 24rem;
-    padding-right: 24rem;
+    padding: 8rem 24rem;
   }
 
   &__fields-name {
@@ -131,39 +118,39 @@
 
   &__buttons {
     @include flex-center;
-    align-items: flex-start;
-    flex-direction: column;
-    margin: 0 auto;
 
-    padding-top: 70rem;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0 auto;
     margin-right: auto;
+    padding-top: 70rem;
   }
 
   &__edit {
     padding-bottom: 10rem;
-    font-family: 'pressStart', Arial, Helvetica, sans-serif;
+    color: var(--heliotrope-color);
     font-weight: 400;
     font-size: 10rem;
+    font-family: pressStart, Arial, Helvetica, sans-serif;
     line-height: 10rem;
-    color: var(--heliotrope-color);
     cursor: pointer;
   }
 
   &__exit {
-    margin-top: 25rem;
     min-width: 180rem;
+    margin-top: 25rem;
     padding-top: 10rem;
     padding-bottom: 10rem;
+    color: var(--red-color);
     font-size: 12rem;
     border-color: var(--gray-color);
-    color: var(--red-color);
   }
 }
 
 .profile--settings {
   .error-message {
-    left: 50rem;
     top: 32rem;
+    left: 50rem;
     width: 170%;
   }
 

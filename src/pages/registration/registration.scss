@@ -1,5 +1,6 @@
 .registration {
   @include ui-page;
+
   width: 947rem;
 
   &__container {
@@ -14,11 +15,13 @@
 
   &__passwords {
     @include flex-center;
+
     gap: 20rem;
   }
 
   &__buttons {
     @include flex-buttons;
+
     padding-top: 100rem;
   }
 }

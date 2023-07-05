@@ -1,22 +1,22 @@
 .button {
   @include flex-center;
 
+  min-width: 400rem;
   padding-top: 16rem;
   padding-bottom: 16rem;
-  min-width: 400rem;
-  border-radius: 8rem;
-  font-family: 'pressStart', Arial, Helvetica, sans-serif;
   font-size: 14rem;
+  font-family: pressStart, Arial, Helvetica, sans-serif;
   line-height: 14rem;
+  border-radius: 8rem;
   transition: var(--ease);
 
   &--fill {
-    background-color: var(--violet-color);
     color: var(--white-color);
+    background-color: var(--violet-color);
   }
 
   &--outline {
-    border: 1rem solid var(--violet-color);
     color: var(--violet-color);
+    border: 1rem solid var(--violet-color);
   }
 }

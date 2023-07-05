@@ -1,7 +1,8 @@
 .login {
   @include ui-page;
-  margin: 0 auto;
+
   max-width: 520rem;
+  margin: 0 auto;
 
   &__container {
     @include page-container;
@@ -9,11 +10,13 @@
 
   &__buttons {
     @include flex-buttons;
+
     padding-top: 97rem;
   }
 
   &__inputs {
     @include flex-center;
+
     flex-direction: column;
     gap: 32rem;
   }
