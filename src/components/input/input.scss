@@ -2,6 +2,8 @@
   position: relative;
   display: inline-flex;
   align-items: flex-end;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
 
   @include ui-field;
 

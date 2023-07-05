@@ -1,7 +1,7 @@
 import Block from '../../core/block'
 import template from './index.templ'
 
-class HomePage extends Block {
+class NavigationPage extends Block {
   constructor() {
     super('div', {})
   }
@@ -11,4 +11,4 @@ class HomePage extends Block {
   }
 }
 
-export default HomePage
+export default NavigationPage

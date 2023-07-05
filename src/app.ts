@@ -16,8 +16,12 @@ const renderApp = () => {
   const home = new page.HomePage()
   const profile = new page.ProfilePage({ icon: exitIcon, avatarIcon: smileIcon, name: 'Имя' })
   const settings = new page.ProfileSettingsPage({ icon: exitIcon, avatarIcon: smileIcon })
+  const navigation = new page.NavigationPage()
 
   switch (pathname) {
+    case '/':
+      render('#app', navigation)
+      break
     case '/home':
       render('#app', home)
       break
