@@ -1,20 +1,23 @@
 .login {
-    @include ui-page;
-    margin: 0 auto;
-    max-width: 520px;
+  @include ui-page;
 
-    &__container {
-        @include page-container;
-    }
+  max-width: 520rem;
+  margin: 0 auto;
 
-    &__buttons {
-        @include flex-buttons;
-        padding-top: 97px;
-    }
+  &__container {
+    @include page-container;
+  }
 
-    &__inputs {
-        @include flex-center;
-        flex-direction: column;
-        gap: 32px;
-    }
+  &__buttons {
+    @include flex-buttons;
+
+    padding-top: 97rem;
+  }
+
+  &__inputs {
+    @include flex-center;
+
+    flex-direction: column;
+    gap: 32rem;
+  }
 }

@@ -1,24 +1,27 @@
 .registration {
-    @include ui-page;
-    width: 947px;
+  @include ui-page;
 
-    &__container {
-        @include page-container;
-    }
+  width: 947rem;
 
-    &__inputs {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 32px;
-    }
+  &__container {
+    @include page-container;
+  }
 
-    &__passwords {
-        @include flex-center;
-        gap: 20px;
-    }
+  &__inputs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32rem;
+  }
 
-    &__buttons {
-        @include flex-buttons;
-        padding-top: 130px;
-    }
+  &__passwords {
+    @include flex-center;
+
+    gap: 20rem;
+  }
+
+  &__buttons {
+    @include flex-buttons;
+
+    padding-top: 100rem;
+  }
 }
