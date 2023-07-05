@@ -1,4 +1,3 @@
-import { validateHeaderValue } from 'http'
 import Block from './block'
 
 const REGEXPS = {
