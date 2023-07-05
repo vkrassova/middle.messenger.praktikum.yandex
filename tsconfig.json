@@ -16,6 +16,11 @@
     "sourceMap": true,
     "strictNullChecks": true
   },
+  "include": ["src"],
+	"lib": [
+		"DOM",
+		"ESNext"
+	],
   "ts-node": {
     "esm": true,
     "experimentalSpecifierResolution": "node"

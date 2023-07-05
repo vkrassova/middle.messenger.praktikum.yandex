@@ -16,7 +16,8 @@
     "semi": [2, "never"],
     "object-curly-newline": "off",
     "space-before-function-paren": 0,
-    "@typescript-eslint/no-empty-function": "warn",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-explicit-any": "off",
     "no-console": "off"
   }
 }
