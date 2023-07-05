@@ -9,8 +9,6 @@ const template = `
         <div class="profile__wrapper">
             <div class="profile__avatar">
                 <div class="profile__avatar-icon"><img src={{avatarIcon}} alt="avatar's cover"></div>
-                <input type="file" id="file" class="profile__avatar-input" name="avata"/>
-                <img src="" id="avatar" alt="avatar">
             </div>
 
             <p class="profile__name">{{name}}</p>

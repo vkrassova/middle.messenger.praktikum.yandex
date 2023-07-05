@@ -15,6 +15,7 @@ const renderApp = () => {
   const registration = new page.RegistrationPage({ title: 'Регистрация' })
   const home = new page.HomePage()
   const profile = new page.ProfilePage({ icon: exitIcon, avatarIcon: smileIcon, name: 'Имя' })
+  const settings = new page.ProfileSettingsPage({ icon: exitIcon, avatarIcon: smileIcon })
 
   switch (pathname) {
     case '/home':
@@ -25,6 +26,9 @@ const renderApp = () => {
       break
     case '/profile':
       render('#app', profile)
+      break
+    case '/settings':
+      render('#app', settings)
       break
     case '/registration':
       render('#app', registration)

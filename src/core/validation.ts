@@ -1,3 +1,4 @@
+import { validateHeaderValue } from 'http'
 import Block from './block'
 
 const REGEXPS = {
@@ -99,6 +100,7 @@ const FORM_VALIDATORS: FormValidators | any = {
   first_name: nameValidation,
   second_name: nameValidation,
   message: messageValidation,
+  nickname: messageValidation,
 }
 
 const validate = (type: string, value: string | { [key: string]: unknown }) => {
