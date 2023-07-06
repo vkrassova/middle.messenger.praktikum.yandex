@@ -1,18 +1,15 @@
 @mixin ui-page {
-  padding: 3px;
+  padding: 3rem;
   background: linear-gradient(-60deg, #753bbdba 73%, #b40091 100%);
-  box-shadow: 0px 0px 115px rgba(117, 59, 189, 0.3);
-  border-radius: 16px;
   background-color: var(--shark-color);
+  border-radius: 16rem;
+  box-shadow: 0 0 115rem rgb(117 59 189 / 30%);
 }
 
 @mixin page-container {
-  padding-top: 42px;
-  padding-bottom: 42px;
-  padding-left: 60px;
-  padding-right: 60px;
+  padding: 40rem 60rem;
   background-color: var(--shark-color);
-  border-radius: 13px;
+  border-radius: 13rem;
 }
 
 @mixin flex-center {
@@ -20,14 +17,16 @@
   align-items: center;
   justify-content: center;
 }
+
 @mixin flex-buttons {
   @include flex-center;
+
   flex-direction: column;
-  gap: 22px;
+  gap: 12rem;
 }
 
 @mixin ui-field {
   width: 100%;
-  border-radius: 8px;
   background-color: var(--woodsmoke-color);
+  border-radius: 8rem;
 }

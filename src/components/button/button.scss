@@ -1,22 +1,22 @@
 .button {
   @include flex-center;
 
-  padding-top: 16px;
-  padding-bottom: 16px;
-  min-width: 400px;
-  border-radius: 8px;
-  font-family: 'pressStart', Arial, Helvetica, sans-serif;
-  font-size: 14px;
-  line-height: 14px;
+  min-width: 400rem;
+  padding-top: 16rem;
+  padding-bottom: 16rem;
+  font-size: 14rem;
+  font-family: pressStart, Arial, Helvetica, sans-serif;
+  line-height: 14rem;
+  border-radius: 8rem;
   transition: var(--ease);
 
   &--fill {
-    background-color: var(--violet-color);
     color: var(--white-color);
+    background-color: var(--violet-color);
   }
 
   &--outline {
-    border: 1px solid var(--violet-color);
     color: var(--violet-color);
+    border: 1rem solid var(--violet-color);
   }
 }

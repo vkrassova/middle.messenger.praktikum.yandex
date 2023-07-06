@@ -12,7 +12,7 @@
 
 #### `npm run dev`
 
-### Cборка (build) и запуск express-сервера на <a>http://localhost:3000/</a>:
+### Cборка (build) и запуск express-сервера на <a>http://localhost:3000/</a>
 
 #### `npm run start`
 

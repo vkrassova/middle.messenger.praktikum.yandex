@@ -1,51 +1,52 @@
 .profile {
-  width: 100%;
-  height: 100%;
-
-  background-color: var(--bastille-color);
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--shark-color);
 
   &__container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-
-    margin: 0 auto;
-    width: 1280px;
+    grid-template-columns: 58rem auto;
+    width: 100%;
     height: 100%;
+    margin: 0 auto;
   }
 
   &__nav {
-    padding-top: 20px;
-    padding-left: 14px;
-    padding-right: 14px;
-    width: 58px;
-    border-right: 1px solid var(--gray-color);
+    width: 58rem;
+    padding-top: 20rem;
+    padding-right: 10rem;
+    padding-left: 10rem;
+    border-right: 1rem solid var(--gray-color);
   }
 
   &__nav-icon {
-    width: 30px;
-    height: 30px;
+    display: block;
+    width: 30rem;
+    height: 30rem;
     cursor: pointer;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
 
   &__wrapper {
-    padding-top: 42px;
-    padding-bottom: 42px;
-    padding-left: 126px;
-    padding-right: 126px;
+    @include flex-center;
 
-    background-color: var(--mine-shaft);
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 20rem 126rem;
   }
 
   &__avatar {
     position: relative;
+    width: 100rem;
+    height: 100rem;
     margin: 0 auto;
-    margin-bottom: 16px;
-
-    width: 100px;
-    height: 100px;
-
+    margin-bottom: 16rem;
+    background-color: var(--trendy-pink-color);
     border-radius: 50%;
-    background-color: var(--amethyst-color);
 
     img {
       border-radius: inherit;
@@ -56,91 +57,104 @@
     position: absolute;
     top: 50%;
     left: 50%;
+    width: 30rem;
+    height: 30rem;
     transform: translate(-50%, -50%);
 
-    width: 30px;
-    height: 30px;
-
-    background-image: url('../../../src/img/smile.svg');
-    background-position: center;
-    background-size: cover;
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
 
   &__name {
-    padding-bottom: 50px;
-
+    padding-bottom: 25rem;
     font-weight: 700;
-    font-size: 20px;
-    line-height: 24px;
+    font-size: 20rem;
+    line-height: 24rem;
     text-align: center;
   }
 
   &__avatar-input {
     display: block;
-    padding: 0;
-    margin: 0;
-    border: none;
-
     width: 100%;
     height: 100%;
+    margin: 0;
+    padding: 0;
     background-color: transparent;
+    border: none;
     opacity: 0;
   }
 
   &__fields {
     display: grid;
-    gap: 6px;
-    min-width: 970px;
+    gap: 12rem;
+    min-width: 600rem;
+    margin: 0 auto;
   }
 
   &__fields-item {
     @include ui-field;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    padding-top: 16px;
-    padding-bottom: 16px;
-    padding-left: 24px;
-    padding-right: 24px;
+    padding: 8rem 24rem;
   }
 
   &__fields-name {
     display: inline-block;
     font-weight: 700;
-    font-size: 14px;
-    line-height: 17px;
+    font-size: 12rem;
+    line-height: 12rem;
   }
 
   &__fields-value {
     display: inline-block;
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 13px;
+    font-weight: 700;
+    font-size: 12rem;
+    line-height: 12rem;
   }
 
   &__buttons {
     @include flex-center;
-    align-items: flex-start;
-    flex-direction: column;
 
-    padding-top: 66px;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0 auto;
+    margin-right: auto;
+    padding-top: 70rem;
   }
 
   &__edit {
-    padding-bottom: 10px;
-    font-family: 'pressStart', Arial, Helvetica, sans-serif;
+    padding-bottom: 10rem;
+    color: var(--heliotrope-color);
     font-weight: 400;
-    font-size: 12px;
-    line-height: 12px;
-    color: var(--white-color);
+    font-size: 10rem;
+    font-family: pressStart, Arial, Helvetica, sans-serif;
+    line-height: 10rem;
     cursor: pointer;
   }
 
   &__exit {
-    margin-top: 24px;
-    min-width: 215px;
-    border-color: var(--gray-color);
+    min-width: 180rem;
+    margin-top: 25rem;
+    padding-top: 10rem;
+    padding-bottom: 10rem;
     color: var(--red-color);
+    font-size: 12rem;
+    border-color: var(--gray-color);
+  }
+}
+
+.profile--settings {
+  .error-message {
+    top: 40rem;
+    left: 50rem;
+    width: 170%;
+  }
+
+  .profile__fields {
+    gap: 20rem;
   }
 }
