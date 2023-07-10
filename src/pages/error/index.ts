@@ -12,7 +12,10 @@ class ErrorPage extends Block {
   }
 
   render() {
-    return this.compile(template, this.props)
+    return this.compile(template, {
+      error: this.props.error,
+      description: this.props.description,
+    })
   }
 }
 

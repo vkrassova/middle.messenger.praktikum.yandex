@@ -2,15 +2,9 @@ import template from './index.tmpl'
 import Block from '../../core/block'
 import { Button, Input } from '../../components/index'
 import { handleFocusOut, handleFormSubmit } from '../../core/validation'
-
-interface LoginPageProps {
-  title: string
-}
-
 class LoginPage extends Block {
-  constructor(props?: LoginPageProps) {
+  constructor() {
     super('div', {
-      ...props,
       events: {
         submit: (event: Event) => {
           handleFormSubmit(event, this)

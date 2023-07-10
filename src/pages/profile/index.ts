@@ -3,9 +3,9 @@ import template from './index.template'
 import { Button } from '../../components'
 
 interface ProfilePageProps {
-  icon: string
-  avatarIcon: string
-  name: string
+  icon?: string
+  avatarIcon?: string
+  name?: string
 }
 
 class ProfilePage extends Block {
