@@ -1,6 +1,6 @@
 .profile {
-  width: 100vw;
-  height: 100vh;
+  height: 100%;
+  max-width: 1280rem;
   background-color: var(--shark-color);
 
   &__container {
@@ -120,7 +120,7 @@
     @include flex-center;
 
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     margin: 0 auto;
     margin-right: auto;
     padding-top: 70rem;
