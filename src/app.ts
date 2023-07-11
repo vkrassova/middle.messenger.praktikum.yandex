@@ -18,8 +18,14 @@ enum Routes {
   Register = '/signup',
   Profile = '/profile',
   Login = '/login',
+  Settings = '/settings',
 }
 
 window.addEventListener('DOMContentLoaded', async () => {
-  router.use(Routes.Profile, profile).use(Routes.Index, navigation).use(Routes.Login, login).start()
+  router
+    .use(Routes.Profile, profile)
+    .use(Routes.Index, navigation)
+    .use(Routes.Settings, settings)
+    .use(Routes.Login, login)
+    .start()
 })

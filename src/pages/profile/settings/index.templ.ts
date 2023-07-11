@@ -9,7 +9,7 @@ const template = `
         <div class="profile__wrapper">
             <div class="profile__avatar">
                 <div class="profile__avatar-icon"><img src={{avatarIcon}} alt="avatar's cover"></div>
-                <input type="file" id="file" class="profile__avatar-input" name="avata"/>
+                <input type="file" id="file" class="profile__avatar-input" name="avata" accept="image/*"/>
                 <img src="" id="avatar" alt="avatar">
             </div>
 
