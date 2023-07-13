@@ -1,43 +1,67 @@
-enum METHODS {
-  GET = 'GET',
-  POST = 'POST',
-  PUT = 'PUT',
-  DELETE = 'DELETE',
+export enum Method {
+  Get = 'Get',
+  Post = 'Post',
+  Put = 'Put',
+  Patch = 'Patch',
+  Delete = 'Delete',
 }
 
-type ObjectType = { [key: string]: any }
-
-type HTTPMethod = (url: string, options?: ObjectType | undefined) => Promise<XMLHttpRequestUpload>
-
-function queryStringify(data: ObjectType) {
-  if (typeof data !== 'object') {
-    throw new Error('Data must be object')
-  }
-
-  const keys = Object.keys(data)
-  return keys.reduce((result, key, index) => {
-    return `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`
-  }, '?')
+type Options = {
+  method: Method
+  headers?: Record<string, string>
+  data?: any
 }
+
+// function queryStringify(data: ObjectType) {
+//   if (typeof data !== 'object') {
+//     throw new Error('Data must be object')
+//   }
+
+//   const keys = Object.keys(data)
+//   return keys.reduce((result, key, index) => {
+//     return `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`
+//   }, '?')
+// }
 
 export class HTTPTransport {
-  get: HTTPMethod = (url, options = {}) => {
-    return this.request(url + queryStringify(options.data), { ...options, method: METHODS.GET }, options.timeout)
+  static API_URL = 'https://ya-praktikum.tech/api/v2'
+  protected endpoint: string
+
+  constructor(endpoint: string) {
+    this.endpoint = `${HTTPTransport.API_URL}${endpoint}`
   }
 
-  put: HTTPMethod = (url, options = {}) => {
-    return this.request(url, { ...options, method: METHODS.PUT }, options.timeout)
+  public get<Response>(path = '/'): Promise<Response> {
+    return this.request<Response>(this.endpoint + path)
   }
 
-  post: HTTPMethod = (url, options = {}) => {
-    return this.request(url, { ...options, method: METHODS.POST }, options.timeout)
+  public put<Response = void>(path: string, data: unknown): Promise<Response> {
+    return this.request<Response>(this.endpoint + path, {
+      method: Method.Put,
+      data,
+    })
+  }
+  public post<Response = void>(path: string, data?: unknown): Promise<Response> {
+    return this.request<Response>(this.endpoint + path, {
+      method: Method.Post,
+      data,
+    })
   }
 
-  delete: HTTPMethod = (url, options = {}) => {
-    return this.request(url, { ...options, method: METHODS.DELETE }, options.timeout)
+  public patch<Response = void>(path: string, data: unknown): Promise<Response> {
+    return this.request<Response>(this.endpoint + path, {
+      method: Method.Patch,
+      data,
+    })
   }
 
-  request = (url: string, options: ObjectType = {}, timeout = 5000): Promise<XMLHttpRequest> => {
+  public delete<Response>(path: string): Promise<Response> {
+    return this.request<Response>(this.endpoint + path, {
+      method: Method.Delete,
+    })
+  }
+
+  public request<Response>(url: string, options: Options = { method: Method.Get }): Promise<Response> {
     const { headers = {}, method, data } = options
 
     return new Promise(function (resolve, reject) {
@@ -47,28 +71,37 @@ export class HTTPTransport {
       }
 
       const xhr = new XMLHttpRequest()
-      const isGet = method === METHODS.GET
 
-      xhr.open(method, isGet && !!data ? `${url}${queryStringify(data)}` : url)
+      xhr.open(method, url)
 
       Object.keys(headers).forEach((key) => {
         xhr.setRequestHeader(key, headers[key])
       })
 
-      xhr.onload = function () {
-        resolve(xhr)
+      xhr.onreadystatechange = () => {
+
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status < 400) {
+            resolve(xhr.response)
+          } else {
+            reject(xhr.response)
+          }
+        }
       }
 
-      xhr.onabort = reject
-      xhr.onerror = reject
+      xhr.onabort = () => reject({ reason: 'abort' })
+      xhr.onerror = () => reject({ reason: 'network error' })
+      xhr.ontimeout = () => reject({ reason: 'timeout' })
 
-      xhr.timeout = timeout
-      xhr.ontimeout = reject
+      // xhr.setRequestHeader('Content-Type', 'application/json')
 
-      if (isGet || !data) {
+      xhr.withCredentials = true
+      xhr.responseType = 'json'
+
+      if (method === Method.Get || !data) {
         xhr.send()
       } else {
-        xhr.send(data)
+        xhr.send(JSON.stringify(data))
       }
     })
   }

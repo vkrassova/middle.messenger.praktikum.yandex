@@ -4,7 +4,7 @@ abstract class API {
   protected http: HTTPTransport
 
   protected constructor(endpoint: string) {
-    this.http = new HTTPTransport()
+    this.http = new HTTPTransport(endpoint)
   }
 }
 
