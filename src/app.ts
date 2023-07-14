@@ -3,6 +3,7 @@ import * as page from './pages/index'
 import router from './core/router'
 import exitIcon from './img/exit-icon.svg'
 import smileIcon from './img/smile.svg'
+import path from 'path'
 
 const login = new page.LoginPage()
 // const home = new page.HomePage()
@@ -27,5 +28,29 @@ window.addEventListener('DOMContentLoaded', async () => {
     .use(Routes.Index, navigation)
     .use(Routes.Settings, settings)
     .use(Routes.Login, login)
-    .start()
+
+  let isProtectedRoute = true
+
+  const pathname = window.location.pathname
+
+  switch (pathname) {
+    case Routes.Index:
+    case Routes.Register:
+      isProtectedRoute = false
+      break
+  }
+
+  try {
+    router.start()
+
+    if (!isProtectedRoute) {
+      router.go(Routes.Profile)
+    }
+  } catch (e) {
+    router.start()
+
+    if (isProtectedRoute) {
+      router.go(Routes.Index)
+    }
+  }
 })
