@@ -3,7 +3,7 @@ import template from './index.templ'
 
 class NavigationPage extends Block {
   constructor() {
-    super('div', {})
+    super({})
   }
 
   render() {

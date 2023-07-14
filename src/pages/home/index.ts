@@ -3,7 +3,7 @@ import template from './index.templ'
 
 class HomePage extends Block {
   constructor() {
-    super('div', {})
+    super({})
   }
 
   render() {

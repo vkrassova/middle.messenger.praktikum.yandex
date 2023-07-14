@@ -8,7 +8,7 @@ interface errorPageProps {
 
 class ErrorPage extends Block {
   constructor(props: errorPageProps) {
-    super('div', { ...props })
+    super({ ...props })
   }
 
   render() {

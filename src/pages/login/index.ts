@@ -4,7 +4,7 @@ import { Button, Input } from '../../components/index'
 import { handleFocusOut, handleFormSubmit } from '../../core/validation'
 class LoginPage extends Block {
   constructor() {
-    super('div', {
+    super({
       events: {
         submit: (event: Event) => {
           handleFormSubmit(event, this)

@@ -11,7 +11,7 @@ interface RegistrationPageProps {
 
 class RegistrationPage extends Block {
   constructor(props: RegistrationPageProps) {
-    super('div', {
+    super({
       ...props,
       events: {
         submit: (event: Event) => {

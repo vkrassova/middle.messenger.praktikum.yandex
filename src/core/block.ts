@@ -12,7 +12,6 @@ export enum EVENTS {
 type Props = { [key: string]: unknown }
 
 type MetaProps = {
-  tagName: string
   props: Props
 }
 
@@ -33,7 +32,7 @@ class Block {
 
   public id: string = makeUUID()
 
-  constructor(tagName: string, propsAndChildren: Props) {
+  constructor(propsAndChildren: Props) {
     const { children, props } = this._getChildren(propsAndChildren)
 
     this.children = children
@@ -41,7 +40,6 @@ class Block {
     const eventBus = new EventBus()
 
     this._meta = {
-      tagName,
       props,
     }
 
@@ -108,7 +106,8 @@ class Block {
   }
 
   private _createResources() {
-    this._element = this._createDocumentElement(this._meta?.tagName)
+    const tagName = 'div'
+    this._element = this._createDocumentElement(tagName)
   }
 
   public init() {

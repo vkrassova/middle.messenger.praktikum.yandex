@@ -10,7 +10,7 @@ interface ProfilePageProps {
 
 class ProfilePage extends Block {
   constructor(props: ProfilePageProps) {
-    super('div', { ...props })
+    super({ ...props })
   }
 
   render() {
