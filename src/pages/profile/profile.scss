@@ -1,7 +1,7 @@
 .profile {
   width: 1280rem;
   height: 100%;
-  background-color: var(--shark-color);
+  // background-color: var(--shark-color);
 
   &__container {
     display: grid;
@@ -16,7 +16,7 @@
     padding-top: 20rem;
     padding-right: 10rem;
     padding-left: 10rem;
-    border-right: 1rem solid var(--gray-color);
+    border-right: 0.5rem solid var(--white-color);
   }
 
   &__nav-icon {
@@ -45,7 +45,7 @@
     height: 100rem;
     margin: 0 auto;
     margin-bottom: 16rem;
-    background-color: var(--trendy-pink-color);
+    background-color: var(--white-color);
     border-radius: 50%;
 
     img {
@@ -100,6 +100,8 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 20rem;
+    padding-top: 10rem;
+    padding-bottom: 10rem;
 
     div[data-id] {
       display: flex;

@@ -13,7 +13,7 @@ interface inputProps extends Props {
 
 class Input extends Block {
   constructor(props: inputProps) {
-    super('div', props)
+    super(props)
   }
 
   render() {

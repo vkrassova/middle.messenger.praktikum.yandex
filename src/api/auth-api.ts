@@ -30,8 +30,20 @@ export class AuthAPI extends API {
     super('/auth')
   }
 
-  signup(data: SignUpDataType) {
+  signin(data: SignInDataType): Promise<void> {
+    return this.http.post('/signin', { data: data, method: 'post', timeout: 5000 })
+  }
+
+  signup(data: SignUpDataType): Promise<void> {
     return this.http.post('/signup', { data: data, method: 'post', timeout: 5000 })
+  }
+
+  logout() {
+    return this.http.post('/logout', { method: 'post', timeout: 5000 })
+  }
+
+  getUser(): Promise<UserType> {
+    return this.http.get('/user')
   }
 }
 

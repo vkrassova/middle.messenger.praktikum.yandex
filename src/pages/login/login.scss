@@ -19,5 +19,10 @@
 
     flex-direction: column;
     gap: 32rem;
+
+    div[data-id] {
+      display: block;
+      width: 80%;
+    }
   }
 }

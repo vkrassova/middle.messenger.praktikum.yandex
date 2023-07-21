@@ -1,3 +1,4 @@
+import AuthController from '../../controllers/auth-controller'
 import Block from '../../core/block'
 import template from './index.template'
 import { Button } from '../../components'
@@ -13,11 +14,21 @@ class ProfilePage extends Block {
     super({ ...props })
   }
 
+  componentDidMount(): void {
+    AuthController.fetchUser()
+  }
+
   render() {
     const buttonExit = new Button({
       class: 'button--outline profile__exit',
       type: 'button',
       title: 'Выйти',
+      events: {
+        click: () => {
+          AuthController.logout()
+          console.log('Logout')
+        },
+      },
     })
 
     this.children = {
