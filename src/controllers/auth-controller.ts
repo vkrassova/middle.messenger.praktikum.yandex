@@ -1,23 +1,51 @@
-import { AuthAPI, SignUpDataType, SignInDataType } from '../api/auth-api'
+import { AuthAPI, SignUpData, SignInData } from '../api/auth-api'
+import router from '../core/router'
+import store from '../core/store'
 
 class AuthController {
   private api = new AuthAPI()
 
-  signin(data: SignInDataType) {
-    this.api.signin(data)
+  async signin(data: SignInData) {
+    try {
+      await this.api.signin(data)
+
+      await this.fetchUser()
+
+      router.go('/profile')
+    } catch (e) {
+      console.error(e)
+    }
   }
 
-  signup(data: SignUpDataType) {
-    this.api.signup(data)
+  async signup(data: SignUpData) {
+    try {
+      await this.api.signup(data)
+
+      await this.fetchUser()
+
+      router.go('/profile')
+    } catch (e) {
+      console.log(e)
+    }
   }
 
-  logout() {
-    this.api.logout()
+  async logout() {
+    try {
+      await this.api.logout()
+      store.set('user', undefined)
+      router.go('/')
+    } catch (e) {
+      console.log(e)
+    }
   }
 
-  fetchUser() {
-    this.api.getUser()
+  async fetchUser() {
+    const user = await this.api.read()
+
+    store.set('user', user)
+
+    console.log(user)
   }
 }
 
-export default new AuthController() //singleton
+export default new AuthController()

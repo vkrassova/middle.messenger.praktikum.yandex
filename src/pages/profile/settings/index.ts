@@ -10,7 +10,7 @@ interface ProfilePageProps {
 
 class ProfileSettingsPage extends Block {
   constructor(props: ProfilePageProps) {
-    super('div', {
+    super({
       ...props,
       events: {
         submit: (event: Event) => {

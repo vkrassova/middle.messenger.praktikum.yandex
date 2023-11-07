@@ -1,6 +1,6 @@
 import API from './api'
 
-export interface SignUpDataType {
+export interface SignUpData {
   first_name: string
   second_name: string
   login: string
@@ -9,7 +9,7 @@ export interface SignUpDataType {
   phone: string
 }
 
-export type UserType = {
+export type User = {
   id: number
   first_name: string
   second_name: string
@@ -20,7 +20,7 @@ export type UserType = {
   avatar: string
 }
 
-export type SignInDataType = {
+export type SignInData = {
   login: string
   password: string
 }
@@ -30,21 +30,25 @@ export class AuthAPI extends API {
     super('/auth')
   }
 
-  signin(data: SignInDataType): Promise<void> {
-    return this.http.post('/signin', { data: data, method: 'post', timeout: 5000 })
+  signin(data: SignInData): Promise<void> {
+    return this.http.post('/signin', data)
   }
 
-  signup(data: SignUpDataType): Promise<void> {
-    return this.http.post('/signup', { data: data, method: 'post', timeout: 5000 })
+  signup(data: SignUpData): Promise<void> {
+    return this.http.post('/signup', data)
   }
 
   logout() {
-    return this.http.post('/logout', { method: 'post', timeout: 5000 })
+    return this.http.post('/logout')
   }
 
-  getUser(): Promise<UserType> {
+  read(): Promise<User> {
     return this.http.get('/user')
   }
+
+  create = undefined
+  update = undefined
+  delete = undefined
 }
 
 export default AuthAPI

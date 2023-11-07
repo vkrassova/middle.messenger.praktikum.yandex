@@ -17,6 +17,7 @@
     "object-curly-newline": "off",
     "space-before-function-paren": 0,
     "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/ban-ts-comment": 1,
     "no-console": "off"
   }
 }

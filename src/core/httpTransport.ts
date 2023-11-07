@@ -62,7 +62,7 @@ export class HTTPTransport {
   }
 
   public request<Response>(url: string, options: Options = { method: Method.Get }): Promise<Response> {
-    const { headers = {}, method, data } = options
+    const { method, data } = options
 
     return new Promise(function (resolve, reject) {
       if (!method) {
@@ -74,9 +74,9 @@ export class HTTPTransport {
 
       xhr.open(method, url)
 
-      Object.keys(headers).forEach((key) => {
-        xhr.setRequestHeader(key, headers[key])
-      })
+      // Object.keys(headers).forEach((key) => {
+      //   xhr.setRequestHeader(key, headers[key])
+      // })
 
       xhr.onreadystatechange = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -92,7 +92,7 @@ export class HTTPTransport {
       xhr.onerror = () => reject({ reason: 'network error' })
       xhr.ontimeout = () => reject({ reason: 'timeout' })
 
-      // xhr.setRequestHeader('Content-Type', 'application/json')
+      xhr.setRequestHeader('Content-Type', 'application/json')
 
       xhr.withCredentials = true
       xhr.responseType = 'json'

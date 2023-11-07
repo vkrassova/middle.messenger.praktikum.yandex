@@ -1,14 +1,14 @@
 import Block from '../core/block'
-import router from '../core/router'
+import Router from '../core/router'
 
 export interface PropsWithRouter {
-  router: typeof router
+  router: typeof Router
 }
 
 export function withRouter(Component: typeof Block) {
   return class WithRouter extends Component {
-    constructor(props: PropsWithRouter) {
-      super({ ...props, router: router })
+    constructor(props: any) {
+      super({ ...props, router: Router })
     }
   }
 }

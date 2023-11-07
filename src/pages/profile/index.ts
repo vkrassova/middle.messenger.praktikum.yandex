@@ -1,4 +1,5 @@
 import AuthController from '../../controllers/auth-controller'
+import { withStore } from '../../core/store'
 import Block from '../../core/block'
 import template from './index.template'
 import { Button } from '../../components'
@@ -9,13 +10,9 @@ interface ProfilePageProps {
   name?: string
 }
 
-class ProfilePage extends Block {
+export class BaseProfile extends Block {
   constructor(props: ProfilePageProps) {
     super({ ...props })
-  }
-
-  componentDidMount(): void {
-    AuthController.fetchUser()
   }
 
   render() {
@@ -25,8 +22,8 @@ class ProfilePage extends Block {
       title: 'Выйти',
       events: {
         click: () => {
-          AuthController.logout()
           console.log('Logout')
+          AuthController.logout()
         },
       },
     })
@@ -39,4 +36,6 @@ class ProfilePage extends Block {
   }
 }
 
-export default ProfilePage
+const withUser = withStore((state) => ({ ...state.user }))
+
+export const Profile = withUser(BaseProfile)

@@ -79,8 +79,6 @@ const formValidate = (data: { [key: string]: string }) => {
       error.textContent = validate(key, value)
     }
   })
-
-  console.log('form data', data)
 }
 
 const messageValidation = (value: string) => {
@@ -120,6 +118,5 @@ export const handleFocusOut = (event: Event, self: Block) => {
 
 export const handleFormSubmit = (event: Event, block: Block) => {
   event.preventDefault()
-
   validate('form', block.state)
 }

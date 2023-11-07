@@ -5,21 +5,26 @@ import { Button, Input } from '../../components'
 
 import { handleFocusOut, handleFormSubmit } from '../../core/validation'
 
+import AuthController from '../../controllers/auth-controller'
+
+import { SignUpData } from '../../api/auth-api'
+
 interface RegistrationPageProps {
   title: string
 }
 
 class RegistrationPage extends Block {
   constructor(props: RegistrationPageProps) {
-    super({
-      ...props,
-      events: {
-        submit: (event: Event) => {
-          handleFormSubmit(event, this)
-        },
-      },
-    })
+    super({ ...props })
   }
+
+  login: string | null = null
+  password: string | null = null
+  passwordSecond: string | null = null
+  email: string | null = null
+  firstName: string | null = null
+  secondName: string | null = null
+  phone: string | null = null
 
   componentDidMount() {
     this.state = {
@@ -33,11 +38,32 @@ class RegistrationPage extends Block {
     }
   }
 
+  onSubmit() {
+    const data: SignUpData = {
+      first_name: this.state.first_name as string,
+      second_name: this.state.second_name as string,
+      login: this.state.login as string,
+      email: this.state.email as string,
+      password: this.state.password as string,
+      phone: this.state.phone as string,
+    }
+
+    AuthController.signup(data as SignUpData)
+  }
+
   render() {
     const buttonSubmit = new Button({
       class: 'button--outline',
       type: 'submit',
-      title: 'Регистрация',
+      title: 'Зарегистрироваться',
+      events: {
+        click: (evt: Event) => {
+          evt.preventDefault()
+          console.log('click')
+          handleFormSubmit(evt, this)
+          // this.onSubmit()
+        },
+      },
     })
 
     const buttonLogin = new Button({
