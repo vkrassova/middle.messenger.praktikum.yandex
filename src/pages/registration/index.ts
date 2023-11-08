@@ -9,15 +9,7 @@ import AuthController from '../../controllers/auth-controller'
 
 import { SignUpData } from '../../api/auth-api'
 
-interface RegistrationPageProps {
-  title: string
-}
-
-class RegistrationPage extends Block {
-  constructor(props: RegistrationPageProps) {
-    super({ ...props })
-  }
-
+export class RegistrationPage extends Block {
   login: string | null = null
   password: string | null = null
   passwordSecond: string | null = null
@@ -26,32 +18,7 @@ class RegistrationPage extends Block {
   secondName: string | null = null
   phone: string | null = null
 
-  componentDidMount() {
-    this.state = {
-      login: '',
-      email: '',
-      first_name: '',
-      second_name: '',
-      phone: '',
-      password: '',
-      password_repeat: '',
-    }
-  }
-
-  onSubmit() {
-    const data: SignUpData = {
-      first_name: this.state.first_name as string,
-      second_name: this.state.second_name as string,
-      login: this.state.login as string,
-      email: this.state.email as string,
-      password: this.state.password as string,
-      phone: this.state.phone as string,
-    }
-
-    AuthController.signup(data as SignUpData)
-  }
-
-  render() {
+  init() {
     const buttonSubmit = new Button({
       class: 'button--outline',
       type: 'submit',
@@ -160,9 +127,34 @@ class RegistrationPage extends Block {
       inputPassword: inputPassword,
       inputPasswordRepeat: inputPasswordRepeat,
     }
+  }
 
+  componentDidMount() {
+    this.state = {
+      login: '',
+      email: '',
+      first_name: '',
+      second_name: '',
+      phone: '',
+      password: '',
+      password_repeat: '',
+    }
+  }
+
+  onSubmit() {
+    const data: SignUpData = {
+      first_name: this.state.first_name as string,
+      second_name: this.state.second_name as string,
+      login: this.state.login as string,
+      email: this.state.email as string,
+      password: this.state.password as string,
+      phone: this.state.phone as string,
+    }
+
+    AuthController.signup(data as SignUpData)
+  }
+
+  render() {
     return this.compile(template, this.props)
   }
 }
-
-export default RegistrationPage

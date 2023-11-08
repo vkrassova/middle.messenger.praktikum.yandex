@@ -1,8 +1,8 @@
-import LoginPage from './login'
+import { LoginPage } from './login'
 import ErrorPage from './error'
-import RegistrationPage from './registration'
 import HomePage from './home'
 import ProfileSettingsPage from './profile/settings'
 import NavigationPage from './navigation'
+import { Profile } from './profile/index'
 
-export { LoginPage, ErrorPage, RegistrationPage, HomePage, ProfileSettingsPage, NavigationPage }
+export { LoginPage, ErrorPage, HomePage, ProfileSettingsPage, NavigationPage, Profile }

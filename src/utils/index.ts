@@ -4,7 +4,8 @@ export type Indexed<T = any> = {
 
 export function merge(lhs: Indexed, rhs: Indexed): Indexed {
   for (const p in rhs) {
-    if (!rhs.hasOwnProperty(p)) {
+    if (!(p in rhs)) {
+      // eslint-disable-next-line no-continue
       continue
     }
 

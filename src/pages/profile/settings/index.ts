@@ -37,6 +37,7 @@ class ProfileSettingsPage extends Block {
       name: 'login',
       placeholder: 'Логин',
       modificator: 'login',
+      disabled: false,
       events: {
         focusout: (event) => {
           handleFocusOut(event, this)

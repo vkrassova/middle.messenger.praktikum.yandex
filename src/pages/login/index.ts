@@ -6,31 +6,11 @@ import AuthController from '../../controllers/auth-controller'
 import { SignInData } from '../../api/auth-api'
 import Router from '../../core/router'
 
-class LoginPage extends Block {
-  constructor() {
-    super({})
-  }
-
+export class LoginPage extends Block {
   login: string | null = null
   password: string | null = null
 
-  componentDidMount() {
-    this.state = {
-      login: '',
-      password: '',
-    }
-  }
-
-  onSubmit() {
-    const data: SignInData = {
-      login: this.state.login as string,
-      password: this.state.password as string,
-    }
-
-    AuthController.signin(data as SignInData)
-  }
-
-  render() {
+  init() {
     const button = new Button({
       class: 'button--fill',
       type: 'submit',
@@ -84,9 +64,25 @@ class LoginPage extends Block {
       inputLogin: inputLogin,
       inputPassword: inputPassword,
     }
+  }
 
+  componentDidMount() {
+    this.state = {
+      login: '',
+      password: '',
+    }
+  }
+
+  onSubmit() {
+    const data: SignInData = {
+      login: this.state.login as string,
+      password: this.state.password as string,
+    }
+
+    AuthController.signin(data as SignInData)
+  }
+
+  render() {
     return this.compile(template, this.props)
   }
 }
-
-export default LoginPage

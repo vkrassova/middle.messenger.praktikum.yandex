@@ -3,7 +3,7 @@ import Block from './block'
 const REGEXPS = {
   phone: /^(([+0-9]){10,15})$/g,
   login: /^(?=.*[a-zA-Z])(?!.*[\s])(?!.*[-_]{2})[a-zA-Z0-9_-]{3,20}$/,
-  name: /^^([А-Я]{1}[а-яё-]{1,19}|[A-Z]{1}[a-z-]{1,19})$/g,
+  name: /^[A-Z][^0-9\s]*$/,
   password: /^(?=.*[A-Z])(?=.*\d)[a-zA-Z0-9]{8,40}$/,
   email: /^[a-zA-Z0-9._-]+@[a-zA-Z]+\.[a-zA-Z]+$/,
 }

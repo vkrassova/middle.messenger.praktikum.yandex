@@ -1,4 +1,5 @@
 import Button from './button/index'
 import Input from './input/index'
+import ProfileFields from './profile-fields'
 
-export { Button, Input }
+export { Button, Input, ProfileFields }

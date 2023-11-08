@@ -12,16 +12,9 @@ const template = `
             </div>
 
             <p class="profile__name">{{name}}</p>
-            <ul class="profile__fields">
-                <li class="profile__fields-item"><span class="profile__fields-name">Почта</span>
-                <span class="profile__fields-value">pochta@yandex.ru</span>
-                </li>
-                <li class="profile__fields-item"><span class="profile__fields-name">Логин</span><span class="profile__fields-value">Текст</span></li>
-                <li class="profile__fields-item"><span class="profile__fields-name">Имя</span><span class="profile__fields-value">Текст</span></li>
-                <li class="profile__fields-item"><span class="profile__fields-name">Фамилия</span><span class="profile__fields-value">Текст</span></li>
-                <li class="profile__fields-item"><span class="profile__fields-name">Имя в чате</span><span class="profile__fields-value">Текст</span></li>
-                <li class="profile__fields-item"><span class="profile__fields-name">Телефон</span><span class="profile__fields-value">8 (999) 00 00 00</span></li>
-            </ul>
+            <div class="profile__fields">
+            {{{login}}}
+            </div>
 
             <div class="profile__buttons">
             <button class="profile__edit">Изменить пароль</button>
@@ -31,6 +24,6 @@ const template = `
             </div>
         </div>
     </div>
-</section> 
+</section>
 `
 export default template

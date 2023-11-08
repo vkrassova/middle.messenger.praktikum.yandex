@@ -6,42 +6,25 @@ function isEqual(lhs: string, rhs: string): boolean {
 }
 
 class Route {
-  private _block: Block | null
-  private readonly _pathname: string
-  private _props: Record<string, string>
-  private readonly _blockClass: Block
+  private block: Block | null = null
 
-  constructor(pathname: string, view: Block, props: Record<string, string>) {
-    this._pathname = pathname
-    this._props = props
-    this._blockClass = view
-    this._block = null
-  }
-
-  navigate(pathname: string) {
-    if (this.match(pathname)) {
-      this._block?.show()
-    }
-  }
+  constructor(private pathname: string, private readonly blockClass: typeof Block, private readonly query: string) {}
 
   leave() {
-    if (this._block) {
-      this._block.hide()
-    }
+    this.block = null
   }
 
   match(pathname: string) {
-    return isEqual(pathname, this._pathname)
+    return isEqual(pathname, this.pathname)
   }
 
   render() {
-    if (!this._block) {
-      this._block = this._blockClass
-      render(this._props.rootQuery, this._block)
+    if (!this.block) {
+      this.block = new this.blockClass({})
+
+      render(this.query, this.block)
       return
     }
-
-    this._block.show()
   }
 }
 
@@ -50,27 +33,28 @@ class Router {
   private routes: Route[] = []
   private currentRoute: Route | null = null
   private history = window.history
-  private _rootQuery!: string
 
-  constructor(rootQuery: string) {
+  constructor(private readonly rootQuery: string) {
     if (Router.__instance) {
       return Router.__instance
     }
 
-    this._rootQuery = rootQuery
+    this.routes = []
 
     Router.__instance = this
   }
 
-  public use(pathname: string, block: Block) {
-    const route = new Route(pathname, block, { rootQuery: this._rootQuery })
+  public use(pathname: string, block: typeof Block) {
+    const route = new Route(pathname, block, this.rootQuery)
     this.routes.push(route)
+
     return this
   }
 
   public start() {
     window.onpopstate = (event: PopStateEvent) => {
       const target = event.currentTarget as Window
+
       this._onRoute(target.location.pathname)
     }
 
@@ -95,6 +79,7 @@ class Router {
 
   public go(pathname: string) {
     this.history.pushState({}, '', pathname)
+
     this._onRoute(pathname)
   }
 
