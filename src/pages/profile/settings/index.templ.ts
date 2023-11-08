@@ -7,11 +7,7 @@ const template = `
             </a>
         </div>
         <div class="profile__wrapper">
-            <div class="profile__avatar">
-                <div class="profile__avatar-icon"><img src={{avatarIcon}} alt="avatar's cover"></div>
-                <input type="file" id="file" class="profile__avatar-input" name="avata" accept="image/*"/>
-                <img src="" id="avatar" alt="avatar">
-            </div>
+            {{{avatar}}}
 
             <form class="profile__fields profile__fields--settings">
                 <div class="profile__fields-item"><span class="profile__fields-name">Почта</span>
@@ -44,6 +40,6 @@ const template = `
             </form>
         </div>
     </div>
-</section> 
+</section>
 `
 export default template

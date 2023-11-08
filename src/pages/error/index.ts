@@ -1,19 +1,8 @@
 import Block from '../../core/block'
 import template from './index.tmpl'
 
-interface errorPageProps {
-  description: string
-  error: string
-}
-
-class ErrorPage extends Block {
-  constructor(props: errorPageProps) {
-    super({ ...props })
-  }
-
+export class ErrorPage extends Block {
   render() {
     return this.compile(template, this.props)
   }
 }
-
-export default ErrorPage

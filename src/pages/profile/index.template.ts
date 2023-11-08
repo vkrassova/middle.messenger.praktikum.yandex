@@ -7,13 +7,15 @@ const template = `
             </a>
         </div>
         <div class="profile__wrapper">
-            <div class="profile__avatar">
-                <div class="profile__avatar-icon"><img src={{avatarIcon}} alt="avatar's cover"></div>
-            </div>
-
+            {{{avatar}}}
             <p class="profile__name">{{name}}</p>
             <div class="profile__fields">
+            {{{first_name}}}
+            {{{second_name}}}
+            {{{display_name}}}
             {{{login}}}
+            {{{email}}}
+            {{{phone}}}
             </div>
 
             <div class="profile__buttons">

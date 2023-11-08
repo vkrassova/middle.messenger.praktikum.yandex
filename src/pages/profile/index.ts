@@ -1,8 +1,8 @@
 import AuthController from '../../controllers/auth-controller'
-import { withStore } from '../../core/store'
+import { withUser } from '../../core/store'
 import Block from '../../core/block'
 import template from './index.template'
-import { Button, ProfileFields } from '../../components'
+import { Button, ProfileFields, Avatar } from '../../components'
 
 class BaseProfile extends Block {
   init() {
@@ -17,24 +17,56 @@ class BaseProfile extends Block {
       },
     })
 
+    const avatar = new Avatar({
+      isNotActive: true,
+      avatarSrc: 'https://ya-praktikum.tech/api/v2/resources' + this.props.avatar,
+    })
+
+    const email = new ProfileFields({
+      name: 'Почта',
+      value: this.props.email,
+    })
+
     const login = new ProfileFields({
-      name: 'bbkbcadkc',
+      name: 'Логин',
       value: this.props.login,
     })
 
-    this.children = {
-      login: login,
-      buttonExit: buttonExit,
-    }
+    const first_name = new ProfileFields({
+      name: 'Имя',
+      value: this.props.first_name,
+    })
 
-    console.log(this.props)
+    const second_name = new ProfileFields({
+      name: 'Фамилия',
+      value: this.props.second_name,
+    })
+
+    const display_name = new ProfileFields({
+      name: 'Имя в чате',
+      value: this.props.display_name,
+    })
+
+    const phone = new ProfileFields({
+      name: 'Телефон',
+      value: this.props.phone,
+    })
+
+    this.children = {
+      email: email,
+      login: login,
+      first_name: first_name,
+      second_name: second_name,
+      display_name: display_name,
+      phone: phone,
+      buttonExit: buttonExit,
+      avatar: avatar,
+    }
   }
 
   render() {
     return this.compile(template, this.props)
   }
 }
-
-const withUser = withStore((state) => ({ ...state.user }))
 
 export const Profile = withUser(BaseProfile)

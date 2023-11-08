@@ -59,4 +59,6 @@ export function withStore<SP extends Record<string, any>>(mapStateToProps: (stat
   }
 }
 
+export const withUser = withStore((state) => ({ ...state.user }))
+
 export default store

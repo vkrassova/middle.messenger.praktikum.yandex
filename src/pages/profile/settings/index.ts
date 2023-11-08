@@ -1,41 +1,20 @@
 import Block from '../../../core/block'
 import template from '../settings/index.templ'
-import { Input, Button } from '../../../components'
+import { Input, Button, Avatar } from '../../../components'
 import { handleFocusOut, handleFormSubmit } from '../../../core/validation'
+import { withUser } from '../../../core/store'
 
-interface ProfilePageProps {
-  icon: string
-  avatarIcon: string
-}
+class BaseProfileSettingsPage extends Block {
 
-class ProfileSettingsPage extends Block {
-  constructor(props: ProfilePageProps) {
-    super({
-      ...props,
-      events: {
-        submit: (event: Event) => {
-          handleFormSubmit(event, this)
-        },
-      },
+  init() {
+    const avatar = new Avatar({
+      isNotActive: false,
+      avatarSrc: 'https://ya-praktikum.tech/api/v2/resources' + this.props.avatar,
     })
-  }
 
-  componentDidMount() {
-    this.state = {
-      login: '',
-      password: '',
-      first_name: '',
-      second_name: '',
-      nickname: '',
-      phone: '',
-      email: '',
-    }
-  }
-
-  render() {
     const inputLogin = new Input({
       name: 'login',
-      placeholder: 'Логин',
+      placeholder: this.props.login,
       modificator: 'login',
       disabled: false,
       events: {
@@ -47,7 +26,7 @@ class ProfileSettingsPage extends Block {
 
     const inputEmail = new Input({
       name: 'email',
-      placeholder: 'Почта',
+      placeholder: this.props.email,
       modificator: 'email',
       events: {
         focusout: (event) => {
@@ -104,9 +83,17 @@ class ProfileSettingsPage extends Block {
       class: 'button--fill',
       type: 'submit',
       title: 'Сохранить',
+      events: {
+        click: (evt: Event) => {
+          evt.preventDefault()
+          handleFormSubmit(evt, this)
+          // this.onSubmit()
+        },
+      },
     })
 
     this.children = {
+      avatar: avatar,
       inputEmail: inputEmail,
       inputLogin: inputLogin,
       buttonSave: buttonSave,
@@ -115,9 +102,35 @@ class ProfileSettingsPage extends Block {
       inputNickName: inputNickName,
       inputPhone: inputPhone,
     }
+  }
 
+  componentDidMount() {
+    this.state = {
+      login: '',
+      password: '',
+      first_name: '',
+      second_name: '',
+      nickname: '',
+      phone: '',
+      email: '',
+    }
+  }
+
+
+  async onSubmit() {
+    const data = {
+      first_name: this.state.first_name as string,
+      second_name: this.state.second_name as string,
+      login: this.state.login as string,
+      email: this.state.email as string,
+      password: this.state.password as string,
+      phone: this.state.phone as string,
+    }
+  }
+
+  render() {
     return this.compile(template, this.props)
   }
 }
 
-export default ProfileSettingsPage
+export const ProfileSettingsPage = withUser(BaseProfileSettingsPage)

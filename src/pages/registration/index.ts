@@ -141,7 +141,7 @@ export class RegistrationPage extends Block {
     }
   }
 
-  onSubmit() {
+  async onSubmit() {
     const data: SignUpData = {
       first_name: this.state.first_name as string,
       second_name: this.state.second_name as string,
