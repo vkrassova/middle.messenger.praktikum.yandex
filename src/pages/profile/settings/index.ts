@@ -3,13 +3,36 @@ import template from '../settings/index.templ'
 import { Input, Button, Avatar } from '../../../components'
 import { handleFocusOut, handleFormSubmit } from '../../../core/validation'
 import { withUser } from '../../../core/store'
+import { User } from '../../../models/user'
+import UserController from '../../../controllers/user-controller'
+import { nameValidation, loginValidation } from '../../../core/validation'
 
 class BaseProfileSettingsPage extends Block {
-
   init() {
     const avatar = new Avatar({
       isNotActive: false,
       avatarSrc: 'https://ya-praktikum.tech/api/v2/resources' + this.props.avatar,
+      events: {
+        change: async (event) => {
+          const target = event.target as HTMLInputElement
+          const files = target?.files
+
+          if (files !== null) {
+            console.log(files[0])
+            try {
+              await UserController.updateAvatar(files[0])
+              const avatar = this.children.avatar as Block
+              avatar.setProps({
+                ...avatar.props,
+                avatarSrc: 'https://ya-praktikum.tech/api/v2/resources' + this.props.avatar,
+              })
+              console.log(avatar)
+            } catch (e) {
+              console.log(e)
+            }
+          }
+        },
+      },
     })
 
     const inputLogin = new Input({
@@ -37,7 +60,7 @@ class BaseProfileSettingsPage extends Block {
 
     const inputFirsName = new Input({
       name: 'first_name',
-      placeholder: 'Имя',
+      placeholder: this.props.first_name,
       modificator: 'first_name',
       events: {
         focusout: (event) => {
@@ -48,7 +71,7 @@ class BaseProfileSettingsPage extends Block {
 
     const inputSecondName = new Input({
       name: 'second_name',
-      placeholder: 'Фамилия',
+      placeholder: this.props.second_name,
       modificator: 'second_name',
       events: {
         focusout: (event) => {
@@ -59,7 +82,7 @@ class BaseProfileSettingsPage extends Block {
 
     const inputNickName = new Input({
       name: 'nickname',
-      placeholder: 'Имя в чате',
+      placeholder: this.props.display_name,
       modificator: 'nickname',
       events: {
         focusout: (event) => {
@@ -70,7 +93,7 @@ class BaseProfileSettingsPage extends Block {
 
     const inputPhone = new Input({
       name: 'phone',
-      placeholder: 'Телефон',
+      placeholder: this.props.phone,
       modificator: 'phone',
       events: {
         focusout: (event) => {
@@ -87,7 +110,7 @@ class BaseProfileSettingsPage extends Block {
         click: (evt: Event) => {
           evt.preventDefault()
           handleFormSubmit(evt, this)
-          // this.onSubmit()
+          this.onSubmit()
         },
       },
     })
@@ -116,9 +139,12 @@ class BaseProfileSettingsPage extends Block {
     }
   }
 
-
   async onSubmit() {
-    const data = {
+    if (loginValidation(this.state.login) === null) {
+      console.log(11)
+    }
+    const data: User = {
+      display_name: this.state.display_name as string,
       first_name: this.state.first_name as string,
       second_name: this.state.second_name as string,
       login: this.state.login as string,
@@ -126,6 +152,8 @@ class BaseProfileSettingsPage extends Block {
       password: this.state.password as string,
       phone: this.state.phone as string,
     }
+
+    UserController.updateUsetData(data as User)
   }
 
   render() {

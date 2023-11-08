@@ -2,15 +2,7 @@ import './components'
 import * as page from './pages/index'
 import Router from './core/router'
 import AuthController from './controllers/auth-controller'
-
-enum Routes {
-  Index = '/',
-  Register = '/signup',
-  Profile = '/profile',
-  Settings = '/settings',
-  Home = '/home',
-  Error = '/error',
-}
+import { Routes } from './utils/constants'
 
 window.addEventListener('DOMContentLoaded', async () => {
   Router.use(Routes.Index, page.LoginPage)

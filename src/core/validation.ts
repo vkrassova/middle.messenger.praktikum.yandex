@@ -3,7 +3,7 @@ import Block from './block'
 const REGEXPS = {
   phone: /^(([+0-9]){10,15})$/g,
   login: /^(?=.*[a-zA-Z])(?!.*[\s])(?!.*[-_]{2})[a-zA-Z0-9_-]{3,20}$/,
-  name: /^[A-Z][^0-9\s]*$/,
+  name: /^[А-ЯA-Z][a-zа-я-]{1,30}$/,
   password: /^(?=.*[A-Z])(?=.*\d)[a-zA-Z0-9]{8,40}$/,
   email: /^[a-zA-Z0-9._-]+@[a-zA-Z]+\.[a-zA-Z]+$/,
 }
@@ -21,7 +21,7 @@ type FormValidators = {
   [key: string]: (value: string) => string | undefined
 }
 
-const loginValidation = (value: string) => {
+export const loginValidation = (value: string) => {
   if (value === '') {
     return ERROR_MESSAGES.empty
   }
@@ -61,7 +61,7 @@ const phoneValidation = (value: string) => {
   return isCheck ? null : ERROR_MESSAGES.phone
 }
 
-const nameValidation = (value: string) => {
+export const nameValidation = (value: string) => {
   if (value === '') {
     return ERROR_MESSAGES.empty
   }

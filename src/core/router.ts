@@ -1,5 +1,6 @@
 import Block from './block'
 import { render } from './render-DOM'
+import { Routes } from '../utils/constants'
 
 function isEqual(lhs: string, rhs: string): boolean {
   return lhs === rhs
@@ -61,21 +62,35 @@ class Router {
     this._onRoute(window.location.pathname)
   }
 
-  private _onRoute(pathname: string) {
+  private _onRoute(pathname: string): void {
     const route = this.getRoute(pathname)
 
-    if (!route) {
-      return
-    }
-
-    if (this.currentRoute && this.currentRoute !== route) {
+    if (this.currentRoute != null) {
       this.currentRoute.leave()
     }
-
-    this.currentRoute = route
-
-    route.render()
+    if (route != null) {
+      this.currentRoute = route
+      route.render()
+    } else {
+      this.go(Routes.Error)
+    }
   }
+
+  // private _onRoute(pathname: string) {
+  //   const route = this.getRoute(pathname)
+
+  //   if (!route) {
+  //     return
+  //   }
+
+  //   if (this.currentRoute && this.currentRoute !== route) {
+  //     this.currentRoute.leave()
+  //   }
+
+  //   this.currentRoute = route
+
+  //   route.render()
+  // }
 
   public go(pathname: string) {
     this.history.pushState({}, '', pathname)

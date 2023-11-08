@@ -12,17 +12,6 @@ type Options = {
   data?: any
 }
 
-// function queryStringify(data: ObjectType) {
-//   if (typeof data !== 'object') {
-//     throw new Error('Data must be object')
-//   }
-
-//   const keys = Object.keys(data)
-//   return keys.reduce((result, key, index) => {
-//     return `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`
-//   }, '?')
-// }
-
 export class HTTPTransport {
   static API_URL = 'https://ya-praktikum.tech/api/v2'
   protected endpoint: string
@@ -74,10 +63,6 @@ export class HTTPTransport {
 
       xhr.open(method, url)
 
-      // Object.keys(headers).forEach((key) => {
-      //   xhr.setRequestHeader(key, headers[key])
-      // })
-
       xhr.onreadystatechange = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
           if (xhr.status < 400) {
@@ -92,14 +77,19 @@ export class HTTPTransport {
       xhr.onerror = () => reject({ reason: 'network error' })
       xhr.ontimeout = () => reject({ reason: 'timeout' })
 
-      xhr.setRequestHeader('Content-Type', 'application/json')
-
       xhr.withCredentials = true
       xhr.responseType = 'json'
 
-      if (method === Method.Get || !data) {
+      if (method === Method.Get || data == null) {
         xhr.send()
+      } else if (data instanceof FormData) {
+        xhr.send(data)
+      } else if (data instanceof File) {
+        const formData = new FormData()
+        formData.append('avatar', data)
+        xhr.send(formData)
       } else {
+        xhr.setRequestHeader('Content-Type', 'application/json')
         xhr.send(JSON.stringify(data))
       }
     })

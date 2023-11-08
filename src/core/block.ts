@@ -23,7 +23,7 @@ export class Block<P extends Record<string, any> = any> {
   public props: P
   private eventBus: () => EventBus
   private _element: HTMLElement | null = null
-  public state: { [key: string]: unknown }
+  public state: { [key: string]: unknown } | any
 
   public constructor(propsWithChildren: P) {
     const eventBus = new EventBus()

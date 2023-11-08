@@ -6,6 +6,7 @@ type Props = { [key: string]: unknown }
 interface avatarProps extends Props {
   avatarSrc: string
   isNotActive: boolean
+  events?: Record<string, (e: InputEvent) => void>
 }
 
 class Avatar extends Block {

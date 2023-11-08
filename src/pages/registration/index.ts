@@ -7,7 +7,7 @@ import { handleFocusOut, handleFormSubmit } from '../../core/validation'
 
 import AuthController from '../../controllers/auth-controller'
 
-import { SignUpData } from '../../api/auth-api'
+import { SignUpData } from '../../models/user'
 
 export class RegistrationPage extends Block {
   login: string | null = null

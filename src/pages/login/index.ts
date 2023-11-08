@@ -3,7 +3,7 @@ import Block from '../../core/block'
 import { Button, Input } from '../../components/index'
 import { handleFocusOut, handleFormSubmit } from '../../core/validation'
 import AuthController from '../../controllers/auth-controller'
-import { SignInData } from '../../api/auth-api'
+import { SignInData } from '../../models/user'
 import Router from '../../core/router'
 
 export class LoginPage extends Block {

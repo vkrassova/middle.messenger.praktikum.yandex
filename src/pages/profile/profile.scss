@@ -1,7 +1,7 @@
 .profile {
   width: 1280rem;
   height: 100%;
-  // background-color: var(--shark-color);
+  min-height: 100%;
 
   &__container {
     display: grid;
@@ -36,13 +36,13 @@
 
     flex-direction: column;
     justify-content: space-around;
-    padding: 20rem 126rem;
+    padding: 0rem 126rem;
   }
 
   &__avatar {
     position: relative;
-    width: 100rem;
-    height: 100rem;
+    width: 130rem;
+    height: 130rem;
     margin: 0 auto;
     margin-bottom: 16rem;
     background-color: var(--white-color);
@@ -95,9 +95,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 20rem;
-    padding-top: 10rem;
-    padding-bottom: 10rem;
+    padding: 10rem;
 
     div[data-id] {
       display: flex;
@@ -158,5 +156,9 @@
 
   .profile__fields {
     gap: 20rem;
+  }
+
+  .profile__fields-item {
+    padding: 0;
   }
 }

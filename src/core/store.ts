@@ -1,6 +1,6 @@
 import { EventBus } from './event-bus'
 import Block from './block'
-import { User } from '../api/auth-api'
+import { User } from '../models/user'
 import { set } from '../utils'
 
 export enum StoreEvents {
