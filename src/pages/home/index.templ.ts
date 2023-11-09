@@ -1,7 +1,16 @@
 const template = `
-  <section class='home'>
-    <div class='container'>
-      <h1 class="main-title">Страница с чатом</h1>
+  <section class='chats'>
+    <div class='container chats__container'>
+      <div class="chats__column">
+          <div class="chats__column-header">
+          <a href="/profile">Профиль</a>
+          {{{input}}}
+          {{{chatsList}}}
+          </div>
+      </div>
+      <div class="chats__messages">
+      {{{chat}}}
+      </div>
     </div>
   </section>
 `

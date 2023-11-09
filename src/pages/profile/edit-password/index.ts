@@ -14,13 +14,13 @@ class BaseEditPasswordPage extends Block {
     })
 
     const oldPassword = new Input({
-      name: 'password',
+      name: 'oldPassword',
       type: 'password',
       modificator: 'password',
       labelText: 'Старый пароль',
       events: {
         focusout: (event) => {
-          handleFocusOut(event, this)
+          // handleFocusOut(event, this)
         },
       },
     })
@@ -32,7 +32,7 @@ class BaseEditPasswordPage extends Block {
       labelText: 'Новый пароль',
       events: {
         focusout: (event) => {
-          handleFocusOut(event, this)
+          // handleFocusOut(event, this)
         },
       },
     })
@@ -56,8 +56,9 @@ class BaseEditPasswordPage extends Block {
       events: {
         click: (evt: Event) => {
           evt.preventDefault()
-          handleFormSubmit(evt, this)
-          this.onSubmit()
+          // handleFormSubmit(evt, this)
+          console.log(this.state)
+          // this.onSubmit()
         },
       },
     })

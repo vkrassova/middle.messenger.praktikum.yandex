@@ -106,8 +106,9 @@ class BaseProfileSettingsPage extends Block {
       events: {
         click: (evt: Event) => {
           evt.preventDefault()
-          handleFormSubmit(evt, this)
-          this.onSubmit()
+          // handleFormSubmit(evt, this)
+          console.log(this.state)
+          // this.onSubmit()
         },
       },
     })
