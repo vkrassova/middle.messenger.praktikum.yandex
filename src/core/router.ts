@@ -1,10 +1,7 @@
 import Block from './block'
 import { render } from './render-DOM'
 import { Routes } from '../utils/constants'
-
-function isEqual(lhs: string, rhs: string): boolean {
-  return lhs === rhs
-}
+import { isEqual } from '../utils'
 
 class Route {
   private block: Block | null = null
@@ -75,22 +72,6 @@ class Router {
       this.go(Routes.Error)
     }
   }
-
-  // private _onRoute(pathname: string) {
-  //   const route = this.getRoute(pathname)
-
-  //   if (!route) {
-  //     return
-  //   }
-
-  //   if (this.currentRoute && this.currentRoute !== route) {
-  //     this.currentRoute.leave()
-  //   }
-
-  //   this.currentRoute = route
-
-  //   route.render()
-  // }
 
   public go(pathname: string) {
     this.history.pushState({}, '', pathname)

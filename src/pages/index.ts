@@ -1,9 +1,9 @@
 import { LoginPage } from './login'
 import { ErrorPage } from './error'
 import { HomePage } from './home'
-import { ProfileSettingsPage } from './profile/settings'
-import NavigationPage from './navigation'
 import { Profile } from './profile/index'
 import { RegistrationPage } from './registration'
+import { ProfileEditPage } from './profile/edit-profile'
+import { EditPasswordPage } from './profile/edit-password'
 
-export { LoginPage, ErrorPage, HomePage, ProfileSettingsPage, NavigationPage, Profile, RegistrationPage }
+export { LoginPage, ErrorPage, HomePage, Profile, RegistrationPage, ProfileEditPage, EditPasswordPage }

@@ -26,7 +26,6 @@ export class RegistrationPage extends Block {
       events: {
         click: (evt: Event) => {
           evt.preventDefault()
-          console.log('click')
           handleFormSubmit(evt, this)
           // this.onSubmit()
         },

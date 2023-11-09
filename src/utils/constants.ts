@@ -2,7 +2,8 @@ export enum Routes {
   Index = '/',
   Register = '/signup',
   Profile = '/profile',
-  Settings = '/settings',
+  ProfileEdit = '/editProfile',
+  PasswordEdit = '/editPassword',
   Home = '/home',
   Error = '/error',
 }

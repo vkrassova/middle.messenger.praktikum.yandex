@@ -4,12 +4,13 @@ import template from './index.tmpl'
 type Props = { [key: string]: unknown }
 
 interface inputProps extends Props {
-  name: string
+  name?: string
   type?: string
-  disabled?: boolean
   events: Record<string, (e: InputEvent) => void>
-  placeholder: string
+  placeholder?: string
   modificator: string
+  isActive?: boolean
+  labelText?: string
 }
 
 class Input extends Block {

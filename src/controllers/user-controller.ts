@@ -1,5 +1,5 @@
 import { UserAPI } from '../api/user-api'
-import { User } from '../models/user'
+import { User, PasswordUpdate } from '../models/user'
 import store from '../core/store'
 import router from '../core/router'
 import { Routes } from '../utils/constants'
@@ -24,6 +24,16 @@ class UserController {
       const user = await this.api.updateAvatar(data)
 
       store.set('user', user)
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  public async updatePassword(data: PasswordUpdate): Promise<void> {
+    try {
+      await this.api.updatePassword(data)
+
+      router.go(Routes.Profile)
     } catch (e) {
       console.error(e)
     }

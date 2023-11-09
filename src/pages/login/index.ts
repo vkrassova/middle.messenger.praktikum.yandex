@@ -73,13 +73,13 @@ export class LoginPage extends Block {
     }
   }
 
-  onSubmit() {
+  async onSubmit() {
     const data: SignInData = {
       login: this.state.login as string,
       password: this.state.password as string,
     }
 
-    AuthController.signin(data as SignInData)
+    await AuthController.signin(data as SignInData)
   }
 
   render() {

@@ -9,8 +9,9 @@ window.addEventListener('DOMContentLoaded', async () => {
     .use(Routes.Profile, page.Profile)
     .use(Routes.Register, page.RegistrationPage)
     .use(Routes.Home, page.HomePage)
-    .use(Routes.Settings, page.ProfileSettingsPage)
     .use(Routes.Error, page.ErrorPage)
+    .use(Routes.ProfileEdit, page.ProfileEditPage)
+    .use(Routes.PasswordEdit, page.EditPasswordPage)
 
   let isProtectedRoute = true
 

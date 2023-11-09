@@ -12,6 +12,7 @@ const ERROR_MESSAGES = {
   login: 'от 3 до 20 симаолов, только латиница, может содержать цифры',
   empty: 'поле не должно быть пустым',
   password: 'от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра',
+  password_repeat: 'Пароли не совпадают',
   email: 'Введите корректный email',
   phone: 'Введите корректный номер телефона',
   name: 'Первая буква заглавная, без пробелов и цифр',
@@ -71,6 +72,21 @@ export const nameValidation = (value: string) => {
   return isCheck ? null : ERROR_MESSAGES.name
 }
 
+export const validateRepeatPassword = (oldPassword: string, newPassword: string) => {
+  let isCheck
+
+  if (oldPassword === '' && newPassword === '') {
+    isCheck = false
+    return isCheck ? null : ERROR_MESSAGES.empty
+  }
+
+  if (oldPassword === newPassword) {
+    isCheck = true
+  }
+
+  return isCheck ? null : ERROR_MESSAGES.password_repeat
+}
+
 const formValidate = (data: { [key: string]: string }) => {
   Object.entries(data).forEach(([key, value]) => {
     const error = document?.querySelector(`.error-message--${key}`)
@@ -91,7 +107,7 @@ const FORM_VALIDATORS: FormValidators | any = {
   login: loginValidation,
   form: formValidate,
   password: passwordValidation,
-  password_repeat: passwordValidation,
+  password_repeat: validateRepeatPassword,
   email: emailValidation,
   phone: phoneValidation,
   first_name: nameValidation,

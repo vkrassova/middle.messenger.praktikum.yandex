@@ -1,11 +1,10 @@
 import Block from '../../../core/block'
-import template from '../settings/index.templ'
+import template from '../edit-profile/index.templ'
 import { Input, Button, Avatar } from '../../../components'
 import { handleFocusOut, handleFormSubmit } from '../../../core/validation'
 import { withUser } from '../../../core/store'
 import { User } from '../../../models/user'
 import UserController from '../../../controllers/user-controller'
-import { nameValidation, loginValidation } from '../../../core/validation'
 
 class BaseProfileSettingsPage extends Block {
   init() {
@@ -18,7 +17,6 @@ class BaseProfileSettingsPage extends Block {
           const files = target?.files
 
           if (files !== null) {
-            console.log(files[0])
             try {
               await UserController.updateAvatar(files[0])
               const avatar = this.children.avatar as Block
@@ -39,7 +37,6 @@ class BaseProfileSettingsPage extends Block {
       name: 'login',
       placeholder: this.props.login,
       modificator: 'login',
-      disabled: false,
       events: {
         focusout: (event) => {
           handleFocusOut(event, this)
@@ -140,9 +137,6 @@ class BaseProfileSettingsPage extends Block {
   }
 
   async onSubmit() {
-    if (loginValidation(this.state.login) === null) {
-      console.log(11)
-    }
     const data: User = {
       display_name: this.state.display_name as string,
       first_name: this.state.first_name as string,
@@ -161,4 +155,4 @@ class BaseProfileSettingsPage extends Block {
   }
 }
 
-export const ProfileSettingsPage = withUser(BaseProfileSettingsPage)
+export const ProfileEditPage = withUser(BaseProfileSettingsPage)

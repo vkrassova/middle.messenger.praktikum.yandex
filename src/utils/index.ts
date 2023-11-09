@@ -2,6 +2,10 @@ export type Indexed<T = any> = {
   [key in string]: T
 }
 
+export function isEqual(lhs: string, rhs: string): boolean {
+  return lhs === rhs
+}
+
 export function merge(lhs: Indexed, rhs: Indexed): Indexed {
   for (const p in rhs) {
     if (!(p in rhs)) {

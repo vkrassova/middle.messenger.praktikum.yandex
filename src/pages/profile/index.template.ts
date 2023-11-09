@@ -19,8 +19,8 @@ const template = `
             </div>
 
             <div class="profile__buttons">
-            <button class="profile__edit">Изменить пароль</button>
-            <a href="/settings" class="profile__edit">Изменить данные</a>
+            <a href="/editPassword" class="profile__edit">Изменить пароль</a>
+            <a href="/editProfile" class="profile__edit">Изменить данные</a>
 
             {{{buttonExit}}}
             </div>
