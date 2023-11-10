@@ -1,4 +1,4 @@
-import Block from '../../core/block'
+import { Block } from '../../core/block'
 import template from './index.tmpl'
 
 export class ErrorPage extends Block {

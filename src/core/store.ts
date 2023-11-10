@@ -1,6 +1,7 @@
 import { EventBus } from './event-bus'
 import Block from './block'
 import { User } from '../models/user'
+import { ChatInfo } from '../models/chats'
 import { set } from '../utils'
 
 export enum StoreEvents {
@@ -9,6 +10,7 @@ export enum StoreEvents {
 
 export interface State {
   user?: User
+  chats?: ChatInfo[]
   selectedChat?: number
 }
 
@@ -60,5 +62,10 @@ export function withStore<SP extends Record<string, any>>(mapStateToProps: (stat
 }
 
 export const withUser = withStore((state) => ({ ...state.user }))
+export const withChats = withStore((state) => ({ chats: [...(state.chats || [])] }))
+export const withSelectedChat = withStore((state) => ({
+  selectedChat: (state.chats || []).find(({ id }) => id === state.selectedChat),
+}))
+// export const withSelectedChat = withStore((state) => ({ selectedChat: state.selectedChat }))
 
 export default store

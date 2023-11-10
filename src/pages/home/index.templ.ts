@@ -3,13 +3,14 @@ const template = `
     <div class='container chats__container'>
       <div class="chats__column">
           <div class="chats__column-header">
-          <a href="/profile">Профиль</a>
-          {{{input}}}
-          {{{chatsList}}}
+              <a class="chats__column-link" href="/profile">Профиль</a>
+              {{{search}}}
+              {{{addChat}}}
           </div>
+          {{{chats}}}
       </div>
       <div class="chats__messages">
-      {{{chat}}}
+      {{{chatsWindow}}}
       </div>
     </div>
   </section>

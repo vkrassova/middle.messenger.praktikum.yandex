@@ -13,6 +13,26 @@
   }
 
   &__column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__column-header {
+    padding-left: 10rem;
+    padding-right: 10rem;
+    padding-top: 20rem;
+    padding-bottom: 20rem;
+    background-color: var(--shark-color);
+  }
+
+  &__column-link {
+    display: flex;
+    justify-content: flex-end;
+    font-weight: 700;
+    font-size: 10rem;
+    line-height: 1.2;
+    text-decoration: underline;
+    cursor: pointer;
 
   }
 }
