@@ -3,14 +3,16 @@ import Block from './block'
 import { User } from '../models/user'
 import { ChatInfo } from '../models/chats'
 import { set } from '../utils'
+import { Message } from '../models/messages'
 
 export enum StoreEvents {
   Updated = 'updated',
 }
 
 export interface State {
-  user?: User
-  chats?: ChatInfo[]
+  user: User
+  chats: ChatInfo[]
+  messages: Record<number, Message[]>
   selectedChat?: number
 }
 
@@ -63,9 +65,26 @@ export function withStore<SP extends Record<string, any>>(mapStateToProps: (stat
 
 export const withUser = withStore((state) => ({ ...state.user }))
 export const withChats = withStore((state) => ({ chats: [...(state.chats || [])] }))
-export const withSelectedChat = withStore((state) => ({
-  selectedChat: (state.chats || []).find(({ id }) => id === state.selectedChat),
-}))
+export const withSelectedChat = withStore((state) => {
+  const selectedChatId = state.selectedChat
+
+  if (!selectedChatId) {
+    return {
+      messages: [],
+      selectedChat: undefined,
+      userId: state.user.id,
+    }
+  }
+
+  return {
+    messages: (state.messages || {})[selectedChatId] || [],
+    selectedChat: state.selectedChat,
+    userId: state.user.id,
+  }
+})
+// export const withSelectedChat = withStore((state) => ({
+//   selectedChat: (state.chats || []).find(({ id }) => id === state.selectedChat),
+// }))
 // export const withSelectedChat = withStore((state) => ({ selectedChat: state.selectedChat }))
 
 export default store

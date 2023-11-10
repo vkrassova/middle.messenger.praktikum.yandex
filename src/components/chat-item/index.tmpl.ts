@@ -1,7 +1,7 @@
 const template = `
   <li class="chat-item">
     {{#if avatar}}
-        <img class="chat-item__avatar" src="{{avatar}}" alt="Аватар">
+        <img class="chat-item__avatar" src="${'https://ya-praktikum.tech/api/v2/resources'}{{avatar}}" alt="Аватар">
     {{else}}
         <div class="chat-item__avatar"></div>
     {{/if}}
@@ -14,7 +14,7 @@ const template = `
         {{/if}}
         </div>
         <div class="chat-item__details">
-          <span class="time">{{time}}</span>
+          <span class="time">{{#if last_message.time}}{{time}}{{/if}}</span>
             {{#if unread_count}}
               <span class="count">{{unread_count}}</span>
             {{/if}}

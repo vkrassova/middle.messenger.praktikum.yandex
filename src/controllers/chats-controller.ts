@@ -1,6 +1,7 @@
 import store from '../core/store'
 import { ChatsAPI } from '../api/chats-api'
 import { User } from '../models/user'
+import MessagesController from './messages-controller'
 
 class ChatsController {
   private api = new ChatsAPI()
@@ -20,6 +21,8 @@ class ChatsController {
 
     chats.map(async (chat) => {
       const token = await this.getToken(chat.id)
+
+      await MessagesController.connect(chat.id, token)
     })
 
     store.set('chats', chats)

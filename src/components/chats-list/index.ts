@@ -6,7 +6,6 @@ import { ChatsItem } from '../chat-item'
 import ChatsController from '../../controllers/chats-controller'
 import store from '../../core/store'
 import { StoreEvents } from '../../core/store'
-import Button from '../button'
 
 interface ChatsListProps {
   chats: ChatInfo[]
@@ -36,8 +35,8 @@ class ChatListBase extends Block {
         ...data,
         events: {
           click: () => {
-            console.log(this.props)
             ChatsController.selectChat(data.id)
+            console.log(store)
           },
         },
       })

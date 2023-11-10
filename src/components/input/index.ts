@@ -8,7 +8,7 @@ interface inputProps extends Props {
   type?: string
   events: Record<string, (e: InputEvent) => void>
   placeholder?: string
-  modificator: string
+  modificator?: string
   isActive?: boolean
   labelText?: string
 }

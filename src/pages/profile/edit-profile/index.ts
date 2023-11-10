@@ -24,7 +24,6 @@ class BaseProfileSettingsPage extends Block {
                 ...avatar.props,
                 avatarSrc: 'https://ya-praktikum.tech/api/v2/resources' + this.props.avatar,
               })
-              console.log(avatar)
             } catch (e) {
               console.log(e)
             }

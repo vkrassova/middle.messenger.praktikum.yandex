@@ -130,12 +130,12 @@ export class Block<P extends Record<string, any> = any> {
     return oldProps !== newProps
   }
 
-  public setProps = (nextProps: P): void => {
-    if (nextProps == null) {
+  public setProps = (nextProps: Partial<P>) => {
+    if (!nextProps) {
       return
     }
+
     Object.assign(this.props, nextProps)
-    this._componentDidUpdate(this.props, nextProps)
   }
 
   public getProps = (key: string): any => {
