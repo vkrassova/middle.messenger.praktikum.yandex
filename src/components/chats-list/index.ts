@@ -36,7 +36,6 @@ class ChatListBase extends Block {
         events: {
           click: () => {
             ChatsController.selectChat(data.id)
-            console.log(store)
           },
         },
       })

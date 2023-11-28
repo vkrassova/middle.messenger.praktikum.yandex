@@ -15,6 +15,7 @@
   &__column {
     display: flex;
     flex-direction: column;
+    background-color: var( --woodsmoke-color);
   }
 
   &__column-header {

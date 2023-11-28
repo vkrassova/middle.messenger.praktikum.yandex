@@ -4,8 +4,12 @@ import Button from '../button'
 import template from './index.tmpl'
 import { withSelectedChat } from '../../core/store'
 import MessagesController from '../../controllers/messages-controller'
-import Input from '../input'
+import { Avatar, Input } from '../index'
 import { Message } from '../message'
+import { ChatInfo } from '../../models/chats'
+import { withChats } from '../../core/store'
+import ChatsController from '../../controllers/chats-controller'
+import { withUser } from '../../core/store'
 
 interface MessengerProps {
   selectedChat: number | undefined
@@ -72,6 +76,14 @@ class MessengerBase extends Block {
     }
   }
 
+  async updateAvatar(file: File, activeChatId: number) {
+    try {
+      await ChatsController.updateAvatar(file, activeChatId)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   protected componentDidUpdate(oldProps: MessengerProps, newProps: MessengerProps): boolean {
     this.children.messages = this.createMessages(newProps)
 
@@ -85,8 +97,26 @@ class MessengerBase extends Block {
   }
 
   render() {
+    const activeChat = (this.props.chats as ChatInfo[]).find((chat) => chat.id === this.props.selectedChat)
+
+    if (activeChat !== null && activeChat !== undefined) {
+      this.children.avatar = new Avatar({
+        isNotActive: false,
+        avatarSrc: 'https://ya-praktikum.tech/api/v2/resources' + activeChat?.avatar,
+        events: {
+          change: async (event) => {
+            const target = event.target as HTMLInputElement
+            const files = target?.files
+
+            if (files !== null) {
+              this.updateAvatar(files[0], activeChat.id)
+            }
+          },
+        },
+      })
+    }
     return this.compile(template, this.props)
   }
 }
 
-export const Messenger = withSelectedChat(MessengerBase)
+export const Messenger = withChats(withUser(withSelectedChat(MessengerBase)))

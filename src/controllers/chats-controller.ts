@@ -2,6 +2,8 @@ import store from '../core/store'
 import { ChatsAPI } from '../api/chats-api'
 import { User } from '../models/user'
 import MessagesController from './messages-controller'
+import { ChatInfo } from '../models/chats'
+import { format } from 'path'
 
 class ChatsController {
   private api = new ChatsAPI()
@@ -54,6 +56,33 @@ class ChatsController {
 
   selectChat(id: number) {
     store.set('selectedChat', id)
+  }
+
+  public async updateAvatar(data: File, chatId: ChatInfo['id']): Promise<ChatInfo['avatar'] | null> {
+    try {
+      const formData = new FormData()
+      formData.append('avatar', data)
+      formData.append('chatId', chatId.toString())
+      const chat = await this.api.updateAvatar(formData)
+
+      const { chats } = store.getState()
+
+      const updatedChats = chats.map((currentChat) => {
+        if (currentChat.id === chat.id) {
+          return chat
+        }
+
+        return currentChat
+      })
+
+      store.set('chats', updatedChats)
+
+      return chat.avatar
+    } catch (e) {
+      console.error(e)
+    }
+
+    return null
   }
 }
 

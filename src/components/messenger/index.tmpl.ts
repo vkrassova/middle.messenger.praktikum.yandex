@@ -1,6 +1,11 @@
 const template = `
 <div class="messenger">
     {{#if selectedChat }}
+        <div class="messenger__header">
+            {{{avatar}}}
+            <div class="messenger__header-control">
+            </div>
+        </div>
         <div class="messenger__messages">
             {{#each messages}}
                 {{{this}}}
@@ -11,7 +16,7 @@ const template = `
             {{{button}}}
         </div>
     {{else}}
-        Выбирете чат
+        <p class="messenger__text">Выбирете чат</p>
     {{/if}}
 </div>
 `

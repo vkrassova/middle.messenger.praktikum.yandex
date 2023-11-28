@@ -13,6 +13,8 @@ const template = `
       {{{chatsWindow}}}
       </div>
     </div>
+
+    {{{chatModal}}}
   </section>
 `
 export default template

@@ -25,7 +25,7 @@ export class Store extends EventBus {
     this.emit(StoreEvents.Updated, this.getState())
   }
 
-  public getState() {
+  public getState(): State {
     return this.state
   }
 }

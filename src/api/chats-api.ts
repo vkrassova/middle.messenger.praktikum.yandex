@@ -37,7 +37,7 @@ export class ChatsAPI extends API {
     return response.token
   }
 
-  public updateAvatar(data: FormData) {
+  updateAvatar(data: FormData) {
     return this.http.put<ChatInfo>('/avatar', data)
   }
 

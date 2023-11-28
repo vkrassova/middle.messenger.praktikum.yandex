@@ -6,7 +6,10 @@
   padding: 10px 30px;
 
   &__messages {
-    flex-grow: 1;
+    height: calc(100vh - 200rem);
+    overflow-x: hidden;
+    overflow-y: scroll;
+    overflow-y: scroll;
   }
 
   &__footer {
