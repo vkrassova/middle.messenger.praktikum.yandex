@@ -1,16 +1,25 @@
 import Block from '../../core/block'
 import template from './index.tmpl'
-import Button from '../button'
-import Input from '../input'
+import { Button, Input } from '../index'
 import ChatsController from '../../controllers/chats-controller'
+import { ChatInfo } from '../../models/chats'
 
-export class ChatModal extends Block {
+interface modalProps {
+  type?: string
+  title?: string
+}
+
+export class Modal extends Block {
+  constructor(props: modalProps) {
+    super(props)
+  }
+
   init() {
     const input = new Input({
       isActive: false,
       name: 'title',
       type: 'text',
-      placeholder: 'Введите название',
+      placeholder: this.props.type,
       events: {
         change: (evt) => {
           this.getValue(evt, this)
@@ -52,12 +61,15 @@ export class ChatModal extends Block {
       title: this.state.title as string,
     }
 
-    await ChatsController.create(this.state.title as string).finally(() => {
-      const popup = document?.querySelector('.modal__chat')
-      popup?.classList.remove('active')
-      const input = this.children.input as Input
-      input.setProps({ ...input.props, value: '' })
-    })
+    // const activeChat = (this.props.chats as ChatInfo[]).find((chat) => chat.id === this.props.selectedChat)
+
+    console.log(this.props)
+    // await ChatsController.create(this.state.title as string).finally(() => {
+    //   const popup = document?.querySelector('.modal__chat')
+    //   popup?.classList.remove('active')
+    //   const input = this.children.input as Input
+    //   input.setProps({ ...input.props, value: '' })
+    // })
   }
 
   render() {

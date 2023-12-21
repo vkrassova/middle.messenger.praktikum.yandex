@@ -45,7 +45,7 @@ class AuthController {
 
     store.set('user', user)
 
-    console.log(user)
+    // console.log(user)
   }
 }
 

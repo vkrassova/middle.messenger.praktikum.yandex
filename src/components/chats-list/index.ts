@@ -17,6 +17,12 @@ class ChatListBase extends Block {
     super(props)
   }
 
+  protected async componentDidMount(): Promise<void> {
+    super.componentDidMount()
+
+    await ChatsController.fetchChats()
+  }
+
   init() {
     if (this.props.chats) {
       this.children.chatItems = this.createChats(this.props)
@@ -24,6 +30,7 @@ class ChatListBase extends Block {
   }
 
   protected componentDidUpdate(oldProps: ChatsListProps, newProps: ChatsListProps): boolean {
+    if (!oldProps && !newProps) return false
     this.children.chatItems = this.createChats(newProps)
 
     return true

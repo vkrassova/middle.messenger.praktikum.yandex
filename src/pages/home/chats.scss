@@ -19,6 +19,9 @@
   }
 
   &__column-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding-left: 10rem;
     padding-right: 10rem;
     padding-top: 20rem;
@@ -28,12 +31,16 @@
 
   &__column-link {
     display: flex;
+    margin-bottom: 10rem;
     justify-content: flex-end;
     font-weight: 700;
-    font-size: 10rem;
+    font-size: 14rem;
     line-height: 1.2;
     text-decoration: underline;
     cursor: pointer;
+  }
 
+  .button {
+    min-width: 300rem;
   }
 }

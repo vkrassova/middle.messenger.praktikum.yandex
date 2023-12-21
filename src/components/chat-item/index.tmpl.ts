@@ -7,7 +7,7 @@ const template = `
     {{/if}}
         <div class="chat-item__preview">
         <p class="chat-item__title">{{title}}</p>
-        {{#if last_message.content}}
+        {{#if last_message}}
           <p class="chat-item__content">{{content}}</p>
         {{else}}
           <p class="chat-item__content">Превью сообщения чата</p>

@@ -1,20 +1,38 @@
 import Block from '../../core/block'
 import { Message as MessageProps } from '../../models/messages'
-import Button from '../button'
 import template from './index.tmpl'
 import { withSelectedChat } from '../../core/store'
 import MessagesController from '../../controllers/messages-controller'
-import { Avatar, Input } from '../index'
+import { Avatar, Input, ControlButton, Button } from '../index'
 import { Message } from '../message'
 import { ChatInfo } from '../../models/chats'
 import { withChats } from '../../core/store'
 import ChatsController from '../../controllers/chats-controller'
-import { withUser } from '../../core/store'
+import { User } from '../../models/user'
 
 interface MessengerProps {
+  avatar?: string
   selectedChat: number | undefined
   messages: MessageProps[]
+  chats: ChatType[]
   userId: number
+  activeChat: ChatInfo | null
+}
+
+export type LastMessage = {
+  user: User
+  time: string
+  content: string
+  id: number
+}
+
+export type ChatType = {
+  avatar: null | string
+  created_by: number
+  id: number
+  last_message: LastMessage | null
+  title: string
+  unread_count: number
 }
 
 class MessengerBase extends Block {
@@ -44,6 +62,16 @@ class MessengerBase extends Block {
       },
     })
 
+    const deleteChat = new ControlButton({
+      class: 'delete',
+      events: {
+        click: (evt: Event) => {
+          evt.preventDefault()
+          this.deleteChat()
+        },
+      },
+    })
+
     const message = this.createMessages(this.props)
 
     const input = new Input({
@@ -59,6 +87,7 @@ class MessengerBase extends Block {
 
     this.children = {
       button: button,
+      deleteChat: deleteChat,
       messages: message,
       input: input,
     }
@@ -84,8 +113,22 @@ class MessengerBase extends Block {
     }
   }
 
+  deleteChat() {
+    const activeChat = (this.props.chats as ChatInfo[]).find((chat) => chat.id === this.props.selectedChat)
+    if (activeChat !== null && activeChat !== undefined) {
+      ChatsController.delete(activeChat?.id)
+    }
+  }
+
   protected componentDidUpdate(oldProps: MessengerProps, newProps: MessengerProps): boolean {
+    if (!oldProps && !newProps) return false
     this.children.messages = this.createMessages(newProps)
+
+    // const avatar = this.children.avatar as Block
+    // avatar.setProps({
+    //   ...avatar.props,
+    //   avatarSrc: 'https://ya-praktikum.tech/api/v2/resources' + this.props.avatar,
+    // })
 
     return true
   }
@@ -102,7 +145,7 @@ class MessengerBase extends Block {
     if (activeChat !== null && activeChat !== undefined) {
       this.children.avatar = new Avatar({
         isNotActive: false,
-        avatarSrc: 'https://ya-praktikum.tech/api/v2/resources' + activeChat?.avatar,
+        avatarSrc: 'https://ya-praktikum.tech/api/v2/resources' + activeChat.avatar,
         events: {
           change: async (event) => {
             const target = event.target as HTMLInputElement
@@ -115,8 +158,8 @@ class MessengerBase extends Block {
         },
       })
     }
-    return this.compile(template, this.props)
+    return this.compile(template, { ...this.props, activeChat })
   }
 }
 
-export const Messenger = withChats(withUser(withSelectedChat(MessengerBase)))
+export const Messenger = withChats(withSelectedChat(MessengerBase))

@@ -2,12 +2,16 @@ import API from './api'
 import { ChatInfo } from '../models/chats'
 import { User } from '../models/user'
 
+export type CreateChatType = {
+  title: string
+}
+
 export class ChatsAPI extends API {
   constructor() {
     super('/chats')
   }
 
-  create(data: { title: string }) {
+  create(data: string) {
     return this.http.post('/', data)
   }
 

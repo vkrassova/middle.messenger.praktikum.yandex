@@ -15,6 +15,7 @@ const template = `
     </div>
 
     {{{chatModal}}}
+    {{{deleteChat}}}
   </section>
 `
 export default template

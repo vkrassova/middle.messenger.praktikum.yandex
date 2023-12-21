@@ -3,7 +3,6 @@ import { ChatsAPI } from '../api/chats-api'
 import { User } from '../models/user'
 import MessagesController from './messages-controller'
 import { ChatInfo } from '../models/chats'
-import { format } from 'path'
 
 class ChatsController {
   private api = new ChatsAPI()
@@ -75,7 +74,7 @@ class ChatsController {
         return currentChat
       })
 
-      store.set('chats', updatedChats)
+      // store.set('chats', updatedChats)
 
       return chat.avatar
     } catch (e) {

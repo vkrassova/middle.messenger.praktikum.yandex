@@ -13,8 +13,15 @@ interface ChatProps {
   }
 }
 
+interface CardProps extends ChatProps {
+  src: string
+  name: string
+  text: string
+  time: string
+}
+
 class ChatItemBaseComponent extends Block {
-  constructor(props: ChatProps) {
+  constructor(props: CardProps) {
     super(props)
   }
 

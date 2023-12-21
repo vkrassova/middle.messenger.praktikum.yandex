@@ -1,0 +1,8 @@
+.control-button {
+  @include flex-center;
+
+  width: 30rem;
+  height: 30rem;
+  background-color: aqua;
+  cursor: pointer;
+}
