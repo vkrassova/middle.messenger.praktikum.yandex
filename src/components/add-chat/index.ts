@@ -3,6 +3,7 @@ import template from './index.tmpl'
 import Button from '../button'
 import Input from '../input'
 import ChatsController from '../../controllers/chats-controller'
+import { CreateChatType } from '../../api/chats-api'
 
 export class ChatModal extends Block {
   init() {
@@ -10,7 +11,7 @@ export class ChatModal extends Block {
       isActive: false,
       name: 'title',
       type: 'text',
-      placeholder: 'Введите название',
+      placeholder: 'Введите название чата',
       events: {
         change: (evt) => {
           this.getValue(evt, this)
@@ -48,11 +49,7 @@ export class ChatModal extends Block {
   }
 
   async onSubmit() {
-    const data = {
-      title: this.state.title as string,
-    }
-
-    await ChatsController.create(this.state.title as string).finally(() => {
+    await ChatsController.create(this.state.title as CreateChatType).finally(() => {
       const popup = document?.querySelector('.modal__chat')
       popup?.classList.remove('active')
       const input = this.children.input as Input

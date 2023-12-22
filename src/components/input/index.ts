@@ -6,7 +6,7 @@ type Props = { [key: string]: unknown }
 interface inputProps extends Props {
   name?: string
   type?: string
-  events: Record<string, (e: InputEvent) => void>
+  events?: Record<string, (e: InputEvent) => void>
   placeholder?: string
   modificator?: string
   isActive?: boolean

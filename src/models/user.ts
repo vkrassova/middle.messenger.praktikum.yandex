@@ -8,7 +8,7 @@ export interface SignUpData {
 }
 
 export interface User {
-  id?: number
+  id?: number | undefined
   first_name: string
   second_name: string
   display_name: string

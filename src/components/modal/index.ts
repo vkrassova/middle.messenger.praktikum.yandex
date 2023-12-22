@@ -5,8 +5,18 @@ import ChatsController from '../../controllers/chats-controller'
 import { ChatInfo } from '../../models/chats'
 
 interface modalProps {
+  class?: string
   type?: string
   title?: string
+  addUser?: boolean
+  deleteUser?: boolean
+  user?: boolean
+  onClickAddUser?: (value?: number) => Promise<void>
+  getValue?: (evt?: Event) => void
+  onClickDeletedUser?: (value?: number) => Promise<void>
+  events?: {
+    click: () => void | Promise<void>
+  }
 }
 
 export class Modal extends Block {
@@ -17,24 +27,23 @@ export class Modal extends Block {
   init() {
     const input = new Input({
       isActive: false,
-      name: 'title',
+      name: this.props.user ? 'login' : 'title',
       type: 'text',
       placeholder: this.props.type,
       events: {
         change: (evt) => {
-          this.getValue(evt, this)
+          this.props.getValue(evt)
         },
       },
     })
 
     const button = new Button({
       class: 'button--fill',
-      type: 'submit',
       title: 'Добавить',
       events: {
-        click: (evt: Event) => {
+        click: async (evt: Event) => {
           evt.preventDefault()
-          this.onSubmit()
+          this.props.addUser ? await this.props.onClickAddUser() : this.props.onClickDeletedUser()
         },
       },
     })
@@ -43,33 +52,6 @@ export class Modal extends Block {
       input: input,
       button: button,
     }
-  }
-
-  componentDidMount() {
-    this.state = {
-      title: '',
-    }
-  }
-
-  getValue(event: Event, self: Block) {
-    const target = event.target as HTMLInputElement
-    self.state[target.name] = target?.value
-  }
-
-  async onSubmit() {
-    const data = {
-      title: this.state.title as string,
-    }
-
-    // const activeChat = (this.props.chats as ChatInfo[]).find((chat) => chat.id === this.props.selectedChat)
-
-    console.log(this.props)
-    // await ChatsController.create(this.state.title as string).finally(() => {
-    //   const popup = document?.querySelector('.modal__chat')
-    //   popup?.classList.remove('active')
-    //   const input = this.children.input as Input
-    //   input.setProps({ ...input.props, value: '' })
-    // })
   }
 
   render() {

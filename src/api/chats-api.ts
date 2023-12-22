@@ -11,8 +11,8 @@ export class ChatsAPI extends API {
     super('/chats')
   }
 
-  create(data: string) {
-    return this.http.post('/', data)
+  create(data: CreateChatType) {
+    return this.http.post('/', { title: data })
   }
 
   delete(id: number): Promise<unknown> {

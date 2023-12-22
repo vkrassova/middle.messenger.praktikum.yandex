@@ -4,12 +4,16 @@ import { User } from '../models/user'
 import MessagesController from './messages-controller'
 import { ChatInfo } from '../models/chats'
 
+interface Props {
+  title: string
+}
+
 class ChatsController {
   private api = new ChatsAPI()
 
-  async create(title: string): Promise<void> {
+  async create(title: Props): Promise<void> {
     try {
-      await this.api.create({ title })
+      await this.api.create(title)
 
       this.fetchChats()
     } catch (e) {
@@ -20,7 +24,7 @@ class ChatsController {
   async fetchChats() {
     const chats = await this.api.read()
 
-    chats.map(async (chat) => {
+    chats?.map(async (chat) => {
       const token = await this.getToken(chat.id)
 
       await MessagesController.connect(chat.id, token)
@@ -33,11 +37,11 @@ class ChatsController {
     return this.api.getToken(id)
   }
 
-  async addUserToChat(id: number, userId: number) {
+  async addUserToChat(id: number, userId: number): Promise<void> {
     this.api.addUsers(id, [userId])
   }
 
-  async deleteUserToChat(id: number, userId: number): Promise<void> {
+  async deleteUserFromChat(id: number, userId: number): Promise<void> {
     this.api.deleteUsers(id, [userId])
   }
 

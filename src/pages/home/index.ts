@@ -8,7 +8,6 @@ import { Button, ControlButton } from '../../components'
 import { ChatModal } from '../../components/add-chat'
 import { ChatInfo } from '../../models/chats'
 import { withSelectedChat } from '../../core/store'
-import { Modal } from '../../components/modal'
 
 export class HomePageBasis extends Block {
   constructor() {
@@ -19,13 +18,6 @@ export class HomePageBasis extends Block {
     const chats = new ChatsList({ isLoaded: false })
     const chatsWindow = new Messenger({})
     const chatModal = new ChatModal({})
-    const deleteChat = new ControlButton({
-      events: {
-        click: () => {
-          this.deleteChat()
-        },
-      },
-    })
 
     const addChat = new Button({
       class: 'button--fill',
@@ -50,8 +42,7 @@ export class HomePageBasis extends Block {
       chats: chats,
       chatsWindow: chatsWindow,
       addChat: addChat,
-      // chatModal: chatModal,
-      // deleteChat: deleteChat,
+      chatModal: chatModal,
     }
   }
 
@@ -59,11 +50,6 @@ export class HomePageBasis extends Block {
     const popup = document?.querySelector('.modal__chat')
 
     popup?.classList.add('active')
-  }
-
-  async deleteChat() {
-    const activeChat = (this.props.chats as ChatInfo[]).find((chat) => chat.id === this.props.selectedChat)
-    console.log(activeChat)
   }
 
   render() {

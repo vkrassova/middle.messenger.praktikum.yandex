@@ -6,9 +6,10 @@ type Props = { [key: string]: unknown }
 interface buttonProps extends Props {
   class?: string
   events?: Record<string, (e: SubmitEvent) => void>
+  addUser?: () => void
 }
 
-class ControlButton extends Block {
+class Tabs extends Block {
   constructor(props: buttonProps) {
     super(props)
   }
@@ -18,4 +19,4 @@ class ControlButton extends Block {
   }
 }
 
-export default ControlButton
+export default Tabs

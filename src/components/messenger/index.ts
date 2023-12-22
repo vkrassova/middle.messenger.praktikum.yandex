@@ -1,38 +1,22 @@
 import Block from '../../core/block'
 import { Message as MessageProps } from '../../models/messages'
 import template from './index.tmpl'
-import { withSelectedChat } from '../../core/store'
+import store, { withSelectedChat } from '../../core/store'
 import MessagesController from '../../controllers/messages-controller'
-import { Avatar, Input, ControlButton, Button } from '../index'
+import { Avatar, Input, Tabs, Button, Modal } from '../index'
 import { Message } from '../message'
 import { ChatInfo } from '../../models/chats'
 import { withChats } from '../../core/store'
 import ChatsController from '../../controllers/chats-controller'
-import { User } from '../../models/user'
+import UserController from '../../controllers/user-controller'
 
 interface MessengerProps {
   avatar?: string
   selectedChat: number | undefined
   messages: MessageProps[]
-  chats: ChatType[]
+  chats: ChatInfo[]
   userId: number
   activeChat: ChatInfo | null
-}
-
-export type LastMessage = {
-  user: User
-  time: string
-  content: string
-  id: number
-}
-
-export type ChatType = {
-  avatar: null | string
-  created_by: number
-  id: number
-  last_message: LastMessage | null
-  title: string
-  unread_count: number
 }
 
 class MessengerBase extends Block {
@@ -43,6 +27,51 @@ class MessengerBase extends Block {
   componentDidMount() {
     this.state = {
       message: '',
+      login: '',
+    }
+  }
+
+  async addUserToChat() {
+    const data = {
+      login: this.state.login as string,
+    }
+    try {
+      const activeChat = (this.props.chats as ChatInfo[]).find((chat) => chat.id === this.props.selectedChat)
+      if (activeChat !== null && activeChat !== undefined) {
+        const users = await UserController.searchUser(data)
+
+        if (users !== null) {
+          await ChatsController.addUserToChat(activeChat.id, users[0].id as number)
+          const popup = document?.querySelector('.modal--add-user')
+          popup?.classList.remove('active')
+          const form = document?.querySelector('#modal-form') as HTMLFormElement
+          form.reset()
+        }
+      }
+    } catch (event: unknown) {
+      console.error(event)
+    }
+  }
+
+  async deleteUserFromChat() {
+    const data = {
+      login: this.state.login as string,
+    }
+    try {
+      const activeChat = (this.props.chats as ChatInfo[]).find((chat) => chat.id === this.props.selectedChat)
+      if (activeChat !== null && activeChat !== undefined) {
+        const users = await UserController.searchUser(data)
+
+        if (users !== null) {
+          await ChatsController.deleteUserFromChat(activeChat.id, users[0].id as number)
+          const popup = document?.querySelector('.modal--delete-user')
+          popup?.classList.remove('active')
+          const form = document?.querySelector('#modal-form') as HTMLFormElement
+          form.reset()
+        }
+      }
+    } catch (event: unknown) {
+      console.error(event)
     }
   }
 
@@ -62,13 +91,59 @@ class MessengerBase extends Block {
       },
     })
 
-    const deleteChat = new ControlButton({
+    const deleteChat = new Tabs({
       class: 'delete',
       events: {
         click: (evt: Event) => {
           evt.preventDefault()
           this.deleteChat()
+          store.set('selectedChat', null)
         },
+      },
+    })
+
+    const addUser = new Tabs({
+      class: 'add-user',
+      events: {
+        click: (evt: Event) => {
+          evt.preventDefault()
+          ;(this.children.modal as Modal).setProps({
+            title: 'Добавить пользователя',
+            addUser: true,
+            class: 'modal--add-user',
+          })
+          const popup = document?.querySelector('.modal--add-user')
+          popup?.classList.add('active')
+        },
+      },
+    })
+
+    const deleteUser = new Tabs({
+      class: 'delete-user',
+      events: {
+        click: (evt: Event) => {
+          evt.preventDefault()
+          ;(this.children.modal as Modal).setProps({
+            title: 'Удалить пользователя',
+            class: 'modal--delete-user',
+          })
+          const popup = document?.querySelector('.modal--delete-user')
+          popup?.classList.add('active')
+        },
+      },
+    })
+
+    const modal = new Modal({
+      user: true,
+      onClickAddUser: async () => {
+        await this.addUserToChat()
+      },
+      onClickDeletedUser: async () => {
+        await this.deleteUserFromChat()
+      },
+      getValue: (evt) => {
+        const target = evt?.target as HTMLInputElement
+        this.state[target.name] = target?.value
       },
     })
 
@@ -88,8 +163,11 @@ class MessengerBase extends Block {
     this.children = {
       button: button,
       deleteChat: deleteChat,
+      addUser: addUser,
+      deleteUser: deleteUser,
       messages: message,
       input: input,
+      modal: modal,
     }
   }
 
@@ -101,7 +179,7 @@ class MessengerBase extends Block {
   async onSubmit() {
     const message = this.state.message as string
     if (message !== '' && message !== undefined) {
-      MessagesController.sendMessage(this.props.selectedChat, message)
+      await MessagesController.sendMessage(this.props.selectedChat, message)
     }
   }
 

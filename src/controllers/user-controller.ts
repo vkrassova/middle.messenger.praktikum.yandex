@@ -38,6 +38,18 @@ class UserController {
       console.error(e)
     }
   }
+
+  public async searchUser(data: { login: string }): Promise<User[] | null> {
+    try {
+      const users = await this.api.searchUser(data)
+
+      return users
+    } catch (e: unknown) {
+      console.error(e)
+    }
+
+    return null
+  }
 }
 
 export default new UserController()

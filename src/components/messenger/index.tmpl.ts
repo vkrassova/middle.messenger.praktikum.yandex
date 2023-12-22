@@ -1,9 +1,11 @@
 const template = `
 <div class="messenger">
+    {{{modal}}}
+
     {{#if selectedChat }}
         <div class="messenger__header">
             {{{avatar}}}
-            <p>{{activeChat.title}}</p>
+            <p class="messenger__header-title">{{activeChat.title}}</p>
             <div class="messenger__header-control">
             {{{deleteChat}}}
             {{{addUser}}}
