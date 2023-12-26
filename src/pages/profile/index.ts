@@ -3,6 +3,7 @@ import { withUser } from '../../core/store'
 import Block from '../../core/block'
 import template from './index.template'
 import { Button, ProfileFields, Avatar } from '../../components'
+import avatarIcon from '../../img/smile.svg'
 
 class BaseProfile extends Block {
   init() {
@@ -19,7 +20,9 @@ class BaseProfile extends Block {
 
     const avatar = new Avatar({
       isNotActive: true,
-      avatarSrc: 'https://ya-praktikum.tech/api/v2/resources' + this.props.avatar,
+      avatarSrc: this.props.avatar
+        ? `https://ya-praktikum.tech/api/v2/resources/${this.props.avatar}`
+        : (avatarIcon as string),
     })
 
     const email = new ProfileFields({

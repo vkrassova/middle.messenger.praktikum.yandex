@@ -2,9 +2,7 @@ const template = `
 <section class="profile">
     <div class="profile__container">
         <div class="profile__nav">
-            <a class="profile__nav-icon" href="/">
-                <img src={{icon}} alt="exit">
-            </a>
+            <a class="profile__nav-icon" href="/home"></a>
         </div>
         <div class="profile__wrapper">
             {{{avatar}}}

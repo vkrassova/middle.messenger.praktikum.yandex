@@ -5,12 +5,15 @@ import { handleFocusOut, handleFormSubmit } from '../../../core/validation'
 import { withUser } from '../../../core/store'
 import { PasswordUpdate } from '../../../models/user'
 import UserController from '../../../controllers/user-controller'
+import avatarIcon from '../../../img/smile.svg'
 
 class BaseEditPasswordPage extends Block {
   init() {
     const avatar = new Avatar({
       isNotActive: true,
-      avatarSrc: 'https://ya-praktikum.tech/api/v2/resources' + this.props.avatar,
+      avatarSrc: this.props.avatar
+        ? `https://ya-praktikum.tech/api/v2/resources/${this.props.avatar}`
+        : (avatarIcon as string),
     })
 
     const oldPassword = new Input({

@@ -81,21 +81,7 @@ class ChatsController {
       const formData = new FormData()
       formData.append('avatar', data)
       formData.append('chatId', chatId.toString())
-      const chat = await this.api.updateAvatar(formData)
-
-      const { chats } = store.getState()
-
-      const updatedChats = chats.map((currentChat) => {
-        if (currentChat.id === chat.id) {
-          return chat
-        }
-
-        return currentChat
-      })
-
-      // store.set('chats', updatedChats)
-
-      return chat.avatar
+      await this.api.updateAvatar(formData)
     } catch (e) {
       console.error(e)
     }

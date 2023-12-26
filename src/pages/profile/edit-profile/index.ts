@@ -5,12 +5,15 @@ import { handleFocusOut, handleFormSubmit } from '../../../core/validation'
 import { withUser } from '../../../core/store'
 import { User } from '../../../models/user'
 import UserController from '../../../controllers/user-controller'
+import avatarIcon from '../../../img/smile.svg'
 
 class BaseProfileSettingsPage extends Block {
   init() {
     const avatar = new Avatar({
       isNotActive: false,
-      avatarSrc: 'https://ya-praktikum.tech/api/v2/resources' + this.props.avatar,
+      avatarSrc: this.props.avatar
+        ? `https://ya-praktikum.tech/api/v2/resources/${this.props.avatar}`
+        : (avatarIcon as string),
       events: {
         change: async (event) => {
           const target = event.target as HTMLInputElement
