@@ -61,6 +61,21 @@ class ChatsController {
     store.set('selectedChat', id)
   }
 
+  async getFiltredChats(filter: string) {
+    try {
+      let chats: ChatInfo[] = []
+      chats = (await this.api.getFilter(`?title=${filter}`)) as ChatInfo[]
+      store.set('chats', chats)
+      store.set('currentChat', 0)
+      chats.map(async (chat) => {
+        const token = await this.getToken(chat.id)
+        await MessagesController.connect(chat.id, token)
+      })
+    } catch (e: unknown) {
+      console.error(e)
+    }
+  }
+
   public async updateAvatar(data: File, chatId: ChatInfo['id']): Promise<ChatInfo['avatar'] | null> {
     try {
       const formData = new FormData()

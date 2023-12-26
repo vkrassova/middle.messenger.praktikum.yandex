@@ -40,7 +40,11 @@
     cursor: pointer;
   }
 
-  .button {
-    min-width: 300rem;
+  .button--add-chats {
+    min-width: 200rem;
+  }
+
+  .button--messanger {
+    min-width: 30%;
   }
 }

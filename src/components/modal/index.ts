@@ -1,8 +1,6 @@
 import Block from '../../core/block'
 import template from './index.tmpl'
 import { Button, Input } from '../index'
-import ChatsController from '../../controllers/chats-controller'
-import { ChatInfo } from '../../models/chats'
 
 interface modalProps {
   class?: string
@@ -13,13 +11,14 @@ interface modalProps {
   user?: boolean
   onClickAddUser?: (value?: number) => Promise<void>
   getValue?: (evt?: Event) => void
+  closePopup?: (evt?: Event) => void
   onClickDeletedUser?: (value?: number) => Promise<void>
   events?: {
     click: () => void | Promise<void>
   }
 }
 
-export class Modal extends Block {
+export default class Modal extends Block {
   constructor(props: modalProps) {
     super(props)
   }
@@ -29,7 +28,7 @@ export class Modal extends Block {
       isActive: false,
       name: this.props.user ? 'login' : 'title',
       type: 'text',
-      placeholder: this.props.type,
+      placeholder: this.props.user ? 'Логин' : 'Название чата',
       events: {
         change: (evt) => {
           this.props.getValue(evt)
@@ -37,9 +36,21 @@ export class Modal extends Block {
       },
     })
 
+    const close = new Button({
+      class: 'close-button',
+      events: {
+        click: async (evt: Event) => {
+          evt.preventDefault()
+          const input = this.children.input as Input
+          input.setProps({ ...input.props, value: '' })
+          this.props.closePopup()
+        },
+      },
+    })
+
     const button = new Button({
       class: 'button--fill',
-      title: 'Добавить',
+      title: 'Отправить',
       events: {
         click: async (evt: Event) => {
           evt.preventDefault()
@@ -51,6 +62,7 @@ export class Modal extends Block {
     this.children = {
       input: input,
       button: button,
+      close: close,
     }
   }
 

@@ -4,7 +4,7 @@ import template from './index.tmpl'
 type Props = { [key: string]: unknown }
 
 interface avatarProps extends Props {
-  avatarSrc: string
+  avatarSrc: string | unknown
   isNotActive: boolean
   events?: Record<string, (e: InputEvent) => void>
 }

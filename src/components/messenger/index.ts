@@ -9,6 +9,7 @@ import { ChatInfo } from '../../models/chats'
 import { withChats } from '../../core/store'
 import ChatsController from '../../controllers/chats-controller'
 import UserController from '../../controllers/user-controller'
+import avatarIcon from '../../img/smile.svg'
 
 interface MessengerProps {
   avatar?: string
@@ -76,10 +77,19 @@ class MessengerBase extends Block {
   }
 
   init() {
+    const avatar = new Avatar({
+      isNotActive: true,
+      avatarSrc: (this.props.chats as ChatInfo[]).find((data) => data.id === this.props.selectedChat)?.avatar
+        ? 'https://ya-praktikum.tech/api/v2/resources' +
+          (this.props.chats as ChatInfo[]).find((data) => data.id === this.props.selectedChat)?.avatar
+        : (avatarIcon as string),
+    })
+
     const button = new Button({
       class: 'button--fill',
       type: 'submit',
       title: 'Отправить',
+      modificator: 'button--messanger',
       events: {
         click: (evt: Event) => {
           evt.preventDefault()
@@ -109,11 +119,10 @@ class MessengerBase extends Block {
           evt.preventDefault()
           ;(this.children.modal as Modal).setProps({
             title: 'Добавить пользователя',
-            addUser: true,
             class: 'modal--add-user',
           })
-          const popup = document?.querySelector('.modal--add-user')
-          popup?.classList.add('active')
+
+          this.controlPopup()
         },
       },
     })
@@ -125,10 +134,11 @@ class MessengerBase extends Block {
           evt.preventDefault()
           ;(this.children.modal as Modal).setProps({
             title: 'Удалить пользователя',
+            deleteUser: true,
             class: 'modal--delete-user',
           })
-          const popup = document?.querySelector('.modal--delete-user')
-          popup?.classList.add('active')
+
+          this.controlPopup()
         },
       },
     })
@@ -141,6 +151,7 @@ class MessengerBase extends Block {
       onClickDeletedUser: async () => {
         await this.deleteUserFromChat()
       },
+      closePopup: () => this.controlPopup(),
       getValue: (evt) => {
         const target = evt?.target as HTMLInputElement
         this.state[target.name] = target?.value
@@ -168,7 +179,13 @@ class MessengerBase extends Block {
       messages: message,
       input: input,
       modal: modal,
+      avatar: avatar,
     }
+  }
+
+  controlPopup() {
+    const popup = document?.querySelector('.modal')
+    popup?.classList.contains('active') ? popup.classList.remove('active') : popup?.classList.add('active')
   }
 
   getValue(event: Event, self: Block) {
@@ -183,14 +200,6 @@ class MessengerBase extends Block {
     }
   }
 
-  async updateAvatar(file: File, activeChatId: number) {
-    try {
-      await ChatsController.updateAvatar(file, activeChatId)
-    } catch (e) {
-      console.log(e)
-    }
-  }
-
   deleteChat() {
     const activeChat = (this.props.chats as ChatInfo[]).find((chat) => chat.id === this.props.selectedChat)
     if (activeChat !== null && activeChat !== undefined) {
@@ -201,12 +210,13 @@ class MessengerBase extends Block {
   protected componentDidUpdate(oldProps: MessengerProps, newProps: MessengerProps): boolean {
     if (!oldProps && !newProps) return false
     this.children.messages = this.createMessages(newProps)
-
-    // const avatar = this.children.avatar as Block
-    // avatar.setProps({
-    //   ...avatar.props,
-    //   avatarSrc: 'https://ya-praktikum.tech/api/v2/resources' + this.props.avatar,
-    // })
+    ;(this.children.avatar as Avatar).setProps({
+      avatarSrc: newProps.chats.find((data) => data.id === newProps.selectedChat)?.avatar
+        ? `${'https://ya-praktikum.tech/api/v2/resources'}${
+            newProps.chats.find((data) => data.id === newProps.selectedChat)?.avatar
+          }`
+        : (avatarIcon as string),
+    })
 
     return true
   }
@@ -219,23 +229,6 @@ class MessengerBase extends Block {
 
   render() {
     const activeChat = (this.props.chats as ChatInfo[]).find((chat) => chat.id === this.props.selectedChat)
-
-    if (activeChat !== null && activeChat !== undefined) {
-      this.children.avatar = new Avatar({
-        isNotActive: false,
-        avatarSrc: 'https://ya-praktikum.tech/api/v2/resources' + activeChat.avatar,
-        events: {
-          change: async (event) => {
-            const target = event.target as HTMLInputElement
-            const files = target?.files
-
-            if (files !== null) {
-              this.updateAvatar(files[0], activeChat.id)
-            }
-          },
-        },
-      })
-    }
     return this.compile(template, { ...this.props, activeChat })
   }
 }

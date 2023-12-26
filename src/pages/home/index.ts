@@ -4,9 +4,8 @@ import { ChatsList } from '../../components/chats-list'
 import ChatsController from '../../controllers/chats-controller'
 import { withChats } from '../../core/store'
 import { Messenger } from '../../components/messenger'
-import { Button, ControlButton } from '../../components'
+import { Button, Search } from '../../components'
 import { ChatModal } from '../../components/add-chat'
-import { ChatInfo } from '../../models/chats'
 import { withSelectedChat } from '../../core/store'
 
 export class HomePageBasis extends Block {
@@ -14,18 +13,36 @@ export class HomePageBasis extends Block {
     super({})
   }
 
+  componentDidMount() {
+    this.state = {
+      search: '',
+    }
+  }
+
   init() {
     const chats = new ChatsList({ isLoaded: false })
     const chatsWindow = new Messenger({})
     const chatModal = new ChatModal({})
+    const search = new Search({
+      getValue: (evt) => {
+        const target = evt?.target as HTMLInputElement
+        this.state[target.name] = target?.value
+      },
+      events: {
+        submit: async (event: Event) => {
+          event.preventDefault()
+          this.onSubmit()
+        },
+      },
+    })
 
     const addChat = new Button({
       class: 'button--fill',
       type: 'button',
       title: 'Добавить чат',
+      modificator: 'button--add-chats',
       events: {
         click: () => {
-          console.log(this.props)
           this.addChat()
         },
       },
@@ -43,7 +60,12 @@ export class HomePageBasis extends Block {
       chatsWindow: chatsWindow,
       addChat: addChat,
       chatModal: chatModal,
+      search: search,
     }
+  }
+
+  async onSubmit() {
+    await ChatsController.getFiltredChats(this.state.search as string)
   }
 
   addChat() {

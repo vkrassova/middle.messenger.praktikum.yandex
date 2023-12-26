@@ -1,0 +1,86 @@
+.modal {
+  position: fixed;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(31, 31, 31, 0.71);
+  z-index: 2;
+
+  &.active {
+    display: flex;
+  }
+
+  &__container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: min-content;
+    padding: 40rem;
+    border-radius: 16rem;
+    border: 1rem solid var(--heliotrope-color);
+    background-color: var(--shark-color);
+  }
+
+  &__title {
+    display: inline-block;
+    margin-bottom: 38rem;
+    color: var(--white-color);
+    font-size: 16rem;
+    font-weight: 700;
+    line-height: normal;
+    text-align: center;
+  }
+
+  .button {
+    margin-top: 50rem;
+    min-width: 280rem;
+    height: 36rem;
+  }
+
+  .close-button {
+    position: absolute;
+    top: 20rem;
+    right: 20rem;
+
+    margin: 0;
+    padding: 0;
+    min-width: 20rem;
+    height: 20rem;
+
+    z-index: 2;
+
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 20%;
+      display: block;
+
+      width: 100%;
+      height: 3.2rem;
+      background-color: var(--white-color);
+
+      transition-property: transform;
+      transform: rotate(45deg);
+    }
+
+    &::after {
+      transform: rotate(-45deg);
+    }
+  }
+}

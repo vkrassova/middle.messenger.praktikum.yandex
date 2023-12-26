@@ -6,7 +6,8 @@ type Props = { [key: string]: unknown }
 interface buttonProps extends Props {
   class: string
   type?: string
-  title: string
+  title?: string
+  modificator?: string
   events?: Record<string, (e: SubmitEvent) => void>
 }
 
