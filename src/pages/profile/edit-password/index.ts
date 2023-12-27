@@ -1,21 +1,18 @@
 import Block from '../../../core/block'
 import template from '../edit-password/index.templ'
 import { Input, Button, Avatar } from '../../../components'
-import { handleFocusOut } from '../../../core/validation'
+import { handleFocusOut, handleRepeatPassword, passwordValidation } from '../../../core/validation'
 import { withUser } from '../../../core/store'
 import { PasswordUpdate } from '../../../models/user'
 import UserController from '../../../controllers/user-controller'
 import avatarIcon from '../../../img/smile.svg'
-import { handleRepeatPassword } from '../../../core/validation'
-import { passwordValidation } from '../../../core/validation'
+import { RESOURCES_URL } from '../../../utils/constants'
 
 class BaseEditPasswordPage extends Block {
   init() {
     const avatar = new Avatar({
       isNotActive: true,
-      avatarSrc: this.props.avatar
-        ? `https://ya-praktikum.tech/api/v2/resources/${this.props.avatar}`
-        : (avatarIcon as string),
+      avatarSrc: this.props.avatar ? RESOURCES_URL + this.props.avatar : (avatarIcon as string),
     })
 
     const oldPassword = new Input({

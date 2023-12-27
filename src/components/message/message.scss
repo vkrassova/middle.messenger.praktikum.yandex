@@ -1,11 +1,12 @@
 .message-container {
+  position: relative;
   display: flex;
   margin-bottom: 10rem;
 
   .my-message {
     display: flex;
     margin-left: auto;
-    padding: 15rem;
+    padding: 20rem;
     font-weight: 400;
     font-size: 14rem;
     font-style: normal;
@@ -19,12 +20,23 @@
     display: flex;
     margin-right: auto;
     padding: 15rem;
-    font-weight: 400;
-    font-size: 14rem;
-    font-style: normal;
     background-color: var(--gray-color);
     border-top-right-radius: 10rem;
     border-bottom-right-radius: 10rem;
     border-bottom-left-radius: 10rem;
+  }
+
+  .message__text {
+    display: inline-block;
+    margin-bottom: 10rem;
+    font-weight: 400;
+    font-size: 14rem;
+  }
+
+  .time {
+    position: absolute;
+    bottom: 6rem;
+    right: 6rem;
+    color: var(--gray-color);
   }
 }

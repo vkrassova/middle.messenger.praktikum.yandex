@@ -4,6 +4,7 @@ import Block from '../../core/block'
 import template from './index.template'
 import { Button, ProfileFields, Avatar } from '../../components'
 import avatarIcon from '../../img/smile.svg'
+import { RESOURCES_URL } from '../../utils/constants'
 
 class BaseProfile extends Block {
   init() {
@@ -20,9 +21,7 @@ class BaseProfile extends Block {
 
     const avatar = new Avatar({
       isNotActive: true,
-      avatarSrc: this.props.avatar
-        ? `https://ya-praktikum.tech/api/v2/resources/${this.props.avatar}`
-        : (avatarIcon as string),
+      avatarSrc: this.props.avatar ? RESOURCES_URL + this.props.avatar : (avatarIcon as string),
     })
 
     const email = new ProfileFields({

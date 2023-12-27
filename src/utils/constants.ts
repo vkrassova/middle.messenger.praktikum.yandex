@@ -1,9 +1,11 @@
 export enum Routes {
   Index = '/',
-  Register = '/signup',
+  Register = '/sign-up',
   Profile = '/profile',
-  ProfileEdit = '/editProfile',
+  ProfileEdit = '/settings',
   PasswordEdit = '/editPassword',
-  Home = '/home',
+  Home = '/messenger',
   Error = '/error',
 }
+
+export const RESOURCES_URL = `https://ya-praktikum.tech/api/v2/resources/`

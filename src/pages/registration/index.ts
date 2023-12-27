@@ -197,8 +197,6 @@ export class RegistrationPage extends Block {
 
     if (isCheckEmptyFields && isCheckErrorMessage) {
       await AuthController.signup(data as SignUpData)
-    } else {
-      console.log(isCheckEmptyFields)
     }
   }
 

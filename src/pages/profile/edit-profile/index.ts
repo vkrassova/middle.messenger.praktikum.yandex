@@ -6,14 +6,13 @@ import { withUser } from '../../../core/store'
 import { User } from '../../../models/user'
 import UserController from '../../../controllers/user-controller'
 import avatarIcon from '../../../img/smile.svg'
+import { RESOURCES_URL } from '../../../utils/constants'
 
 class BaseProfileSettingsPage extends Block {
   init() {
     const avatar = new Avatar({
       isNotActive: false,
-      avatarSrc: this.props.avatar
-        ? `https://ya-praktikum.tech/api/v2/resources/${this.props.avatar}`
-        : (avatarIcon as string),
+      avatarSrc: this.props.avatar ? RESOURCES_URL + this.props.avatar : (avatarIcon as string),
       events: {
         change: async (event) => {
           const target = event.target as HTMLInputElement
@@ -25,7 +24,7 @@ class BaseProfileSettingsPage extends Block {
               const avatar = this.children.avatar as Block
               avatar.setProps({
                 ...avatar.props,
-                avatarSrc: 'https://ya-praktikum.tech/api/v2/resources' + this.props.avatar,
+                avatarSrc: RESOURCES_URL + this.props.avatar,
               })
             } catch (e) {
               console.log(e)
@@ -37,7 +36,7 @@ class BaseProfileSettingsPage extends Block {
 
     const inputLogin = new Input({
       name: 'login',
-      placeholder: this.props.login,
+      value: this.props.login,
       modificator: 'login',
       events: {
         focusout: (event) => {
@@ -48,7 +47,7 @@ class BaseProfileSettingsPage extends Block {
 
     const inputEmail = new Input({
       name: 'email',
-      placeholder: this.props.email,
+      value: this.props.email,
       modificator: 'email',
       events: {
         focusout: (event) => {
@@ -59,7 +58,7 @@ class BaseProfileSettingsPage extends Block {
 
     const inputFirsName = new Input({
       name: 'first_name',
-      placeholder: this.props.first_name,
+      value: this.props.first_name,
       modificator: 'first_name',
       events: {
         focusout: (event) => {
@@ -70,7 +69,7 @@ class BaseProfileSettingsPage extends Block {
 
     const inputSecondName = new Input({
       name: 'second_name',
-      placeholder: this.props.second_name,
+      value: this.props.second_name,
       modificator: 'second_name',
       events: {
         focusout: (event) => {
@@ -81,7 +80,7 @@ class BaseProfileSettingsPage extends Block {
 
     const inputNickName = new Input({
       name: 'nickname',
-      placeholder: this.props.display_name,
+      value: this.props.display_name,
       modificator: 'nickname',
       events: {
         focusout: (event) => {
@@ -92,7 +91,7 @@ class BaseProfileSettingsPage extends Block {
 
     const inputPhone = new Input({
       name: 'phone',
-      placeholder: this.props.phone,
+      value: this.props.phone,
       modificator: 'phone',
       events: {
         focusout: (event) => {

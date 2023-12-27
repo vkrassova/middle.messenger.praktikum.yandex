@@ -2,7 +2,7 @@ const template = `
 <section class="profile profile--settings">
     <div class="profile__container">
         <div class="profile__nav">
-            <a class="profile__nav-icon" href="/home"></a>
+            <a class="profile__nav-icon" href="/messenger"></a>
         </div>
         <div class="profile__wrapper">
             {{{avatar}}}

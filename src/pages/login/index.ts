@@ -5,6 +5,7 @@ import { handleFocusOut, handleFormSubmit } from '../../core/validation'
 import AuthController from '../../controllers/auth-controller'
 import { SignInData } from '../../models/user'
 import Router from '../../core/router'
+import { Routes } from '../../utils/constants'
 
 export class LoginPage extends Block {
   login: string | null = null
@@ -30,7 +31,7 @@ export class LoginPage extends Block {
       title: 'Зарегистрироваться',
       events: {
         click: () => {
-          Router.go('/signup')
+          Router.go(Routes.Register)
         },
       },
     })

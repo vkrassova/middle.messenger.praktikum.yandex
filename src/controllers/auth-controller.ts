@@ -2,6 +2,7 @@ import { AuthAPI } from '../api/auth-api'
 import { SignInData, SignUpData } from '../models/user'
 import router from '../core/router'
 import store from '../core/store'
+import { Routes } from '../utils/constants'
 
 class AuthController {
   private api = new AuthAPI()
@@ -12,7 +13,7 @@ class AuthController {
 
       await this.fetchUser()
 
-      router.go('/profile')
+      router.go(Routes.Home)
     } catch (e) {
       console.error(e)
     }
@@ -24,7 +25,7 @@ class AuthController {
 
       await this.fetchUser()
 
-      router.go('/profile')
+      router.go(Routes.Profile)
     } catch (e) {
       console.log(e)
     }
@@ -34,7 +35,7 @@ class AuthController {
     try {
       await this.api.logout()
       store.set('user', undefined)
-      router.go('/')
+      router.go(Routes.Index)
     } catch (e) {
       console.log(e)
     }
@@ -44,8 +45,6 @@ class AuthController {
     const user = await this.api.read()
 
     store.set('user', user)
-
-    // console.log(user)
   }
 }
 

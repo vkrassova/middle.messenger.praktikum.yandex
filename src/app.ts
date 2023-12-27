@@ -31,7 +31,6 @@ window.addEventListener('DOMContentLoaded', async () => {
       Router.go(Routes.Home)
     }
   } catch (e) {
-    console.log(e, 'Here')
     Router.start()
 
     if (isProtectedRoute) {

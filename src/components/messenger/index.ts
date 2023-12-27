@@ -3,13 +3,13 @@ import { Message as MessageProps } from '../../models/messages'
 import template from './index.tmpl'
 import store, { withSelectedChat } from '../../core/store'
 import MessagesController from '../../controllers/messages-controller'
-import { Avatar, Input, Tabs, Button, Modal } from '../index'
-import { Message } from '../message'
+import { Avatar, Input, Tabs, Button, Modal, Message } from '../index'
 import { ChatInfo } from '../../models/chats'
 import { withChats } from '../../core/store'
 import ChatsController from '../../controllers/chats-controller'
 import UserController from '../../controllers/user-controller'
 import avatarIcon from '../../img/smile.svg'
+import { RESOURCES_URL } from '../../utils/constants'
 
 interface MessengerProps {
   avatar?: string
@@ -80,8 +80,7 @@ class MessengerBase extends Block {
     const avatar = new Avatar({
       isNotActive: true,
       avatarSrc: (this.props.chats as ChatInfo[]).find((data) => data.id === this.props.selectedChat)?.avatar
-        ? 'https://ya-praktikum.tech/api/v2/resources' +
-          (this.props.chats as ChatInfo[]).find((data) => data.id === this.props.selectedChat)?.avatar
+        ? RESOURCES_URL + (this.props.chats as ChatInfo[]).find((data) => data.id === this.props.selectedChat)?.avatar
         : (avatarIcon as string),
     })
 
@@ -212,9 +211,7 @@ class MessengerBase extends Block {
     this.children.messages = this.createMessages(newProps)
     ;(this.children.avatar as Avatar).setProps({
       avatarSrc: newProps.chats.find((data) => data.id === newProps.selectedChat)?.avatar
-        ? `${'https://ya-praktikum.tech/api/v2/resources'}${
-            newProps.chats.find((data) => data.id === newProps.selectedChat)?.avatar
-          }`
+        ? `${RESOURCES_URL}${newProps.chats.find((data) => data.id === newProps.selectedChat)?.avatar}`
         : (avatarIcon as string),
     })
 
