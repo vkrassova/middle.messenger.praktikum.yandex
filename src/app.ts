@@ -1,33 +1,41 @@
 import './components'
-
 import * as page from './pages/index'
+import Router from './core/router'
+import AuthController from './controllers/auth-controller'
+import { Routes } from './utils/constants'
 
-import { render } from './core/render-DOM'
+window.addEventListener('DOMContentLoaded', async () => {
+  Router.use(Routes.Index, page.LoginPage)
+    .use(Routes.Profile, page.Profile)
+    .use(Routes.Register, page.RegistrationPage)
+    .use(Routes.Home, page.HomePage)
+    .use(Routes.Error, page.ErrorPage)
+    .use(Routes.ProfileEdit, page.ProfileEditPage)
+    .use(Routes.PasswordEdit, page.EditPasswordPage)
 
-const renderApp = () => {
-  const { pathname } = window.location
+  let isProtectedRoute = true
 
-  const login = new page.LoginPage({ title: 'Войти' })
-  const error = new page.ErrorPage({ description: 'fdsfdsf', error: '404' })
-  const registration = new page.RegistrationPage({ title: 'Регистрация' })
-
-  console.log(error)
-  console.log(registration)
-
-  switch (pathname) {
-    case '/home':
-      render('#app', login)
-      break
-    case '/login':
-      render('#app', login)
-      break
-    case '/registration':
-      render('#app', registration)
-      break
-    case '/404error':
-      render('#app', error)
+  switch (window.location.pathname) {
+    case Routes.Index:
+    case Routes.Register:
+      isProtectedRoute = false
       break
   }
-}
 
-document.addEventListener('DOMContentLoaded', () => renderApp())
+  try {
+    await AuthController.fetchUser()
+
+    Router.start()
+
+    if (!isProtectedRoute) {
+      Router.go(Routes.Home)
+    }
+  } catch (e) {
+    console.log(e, 'Here')
+    Router.start()
+
+    if (isProtectedRoute) {
+      Router.go(Routes.Index)
+    }
+  }
+})

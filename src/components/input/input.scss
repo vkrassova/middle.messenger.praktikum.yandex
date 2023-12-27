@@ -1,30 +1,45 @@
 .form-input {
-  display: inline-block;
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 5rem;
+
   @include ui-field;
 
   input {
     width: 100%;
-    padding-top: 16rem;
-    padding-bottom: 16rem;
-    padding-left: 24rem;
-    padding-right: 10rem;
     margin: 0;
-
-    border: none;
-    outline: none;
-    border-radius: inherit;
-    background-color: inherit;
+    padding-right: 10rem;
+    padding-left: 10rem;
+    color: var(--white-color);
     font-weight: 700;
     font-size: 16rem;
     line-height: 20rem;
-    color: var(--white-color);
+    text-align: right;
+    background-color: inherit;
+    border: none;
+    border-radius: inherit;
+    outline: none;
 
     &::placeholder {
+      color: var(--gray-color);
       font-weight: 400;
       font-size: 14rem;
       line-height: 17rem;
-      color: var(--gray-color);
+    }
+  }
+
+  &__text {
+    display: block;
+    width: 30%;
+    font-weight: 600;
+    font-size: 12rem;
+    line-height: 1.2;
+  }
+
+  .error-message {
+    &.notactive {
+      display: none;
     }
   }
 }

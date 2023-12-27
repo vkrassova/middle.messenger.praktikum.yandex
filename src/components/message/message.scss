@@ -1,0 +1,30 @@
+.message-container {
+  display: flex;
+  margin-bottom: 10rem;
+
+  .my-message {
+    display: flex;
+    margin-left: auto;
+    padding: 15rem;
+    font-weight: 400;
+    font-size: 14rem;
+    font-style: normal;
+    background-color: var(--violet-color);
+    border-top-left-radius: 10rem;
+    border-top-right-radius: 10rem;
+    border-bottom-left-radius: 10rem;
+  }
+
+  .message {
+    display: flex;
+    margin-right: auto;
+    padding: 15rem;
+    font-weight: 400;
+    font-size: 14rem;
+    font-style: normal;
+    background-color: var(--gray-color);
+    border-top-right-radius: 10rem;
+    border-bottom-right-radius: 10rem;
+    border-bottom-left-radius: 10rem;
+  }
+}

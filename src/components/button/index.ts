@@ -6,13 +6,14 @@ type Props = { [key: string]: unknown }
 interface buttonProps extends Props {
   class: string
   type?: string
-  title: string
+  title?: string
+  modificator?: string
   events?: Record<string, (e: SubmitEvent) => void>
 }
 
 class Button extends Block {
   constructor(props: buttonProps) {
-    super('div', props)
+    super(props)
   }
 
   render() {

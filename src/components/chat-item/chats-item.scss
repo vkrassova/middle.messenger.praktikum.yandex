@@ -1,0 +1,61 @@
+.chat-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 400rem;
+  padding: 10rem;
+  background-color: var(--woodsmoke-color);
+  cursor: pointer;
+
+  &__avatar {
+    width: 50rem;
+    height: 50rem;
+    background-color: var(--white-color);
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCAzMCAzMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzMxXzExMzYpIj4KPHBhdGggZD0iTTE1IDMwQzEyLjAzMzMgMzAgOS4xMzMxOSAyOS4xMjAzIDYuNjY2NDUgMjcuNDcyMUM0LjE5OTcyIDI1LjgyMzggMi4yNzcxMyAyMy40ODEyIDEuMTQxODEgMjAuNzQwM0MwLjAwNjQ5OTI5IDE3Ljk5OTQgLTAuMjkwNTUxIDE0Ljk4MzQgMC4yODgyMjggMTIuMDczN0MwLjg2NzAwNiA5LjE2Mzk0IDIuMjk1NjIgNi40OTExOSA0LjM5MzQxIDQuMzkzNDFDNi40OTExOSAyLjI5NTYyIDkuMTYzOTQgMC44NjcwMDYgMTIuMDczNyAwLjI4ODIyOEMxNC45ODM0IC0wLjI5MDU1MSAxNy45OTk0IDAuMDA2NDk5MjkgMjAuNzQwMyAxLjE0MTgxQzIzLjQ4MTIgMi4yNzcxMyAyNS44MjM4IDQuMTk5NzIgMjcuNDcyMSA2LjY2NjQ1QzI5LjEyMDMgOS4xMzMxOSAzMCAxMi4wMzMzIDMwIDE1QzI5Ljk5NTcgMTguOTc2OSAyOC40MTQgMjIuNzg5NyAyNS42MDE5IDI1LjYwMTlDMjIuNzg5NyAyOC40MTQgMTguOTc2OSAyOS45OTU3IDE1IDMwWk0xNSAyLjUwMDAxQzEyLjUyNzcgMi41MDAwMSAxMC4xMTEgMy4yMzMxMiA4LjA1NTM4IDQuNjA2NjRDNS45OTk3NiA1Ljk4MDE1IDQuMzk3NjEgNy45MzIzOSAzLjQ1MTUxIDEwLjIxNjVDMi41MDU0MiAxMi41MDA1IDIuMjU3ODggMTUuMDEzOSAyLjc0MDE5IDE3LjQzODZDMy4yMjI1MSAxOS44NjM0IDQuNDEzMDIgMjIuMDkwNyA2LjE2MTE3IDIzLjgzODhDNy45MDkzMyAyNS41ODcgMTAuMTM2NiAyNi43Nzc1IDEyLjU2MTQgMjcuMjU5OEMxNC45ODYxIDI3Ljc0MjEgMTcuNDk5NSAyNy40OTQ2IDE5Ljc4MzYgMjYuNTQ4NUMyMi4wNjc2IDI1LjYwMjQgMjQuMDE5OSAyNC4wMDAyIDI1LjM5MzQgMjEuOTQ0NkMyNi43NjY5IDE5Ljg4OSAyNy41IDE3LjQ3MjMgMjcuNSAxNUMyNy40OTY0IDExLjY4NTkgMjYuMTc4MiA4LjUwODYxIDIzLjgzNDggNi4xNjUxOUMyMS40OTE0IDMuODIxNzggMTguMzE0MSAyLjUwMzY1IDE1IDIuNTAwMDFaTTIyLjA4MjUgMTkuNjgyNUMyMi4zMzAyIDE5LjQ2MiAyMi40ODAxIDE5LjE1MjIgMjIuNDk5MyAxOC44MjEyQzIyLjUxODUgMTguNDkwMiAyMi40MDU1IDE4LjE2NTIgMjIuMTg1IDE3LjkxNzVDMjEuOTY0NSAxNy42Njk5IDIxLjY1NDcgMTcuNTE5OSAyMS4zMjM3IDE3LjUwMDdDMjAuOTkyNyAxNy40ODE1IDIwLjY2NzcgMTcuNTk0NSAyMC40MiAxNy44MTVDMTguODkxOSAxOS4xMDE2IDE2Ljk5MzIgMTkuODY3MSAxNSAyMEMxMy4wMDggMTkuODY3MiAxMS4xMTAzIDE5LjEwMjYgOS41ODI1MSAxNy44MTc1QzkuMzM1MTkgMTcuNTk2NyA5LjAxMDMgMTcuNDgzMiA4LjY3OTMgMTcuNTAyQzguMzQ4MjkgMTcuNTIwNyA4LjAzODMgMTcuNjcwMiA3LjgxNzUxIDE3LjkxNzVDNy41OTY3MSAxOC4xNjQ4IDcuNDgzMjEgMTguNDg5NyA3LjUwMTk2IDE4LjgyMDdDNy41MjA3MiAxOS4xNTE3IDcuNjcwMTkgMTkuNDYxNyA3LjkxNzUxIDE5LjY4MjVDOS45MDIzNCAyMS4zNzgyIDEyLjM5MjggMjIuMzY4OSAxNSAyMi41QzE3LjYwNzIgMjIuMzY4OSAyMC4wOTc3IDIxLjM3ODIgMjIuMDgyNSAxOS42ODI1Wk03LjUwMDAxIDEyLjVDNy41MDAwMSAxMy43NSA4LjYxODc2IDEzLjc1IDEwIDEzLjc1QzExLjM4MTMgMTMuNzUgMTIuNSAxMy43NSAxMi41IDEyLjVDMTIuNSAxMS44MzcgMTIuMjM2NiAxMS4yMDExIDExLjc2NzggMTAuNzMyMkMxMS4yOTg5IDEwLjI2MzQgMTAuNjYzIDEwIDEwIDEwQzkuMzM2OTcgMTAgOC43MDEwOCAxMC4yNjM0IDguMjMyMjQgMTAuNzMyMkM3Ljc2MzQgMTEuMjAxMSA3LjUwMDAxIDExLjgzNyA3LjUwMDAxIDEyLjVaTTE3LjUgMTIuNUMxNy41IDEzLjc1IDE4LjYxODggMTMuNzUgMjAgMTMuNzVDMjEuMzgxMyAxMy43NSAyMi41IDEzLjc1IDIyLjUgMTIuNUMyMi41IDExLjgzNyAyMi4yMzY2IDExLjIwMTEgMjEuNzY3OCAxMC43MzIyQzIxLjI5ODkgMTAuMjYzNCAyMC42NjMgMTAgMjAgMTBDMTkuMzM3IDEwIDE4LjcwMTEgMTAuMjYzNCAxOC4yMzIyIDEwLjczMjJDMTcuNzYzNCAxMS4yMDExIDE3LjUgMTEuODM3IDE3LjUgMTIuNVoiIGZpbGw9IiMxRTFGMjIiIGZpbGwtb3BhY2l0eT0iMC40OSIvPgo8L2c+CjxkZWZzPgo8Y2xpcFBhdGggaWQ9ImNsaXAwXzMxXzExMzYiPgo8cmVjdCB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIGZpbGw9IndoaXRlIi8+CjwvY2xpcFBhdGg+CjwvZGVmcz4KPC9zdmc+Cg==');
+    background-position: center;
+    background-size: contain;
+    border-radius: 50%;
+  }
+
+  &__preview {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    display: inline-block;
+    margin-bottom: 8rem;
+    font-weight: 600;
+    font-size: 14rem;
+    line-height: 1.2;
+  }
+
+  &__content {
+    display: inline-block;
+    color: var(--gray-color);
+    font-weight: 500;
+    font-size: 12rem;
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+
+    .time {
+      color: var(--gray-color);
+      font-weight: 500;
+      font-size: 13rem;
+      line-height: 1.2;
+    }
+
+    .count {
+      width: 20rem;
+      height: 20rem;
+      font-weight: 500;
+      font-size: 12rem;
+      line-height: 1.2;
+      background-color: var(--violet-color);
+      border-radius: 50%;
+    }
+  }
+}

@@ -3,8 +3,13 @@ import Block from './block'
 export function render(query: string, block: Block) {
   const root = document.querySelector(query)
 
-  if (root) root.appendChild(block.getContent() as HTMLElement)
+  if (root === null) {
+    throw new Error(`root not found by selector "${query}"`)
+  }
 
-  block.dispatchComponentDidMount()
+  root.innerHTML = ''
+
+  root.append(block.getContent()!)
+
   return root
 }

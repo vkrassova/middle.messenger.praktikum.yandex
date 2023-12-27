@@ -1,0 +1,76 @@
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: rgb(31 31 31 / 71%);
+
+  &.active {
+    display: flex;
+  }
+
+  &__container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: min-content;
+    padding: 40rem;
+    background-color: var(--shark-color);
+    border: 1rem solid var(--heliotrope-color);
+    border-radius: 16rem;
+  }
+
+  &__title {
+    display: inline-block;
+    margin-bottom: 38rem;
+    color: var(--white-color);
+    font-weight: 700;
+    font-size: 16rem;
+    line-height: normal;
+    text-align: center;
+  }
+
+  .button {
+    min-width: 280rem;
+    height: 36rem;
+    margin-top: 50rem;
+  }
+
+  .close-button {
+    position: absolute;
+    top: 20rem;
+    right: 20rem;
+    z-index: 2;
+    min-width: 20rem;
+    height: 20rem;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+
+    &::before,
+    &::after {
+      position: absolute;
+      top: 50%;
+      left: 20%;
+      display: block;
+      width: 100%;
+      height: 3.2rem;
+      background-color: var(--white-color);
+      transform: rotate(45deg);
+      transition-property: transform;
+      content: '';
+    }
+
+    &::after {
+      transform: rotate(-45deg);
+    }
+  }
+}
