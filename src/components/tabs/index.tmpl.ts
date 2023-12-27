@@ -1,6 +1,6 @@
 const template = `
 <div class="tabs">
-  <button class="{{class}}" type='submit'></button>
+  <button class="tabs__button {{class}}" type='submit'></button>
 </div>
 `
 

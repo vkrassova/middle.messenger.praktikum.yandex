@@ -48,7 +48,6 @@ class BaseEditPasswordPage extends Block {
         focusout: (event) => {
           const target = event?.target as HTMLInputElement
           this.state[target.name] = target?.value
-          console.log(this.state)
           handleRepeatPassword(event, this.state.password_repeat as string, this.state.new_password as string)
         },
       },

@@ -1,3 +1,5 @@
+import { SignInData } from '../models/user'
+
 export enum Method {
   Get = 'Get',
   Post = 'Post',
@@ -7,10 +9,14 @@ export enum Method {
 }
 
 type Options = {
-  method: Method
+  method?: keyof typeof Method
   headers?: Record<string, string>
-  data?: any
+  data?: SignInData | unknown
+  withCridentials?: boolean
+  timeout?: number
 }
+
+type HTTPMethod = <R = unknown>(url: string, options?: Options | unknown) => Promise<R>
 
 export class HTTPTransport {
   static API_URL = 'https://ya-praktikum.tech/api/v2'
@@ -20,39 +26,39 @@ export class HTTPTransport {
     this.endpoint = `${HTTPTransport.API_URL}${endpoint}`
   }
 
-  public get<Response>(path = '/'): Promise<Response> {
-    return this.request<Response>(this.endpoint + path)
+  public get: HTTPMethod = (path) => {
+    return this.request(this.endpoint + path, { method: Method.Get })
   }
 
-  public put<Response = void>(path: string, data: unknown): Promise<Response> {
-    return this.request<Response>(this.endpoint + path, {
+  public put: HTTPMethod = (path: string, data: unknown) => {
+    return this.request(this.endpoint + path, {
       method: Method.Put,
       data,
     })
   }
-  public post<Response = void>(path: string, data?: unknown): Promise<Response> {
-    return this.request<Response>(this.endpoint + path, {
+  public post: HTTPMethod = (path: string, data?: unknown) => {
+    return this.request(this.endpoint + path, {
       method: Method.Post,
       data,
     })
   }
 
-  public patch<Response = void>(path: string, data: unknown): Promise<Response> {
-    return this.request<Response>(this.endpoint + path, {
+  public patch: HTTPMethod = (path: string, data: unknown) => {
+    return this.request(this.endpoint + path, {
       method: Method.Patch,
       data,
     })
   }
 
-  public delete<Response>(path: string, data?: unknown): Promise<Response> {
-    return this.request<Response>(this.endpoint + path, {
+  public delete: HTTPMethod = (path: string, data?: unknown) => {
+    return this.request(this.endpoint + path, {
       method: Method.Delete,
       data,
     })
   }
 
   public request<Response>(url: string, options: Options = { method: Method.Get }): Promise<Response> {
-    const { method, data } = options
+    const { method, data, withCridentials = true } = options
 
     return new Promise(function (resolve, reject) {
       if (!method) {
@@ -78,7 +84,7 @@ export class HTTPTransport {
       xhr.onerror = () => reject({ reason: 'network error' })
       xhr.ontimeout = () => reject({ reason: 'timeout' })
 
-      xhr.withCredentials = true
+      xhr.withCredentials = withCridentials
       xhr.responseType = 'json'
 
       if (method === Method.Get || data == null) {

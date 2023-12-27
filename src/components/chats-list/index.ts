@@ -15,6 +15,12 @@ class ChatListBase extends Block {
     super(props)
   }
 
+  protected async componentDidMount(): Promise<void> {
+    super.componentDidMount()
+
+    await ChatsController.fetchChats()
+  }
+
   init() {
     if (this.props.chats) {
       this.children.chatItems = this.createChats(this.props)

@@ -21,10 +21,4 @@ export class UserAPI extends API {
   searchUser(data: { login: string }): Promise<User[]> {
     return this.http.post('/search', data)
   }
-
-  read = undefined
-
-  create = undefined
-
-  delete = undefined
 }

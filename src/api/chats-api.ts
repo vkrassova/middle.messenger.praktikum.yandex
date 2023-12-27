@@ -48,6 +48,4 @@ export class ChatsAPI extends API {
   updateAvatar(data: FormData) {
     return this.http.put<ChatInfo>('/avatar', data)
   }
-
-  update = undefined
 }
