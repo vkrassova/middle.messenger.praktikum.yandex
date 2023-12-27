@@ -1,6 +1,6 @@
 # Веб-приложение Мессенджер
 
-Учебный проет в рамках курса "Мидл-фронтенд разработчик" от Яндекс Практикума  
+Учебный проет в рамках курса "Мидл-фронтенд разработчик" от Яндекс Практикума
 
 ---
 
@@ -22,12 +22,5 @@
 
 ---
 
-## Деплой проекта на Netlify
+## [Деплой проекта на Netlify](https://celebrated-choux-312fa4.netlify.app)
 
-1. [Main](https://celebrated-choux-312fa4.netlify.app)
-2. [Home page](https://celebrated-choux-312fa4.netlify.app/home)
-3. [Profile page](https://celebrated-choux-312fa4.netlify.app/profile)
-4. [Registration page](https://celebrated-choux-312fa4.netlify.app/registration)
-5. [Login page](https://celebrated-choux-312fa4.netlify.app/login)
-6. [404](https://celebrated-choux-312fa4.netlify.app/error404)
-7. [505](https://celebrated-choux-312fa4.netlify.app/error505)
