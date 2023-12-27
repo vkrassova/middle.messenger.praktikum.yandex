@@ -1,11 +1,13 @@
 import Block from '../../../core/block'
 import template from '../edit-password/index.templ'
 import { Input, Button, Avatar } from '../../../components'
-import { handleFocusOut, handleFormSubmit } from '../../../core/validation'
+import { handleFocusOut } from '../../../core/validation'
 import { withUser } from '../../../core/store'
 import { PasswordUpdate } from '../../../models/user'
 import UserController from '../../../controllers/user-controller'
 import avatarIcon from '../../../img/smile.svg'
+import { handleRepeatPassword } from '../../../core/validation'
+import { passwordValidation } from '../../../core/validation'
 
 class BaseEditPasswordPage extends Block {
   init() {
@@ -17,25 +19,25 @@ class BaseEditPasswordPage extends Block {
     })
 
     const oldPassword = new Input({
-      name: 'oldPassword',
+      name: 'old_password',
       type: 'password',
       modificator: 'password',
       labelText: 'Старый пароль',
       events: {
         focusout: (event) => {
-          // handleFocusOut(event, this)
+          handleFocusOut(event, this)
         },
       },
     })
 
     const newPassword = new Input({
-      name: 'password',
+      name: 'new_password',
       type: 'password',
       modificator: 'password',
       labelText: 'Новый пароль',
       events: {
         focusout: (event) => {
-          // handleFocusOut(event, this)
+          handleFocusOut(event, this)
         },
       },
     })
@@ -47,7 +49,10 @@ class BaseEditPasswordPage extends Block {
       labelText: 'Повторите пароль',
       events: {
         focusout: (event) => {
-          handleFocusOut(event, this)
+          const target = event?.target as HTMLInputElement
+          this.state[target.name] = target?.value
+          console.log(this.state)
+          handleRepeatPassword(event, this.state.password_repeat as string, this.state.new_password as string)
         },
       },
     })
@@ -59,9 +64,7 @@ class BaseEditPasswordPage extends Block {
       events: {
         click: (evt: Event) => {
           evt.preventDefault()
-          // handleFormSubmit(evt, this)
-          console.log(this.state)
-          // this.onSubmit()
+          this.onSubmit()
         },
       },
     })
@@ -77,18 +80,25 @@ class BaseEditPasswordPage extends Block {
 
   componentDidMount() {
     this.state = {
-      oldPassword: '',
-      newPassword: '',
+      old_password: '',
+      new_password: '',
+      password_repeat: '',
     }
   }
 
   async onSubmit() {
     const data: PasswordUpdate = {
-      oldPassword: this.state.oldPassword as string,
-      newPassword: this.state.newPassword as string,
+      oldPassword: this.state.old_password as string,
+      newPassword: this.state.new_password as string,
     }
 
-    // UserController.updatePassword(data as PasswordUpdate)
+    if (
+      this.state.new_password === this.state.password_repeat &&
+      passwordValidation(data.oldPassword) === null &&
+      passwordValidation(data.newPassword) === null
+    ) {
+      await UserController.updatePassword(data as PasswordUpdate)
+    }
   }
 
   render() {

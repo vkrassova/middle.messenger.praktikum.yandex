@@ -1,4 +1,3 @@
-import { ChatInfo } from '../models/chats'
 import { Message } from '../models/messages'
 import store from '../core/store'
 import WSTransport, { WSTransportEvents } from '../core/WSTransport'

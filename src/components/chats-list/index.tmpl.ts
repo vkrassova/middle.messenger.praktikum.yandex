@@ -5,7 +5,7 @@ const template = `
         {{{this}}}
     {{/each}}
   {{else}}
-  Loading...
+   <p class="chats-list__loading">Loading...</p>
   {{/if}}
   </ul>
 `

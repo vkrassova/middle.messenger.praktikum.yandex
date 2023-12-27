@@ -1,7 +1,7 @@
 const template = `
   <section class="registration">
     <div class="container registration__container">
-        <h1 class="main-title">{{title}}</h1>
+        <h1 class="main-title">Регистрация</h1>
             <form id="form">
                 <div class="registration__inputs">
                     {{{inputEmail}}}

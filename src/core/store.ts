@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { EventBus } from './event-bus'
 import Block from './block'
 import { User } from '../models/user'
@@ -31,9 +33,6 @@ export class Store extends EventBus {
 }
 
 const store = new Store()
-
-// @ts-ignore
-window.store = store
 
 export function withStore<SP extends Record<string, any>>(mapStateToProps: (state: State) => SP) {
   return function wrap<P extends Record<string, any>>(Component: typeof Block<P & SP>) {
@@ -82,9 +81,5 @@ export const withSelectedChat = withStore((state) => {
     userId: state.user?.id,
   }
 })
-// export const withSelectedChat = withStore((state) => ({
-//   selectedChat: (state.chats || []).find(({ id }) => id === state.selectedChat),
-// }))
-// export const withSelectedChat = withStore((state) => ({ selectedChat: state.selectedChat }))
 
 export default store

@@ -3,11 +3,20 @@ import template from './index.temp'
 
 import { Button, Input } from '../../components'
 
-import { handleFocusOut, handleFormSubmit } from '../../core/validation'
+import { handleFocusOut } from '../../core/validation'
 
 import AuthController from '../../controllers/auth-controller'
 
 import { SignUpData } from '../../models/user'
+import {
+  handleRepeatPassword,
+  loginValidation,
+  emailValidation,
+  nameValidation,
+  messageValidation,
+  passwordValidation,
+  phoneValidation,
+} from '../../core/validation'
 
 export class RegistrationPage extends Block {
   login: string | null = null
@@ -26,7 +35,6 @@ export class RegistrationPage extends Block {
       events: {
         click: (evt: Event) => {
           evt.preventDefault()
-          handleFormSubmit(evt, this)
           this.onSubmit()
         },
       },
@@ -110,7 +118,9 @@ export class RegistrationPage extends Block {
       modificator: 'password_repeat',
       events: {
         focusout: (event) => {
-          handleFocusOut(event, this)
+          const target = event?.target as HTMLInputElement
+          this.state[target.name] = target?.value
+          handleRepeatPassword(event, this.state.password as string, this.state.password_repeat as string)
         },
       },
     })
@@ -140,6 +150,20 @@ export class RegistrationPage extends Block {
     }
   }
 
+  getFieldsError() {
+    const fieldsError = [
+      emailValidation(this.state.email as string),
+      loginValidation(this.state.login as string),
+      nameValidation(this.state.name as string),
+      messageValidation(this.state.first_name as string),
+      messageValidation(this.state.second_name as string),
+      phoneValidation(this.state.phone as string),
+      passwordValidation(this.state.password as string),
+    ]
+
+    return fieldsError
+  }
+
   async onSubmit() {
     const data: SignUpData = {
       first_name: this.state.first_name as string,
@@ -150,7 +174,32 @@ export class RegistrationPage extends Block {
       phone: this.state.phone as string,
     }
 
-    AuthController.signup(data as SignUpData)
+    let isCheckEmptyFields
+    let isCheckErrorMessage
+
+    const values = Object.values(data)
+
+    values.forEach((el) => {
+      if (el === undefined) {
+        isCheckEmptyFields = false
+      } else {
+        isCheckEmptyFields = true
+      }
+    })
+
+    this.getFieldsError().forEach((el) => {
+      if (el !== null) {
+        isCheckErrorMessage = false
+      } else {
+        isCheckErrorMessage = true
+      }
+    })
+
+    if (isCheckEmptyFields && isCheckErrorMessage) {
+      await AuthController.signup(data as SignUpData)
+    } else {
+      console.log(isCheckEmptyFields)
+    }
   }
 
   render() {

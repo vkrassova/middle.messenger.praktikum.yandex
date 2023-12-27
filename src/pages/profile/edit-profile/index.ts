@@ -108,9 +108,8 @@ class BaseProfileSettingsPage extends Block {
       events: {
         click: (evt: Event) => {
           evt.preventDefault()
-          // handleFormSubmit(evt, this)
-          console.log(this.state)
-          // this.onSubmit()
+          handleFormSubmit(evt, this)
+          this.onSubmit()
         },
       },
     })
@@ -133,7 +132,7 @@ class BaseProfileSettingsPage extends Block {
       password: '',
       first_name: '',
       second_name: '',
-      nickname: '',
+      display_name: '',
       phone: '',
       email: '',
     }
@@ -150,7 +149,7 @@ class BaseProfileSettingsPage extends Block {
       phone: this.state.phone as string,
     }
 
-    UserController.updateUsetData(data as User)
+    await UserController.updateUsetData(data as User)
   }
 
   render() {

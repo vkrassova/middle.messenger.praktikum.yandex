@@ -32,7 +32,7 @@ export const loginValidation = (value: string) => {
   return isCheck ? null : ERROR_MESSAGES.login
 }
 
-const passwordValidation = (value: string) => {
+export const passwordValidation = (value: string) => {
   if (value === '') {
     return ERROR_MESSAGES.empty
   }
@@ -42,7 +42,7 @@ const passwordValidation = (value: string) => {
   return isCheck ? null : ERROR_MESSAGES.password
 }
 
-const emailValidation = (value: string) => {
+export const emailValidation = (value: string) => {
   if (value === '') {
     return ERROR_MESSAGES.empty
   }
@@ -52,7 +52,7 @@ const emailValidation = (value: string) => {
   return isCheck ? null : ERROR_MESSAGES.email
 }
 
-const phoneValidation = (value: string) => {
+export const phoneValidation = (value: string) => {
   if (value === '') {
     return ERROR_MESSAGES.empty
   }
@@ -97,7 +97,7 @@ const formValidate = (data: { [key: string]: string }) => {
   })
 }
 
-const messageValidation = (value: string) => {
+export const messageValidation = (value: string) => {
   if (value === '') {
     return ERROR_MESSAGES.empty
   } else return
@@ -107,18 +107,29 @@ const FORM_VALIDATORS: FormValidators | any = {
   login: loginValidation,
   form: formValidate,
   password: passwordValidation,
-  password_repeat: validateRepeatPassword,
+  password_repeat: passwordValidation,
   email: emailValidation,
   phone: phoneValidation,
   first_name: nameValidation,
   second_name: nameValidation,
   message: messageValidation,
   nickname: messageValidation,
+  old_password: passwordValidation,
+  new_password: passwordValidation,
 }
 
 const validate = (type: string, value: string | { [key: string]: unknown }) => {
   const validator = FORM_VALIDATORS[type]
   return validator(value)
+}
+
+export const handleRepeatPassword = (event: Event, oldPassword: string, newPassword: string) => {
+  const target = event.target as HTMLInputElement
+  const parent = target.parentElement as HTMLElement
+
+  const error = parent.querySelector('.error-message') as HTMLElement
+
+  error.textContent = validateRepeatPassword(oldPassword, newPassword)
 }
 
 export const handleFocusOut = (event: Event, self: Block) => {

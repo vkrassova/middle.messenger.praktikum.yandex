@@ -15,24 +15,21 @@
   &__column {
     display: flex;
     flex-direction: column;
-    background-color: var( --woodsmoke-color);
+    background-color: var(--woodsmoke-color);
   }
 
   &__column-header {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-left: 10rem;
-    padding-right: 10rem;
-    padding-top: 20rem;
-    padding-bottom: 20rem;
+    padding: 20rem 10rem;
     background-color: var(--shark-color);
   }
 
   &__column-link {
     display: flex;
-    margin-bottom: 10rem;
     justify-content: flex-end;
+    margin-bottom: 10rem;
     font-weight: 700;
     font-size: 14rem;
     line-height: 1.2;
