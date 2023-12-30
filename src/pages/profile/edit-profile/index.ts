@@ -1,12 +1,14 @@
 import Block from '../../../core/block'
 import template from '../edit-profile/index.templ'
 import { Input, Button, Avatar } from '../../../components'
-import { handleFocusOut, handleFormSubmit } from '../../../core/validation'
+import { handleFocusOut } from '../../../core/validation'
 import { withUser } from '../../../core/store'
 import { User } from '../../../models/user'
 import UserController from '../../../controllers/user-controller'
 import avatarIcon from '../../../img/smile.svg'
 import { RESOURCES_URL } from '../../../utils/constants'
+import Router from '../../../core/router'
+import { Routes } from '../../../utils/constants'
 
 class BaseProfileSettingsPage extends Block {
   init() {
@@ -79,12 +81,13 @@ class BaseProfileSettingsPage extends Block {
     })
 
     const inputNickName = new Input({
-      name: 'nickname',
+      name: 'display_name',
       value: this.props.display_name,
-      modificator: 'nickname',
+      modificator: 'display_name',
       events: {
         focusout: (event) => {
-          handleFocusOut(event, this)
+          const target = event?.target as HTMLInputElement
+          this.state[target.name] = target?.value
         },
       },
     })
@@ -107,7 +110,6 @@ class BaseProfileSettingsPage extends Block {
       events: {
         click: (evt: Event) => {
           evt.preventDefault()
-          handleFormSubmit(evt, this)
           this.onSubmit()
         },
       },
@@ -139,16 +141,29 @@ class BaseProfileSettingsPage extends Block {
 
   async onSubmit() {
     const data: User = {
-      display_name: this.props.display_name as string,
-      first_name: this.props.first_name as string,
-      second_name: this.props.second_name as string,
-      login: this.props.login as string,
-      email: this.props.email as string,
-      password: this.props.password as string,
-      phone: this.props.phone as string,
+      display_name: this.state.display_name as string,
+      first_name: this.state.first_name as string,
+      second_name: this.state.second_name as string,
+      login: this.state.login as string,
+      email: this.state.email as string,
+      password: this.state.password as string,
+      phone: this.state.phone as string,
     }
 
-    await UserController.updateUsetData(data as User)
+    const values = Object.values(data)
+
+    const errors = Array.from(document?.querySelectorAll('.error-message'))
+
+    const isCheckErrorMessage = errors.every((el) => el.textContent?.length === 0)
+    const isCheckEmptyFields = values.some((el) => el !== undefined)
+
+    if (!isCheckEmptyFields) {
+      Router.go(Routes.Profile)
+    }
+
+    if (isCheckEmptyFields && isCheckErrorMessage) {
+      await UserController.updateUsetData(data as User)
+    }
   }
 
   render() {

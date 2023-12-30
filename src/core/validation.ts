@@ -113,7 +113,6 @@ const FORM_VALIDATORS: FormValidators | any = {
   first_name: nameValidation,
   second_name: nameValidation,
   message: messageValidation,
-  nickname: messageValidation,
   old_password: passwordValidation,
   new_password: passwordValidation,
 }
