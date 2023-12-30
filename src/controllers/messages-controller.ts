@@ -1,7 +1,6 @@
 import { Message } from '../models/messages'
 import store from '../core/store'
 import WSTransport, { WSTransportEvents } from '../core/WSTransport'
-import ChatsController from './chats-controller'
 
 class MessagesController {
   private sockets: Map<number, WSTransport> = new Map()
