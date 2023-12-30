@@ -68,8 +68,6 @@ class MessagesController {
     messagesToAdd = [...currentMessages, ...messagesToAdd]
 
     store.set(`messages.${id}`, messagesToAdd)
-
-    ChatsController.fetchChats()
   }
 
   private onClose(id: number): void {

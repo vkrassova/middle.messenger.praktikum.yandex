@@ -30,27 +30,27 @@ export class HTTPTransport {
     return this.request(this.endpoint + path, { method: Method.Get })
   }
 
-  public put: HTTPMethod = (path: string, data: unknown) => {
+  public put: HTTPMethod = (path, data) => {
     return this.request(this.endpoint + path, {
       method: Method.Put,
       data,
     })
   }
-  public post: HTTPMethod = (path: string, data?: unknown) => {
+  public post: HTTPMethod = (path, data) => {
     return this.request(this.endpoint + path, {
       method: Method.Post,
       data,
     })
   }
 
-  public patch: HTTPMethod = (path: string, data: unknown) => {
+  public patch: HTTPMethod = (path, data) => {
     return this.request(this.endpoint + path, {
       method: Method.Patch,
       data,
     })
   }
 
-  public delete: HTTPMethod = (path: string, data?: unknown) => {
+  public delete: HTTPMethod = (path, data) => {
     return this.request(this.endpoint + path, {
       method: Method.Delete,
       data,

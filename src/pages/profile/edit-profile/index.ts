@@ -139,13 +139,13 @@ class BaseProfileSettingsPage extends Block {
 
   async onSubmit() {
     const data: User = {
-      display_name: this.state.display_name as string,
-      first_name: this.state.first_name as string,
-      second_name: this.state.second_name as string,
-      login: this.state.login as string,
-      email: this.state.email as string,
-      password: this.state.password as string,
-      phone: this.state.phone as string,
+      display_name: this.props.display_name as string,
+      first_name: this.props.first_name as string,
+      second_name: this.props.second_name as string,
+      login: this.props.login as string,
+      email: this.props.email as string,
+      password: this.props.password as string,
+      phone: this.props.phone as string,
     }
 
     await UserController.updateUsetData(data as User)
