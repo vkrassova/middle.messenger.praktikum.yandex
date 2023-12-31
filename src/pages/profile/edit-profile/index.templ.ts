@@ -2,16 +2,10 @@ const template = `
 <section class="profile profile--settings">
     <div class="profile__container">
         <div class="profile__nav">
-            <a class="profile__nav-icon" href="/">
-                <img src={{icon}} alt="exit">
-            </a>
+            <a class="profile__nav-icon" href="/messenger"></a>
         </div>
         <div class="profile__wrapper">
-            <div class="profile__avatar">
-                <div class="profile__avatar-icon"><img src={{avatarIcon}} alt="avatar's cover"></div>
-                <input type="file" id="file" class="profile__avatar-input" name="avata"/>
-                <img src="" id="avatar" alt="avatar">
-            </div>
+            {{{avatar}}}
 
             <form class="profile__fields profile__fields--settings">
                 <div class="profile__fields-item"><span class="profile__fields-name">Почта</span>
@@ -44,6 +38,6 @@ const template = `
             </form>
         </div>
     </div>
-</section> 
+</section>
 `
 export default template

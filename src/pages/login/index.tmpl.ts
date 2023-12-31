@@ -8,7 +8,8 @@ const template = `
                 {{{inputPassword}}}
             </div>
             <div class="login__buttons">
-                {{{button}}} 
+                {{{button}}}
+                {{{buttonRegister}}}
             </div>
         </form>
     </div>

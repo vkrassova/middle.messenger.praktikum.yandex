@@ -11,6 +11,10 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 32rem;
+
+    div[data-id] {
+      display: block;
+    }
   }
 
   &__passwords {

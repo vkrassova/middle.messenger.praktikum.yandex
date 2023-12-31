@@ -1,44 +1,64 @@
-enum METHODS {
-  GET = 'GET',
-  POST = 'POST',
-  PUT = 'PUT',
-  DELETE = 'DELETE',
+import { SignInData } from '../models/user'
+
+export enum Method {
+  Get = 'Get',
+  Post = 'Post',
+  Put = 'Put',
+  Patch = 'Patch',
+  Delete = 'Delete',
 }
 
-type ObjectType = { [key: string]: any }
-
-type HTTPMethod = (url: string, options?: ObjectType | undefined) => Promise<XMLHttpRequestUpload>
-
-function queryStringify(data: ObjectType) {
-  if (typeof data !== 'object') {
-    throw new Error('Data must be object')
-  }
-
-  const keys = Object.keys(data)
-  return keys.reduce((result, key, index) => {
-    return `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`
-  }, '?')
+type Options = {
+  method?: keyof typeof Method
+  headers?: Record<string, string>
+  data?: SignInData | unknown
+  withCridentials?: boolean
+  timeout?: number
 }
+
+type HTTPMethod = <R = unknown>(url: string, options?: Options | unknown) => Promise<R>
 
 export class HTTPTransport {
-  get: HTTPMethod = (url, options = {}) => {
-    return this.request(url + queryStringify(options.data), { ...options, method: METHODS.GET }, options.timeout)
+  static API_URL = 'https://ya-praktikum.tech/api/v2'
+  protected endpoint: string
+
+  constructor(endpoint: string) {
+    this.endpoint = `${HTTPTransport.API_URL}${endpoint}`
   }
 
-  put: HTTPMethod = (url, options = {}) => {
-    return this.request(url, { ...options, method: METHODS.PUT }, options.timeout)
+  public get: HTTPMethod = (path) => {
+    return this.request(this.endpoint + path, { method: Method.Get })
   }
 
-  post: HTTPMethod = (url, options = {}) => {
-    return this.request(url, { ...options, method: METHODS.POST }, options.timeout)
+  public put: HTTPMethod = (path, data) => {
+    return this.request(this.endpoint + path, {
+      method: Method.Put,
+      data,
+    })
+  }
+  public post: HTTPMethod = (path, data) => {
+    return this.request(this.endpoint + path, {
+      method: Method.Post,
+      data,
+    })
   }
 
-  delete: HTTPMethod = (url, options = {}) => {
-    return this.request(url, { ...options, method: METHODS.DELETE }, options.timeout)
+  public patch: HTTPMethod = (path, data) => {
+    return this.request(this.endpoint + path, {
+      method: Method.Patch,
+      data,
+    })
   }
 
-  request = (url: string, options: ObjectType = {}, timeout = 5000): Promise<XMLHttpRequest> => {
-    const { headers = {}, method, data } = options
+  public delete: HTTPMethod = (path, data) => {
+    return this.request(this.endpoint + path, {
+      method: Method.Delete,
+      data,
+    })
+  }
+
+  public request<Response>(url: string, options: Options = { method: Method.Get }): Promise<Response> {
+    const { method, data, withCridentials = true } = options
 
     return new Promise(function (resolve, reject) {
       if (!method) {
@@ -47,28 +67,37 @@ export class HTTPTransport {
       }
 
       const xhr = new XMLHttpRequest()
-      const isGet = method === METHODS.GET
 
-      xhr.open(method, isGet && !!data ? `${url}${queryStringify(data)}` : url)
+      xhr.open(method, url)
 
-      Object.keys(headers).forEach((key) => {
-        xhr.setRequestHeader(key, headers[key])
-      })
-
-      xhr.onload = function () {
-        resolve(xhr)
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status < 400) {
+            resolve(xhr.response)
+          } else {
+            reject(xhr.response)
+          }
+        }
       }
 
-      xhr.onabort = reject
-      xhr.onerror = reject
+      xhr.onabort = () => reject({ reason: 'abort' })
+      xhr.onerror = () => reject({ reason: 'network error' })
+      xhr.ontimeout = () => reject({ reason: 'timeout' })
 
-      xhr.timeout = timeout
-      xhr.ontimeout = reject
+      xhr.withCredentials = withCridentials
+      xhr.responseType = 'json'
 
-      if (isGet || !data) {
+      if (method === Method.Get || data == null) {
         xhr.send()
-      } else {
+      } else if (data instanceof FormData) {
         xhr.send(data)
+      } else if (data instanceof File) {
+        const formData = new FormData()
+        formData.append('avatar', data)
+        xhr.send(formData)
+      } else {
+        xhr.setRequestHeader('Content-Type', 'application/json')
+        xhr.send(JSON.stringify(data))
       }
     })
   }

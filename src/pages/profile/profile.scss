@@ -1,7 +1,7 @@
 .profile {
-  width: 100vw;
-  height: 100vh;
-  background-color: var(--shark-color);
+  width: 1280rem;
+  height: 100%;
+  min-height: 100%;
 
   &__container {
     display: grid;
@@ -16,19 +16,18 @@
     padding-top: 20rem;
     padding-right: 10rem;
     padding-left: 10rem;
-    border-right: 1rem solid var(--gray-color);
+    border-right: 0.5rem solid var(--white-color);
   }
 
   &__nav-icon {
     display: block;
     width: 30rem;
     height: 30rem;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzgiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzOCAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTM2LjYwODIgMTIuMDcwN0wyNC41OTg3IDEuOTVDMjMuMTEyMyAwLjcwMTI0IDIxLjA5OSAwIDE5IDBDMTYuOTAxIDAgMTQuODg3NyAwLjcwMTI0IDEzLjQwMTMgMS45NUwxLjM5MTc3IDEyLjA3MDdDMC45NDkxMDggMTIuNDQxMyAwLjU5ODE1NCAxMi44ODIzIDAuMzU5MjQ5IDEzLjM2OEMwLjEyMDM0NSAxMy44NTM4IC0wLjAwMTc1ODEzIDE0LjM3NDYgMS45MTI1OGUtMDUgMTQuOTAwNFYyNy45OTc2QzEuOTEyNThlLTA1IDI5LjA1OTEgMC41MDA0NjQgMzAuMDc3MSAxLjM5MTI2IDMwLjgyNzdDMi4yODIwNiAzMS41NzgzIDMuNDkwMjQgMzIgNC43NTAwMSAzMkgzMy4yNUMzNC41MDk4IDMyIDM1LjcxNzkgMzEuNTc4MyAzNi42MDg3IDMwLjgyNzdDMzcuNDk5NSAzMC4wNzcxIDM4IDI5LjA1OTEgMzggMjcuOTk3NlYxNC45MDA0QzM4LjAwMTggMTQuMzc0NiAzNy44Nzk3IDEzLjg1MzggMzcuNjQwNyAxMy4zNjhDMzcuNDAxOCAxMi44ODIzIDM3LjA1MDkgMTIuNDQxMyAzNi42MDgyIDEyLjA3MDdaTTIzLjc1IDI5LjMzMTdIMTQuMjVWMjQuMDgzM0MxNC4yNSAyMy4wMjE4IDE0Ljc1MDQgMjIuMDAzNyAxNS42NDEyIDIxLjI1MzFDMTYuNTMyIDIwLjUwMjUgMTcuNzQwMiAyMC4wODA5IDE5IDIwLjA4MDlDMjAuMjU5OCAyMC4wODA5IDIxLjQ2OCAyMC41MDI1IDIyLjM1ODggMjEuMjUzMUMyMy4yNDk2IDIyLjAwMzcgMjMuNzUgMjMuMDIxOCAyMy43NSAyNC4wODMzVjI5LjMzMTdaTTM0LjgzMzMgMjcuOTk3NkMzNC44MzMzIDI4LjM1MTQgMzQuNjY2NSAyOC42OTA4IDM0LjM2OTYgMjguOTQxQzM0LjA3MjYgMjkuMTkxMiAzMy42Njk5IDI5LjMzMTcgMzMuMjUgMjkuMzMxN0gyNi45MTY3VjI0LjA4MzNDMjYuOTE2NyAyMi4zMTQxIDI2LjA4MjYgMjAuNjE3NCAyNC41OTc5IDE5LjM2NjRDMjMuMTEzMyAxOC4xMTU0IDIxLjA5OTYgMTcuNDEyNiAxOSAxNy40MTI2QzE2LjkwMDQgMTcuNDEyNiAxNC44ODY3IDE4LjExNTQgMTMuNDAyMSAxOS4zNjY0QzExLjkxNzQgMjAuNjE3NCAxMS4wODMzIDIyLjMxNDEgMTEuMDgzMyAyNC4wODMzVjI5LjMzMTdINC43NTAwMUM0LjMzMDA5IDI5LjMzMTcgMy45MjczNiAyOS4xOTEyIDMuNjMwNDMgMjguOTQxQzMuMzMzNSAyOC42OTA4IDMuMTY2NjggMjguMzUxNCAzLjE2NjY4IDI3Ljk5NzZWMTQuOTAwNEMzLjE2ODE1IDE0LjU0NjkgMy4zMzQ4MiAxNC4yMDggMy42MzA2IDEzLjk1NzJMMTUuNjQwMiAzLjg0MDQ3QzE2LjUzMjcgMy4wOTE5MyAxNy43NDA3IDIuNjcxNjkgMTkgMi42NzE2OUMyMC4yNTkzIDIuNjcxNjkgMjEuNDY3MyAzLjA5MTkzIDIyLjM1OTggMy44NDA0N0wzNC4zNjk0IDEzLjk2MTJDMzQuNjY0IDE0LjIxMSAzNC44MzA2IDE0LjU0ODIgMzQuODMzMyAxNC45MDA0VjI3Ljk5NzZaIiBmaWxsPSIjN0Q3ODc4Ii8+Cjwvc3ZnPgo=');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
     cursor: pointer;
-
-    img {
-      width: 100%;
-      height: 100%;
-    }
   }
 
   &__wrapper {
@@ -36,34 +35,22 @@
 
     flex-direction: column;
     justify-content: space-around;
-    padding: 20rem 126rem;
+    padding: 0 126rem;
   }
 
   &__avatar {
     position: relative;
-    width: 100rem;
-    height: 100rem;
+    width: 130rem;
+    height: 130rem;
     margin: 0 auto;
     margin-bottom: 16rem;
-    background-color: var(--trendy-pink-color);
+    background-color: var(--white-color);
     border-radius: 50%;
-
-    img {
-      border-radius: inherit;
-    }
-  }
-
-  &__avatar-icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 30rem;
-    height: 30rem;
-    transform: translate(-50%, -50%);
 
     img {
       width: 100%;
       height: 100%;
+      border-radius: inherit;
     }
   }
 
@@ -76,6 +63,9 @@
   }
 
   &__avatar-input {
+    position: absolute;
+    top: 0;
+    left: 0;
     display: block;
     width: 100%;
     height: 100%;
@@ -83,7 +73,12 @@
     padding: 0;
     background-color: transparent;
     border: none;
+    cursor: pointer;
     opacity: 0;
+
+    &.notactive {
+      display: none;
+    }
   }
 
   &__fields {
@@ -99,7 +94,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8rem 24rem;
+    padding: 10rem;
+
+    div[data-id] {
+      display: flex;
+    }
   }
 
   &__fields-name {
@@ -120,7 +119,7 @@
     @include flex-center;
 
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     margin: 0 auto;
     margin-right: auto;
     padding-top: 70rem;
@@ -156,5 +155,9 @@
 
   .profile__fields {
     gap: 20rem;
+  }
+
+  .profile__fields-item {
+    padding: 0;
   }
 }

@@ -1,0 +1,9 @@
+.chat-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.chats-list__loading {
+  font-size: 16rem;
+  text-align: center;
+}
