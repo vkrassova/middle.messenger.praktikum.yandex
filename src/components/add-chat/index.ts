@@ -1,7 +1,6 @@
 import Block from '../../core/block'
 import template from './index.tmpl'
-import Button from '../button'
-import Input from '../input'
+import { Button, Input } from '../index'
 import ChatsController from '../../controllers/chats-controller'
 import { CreateChatType } from '../../api/chats-api'
 

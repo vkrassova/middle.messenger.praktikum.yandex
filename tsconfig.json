@@ -9,6 +9,7 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "noEmit": true,
+    "allowImportingTsExtensions": true,
     "noImplicitReturns": true,
     "skipLibCheck": true,
     "noUnusedLocals": true,
@@ -24,6 +25,7 @@
 	],
   "ts-node": {
     "esm": true,
+    "files": true,
     "experimentalSpecifierResolution": "node"
   }
 }

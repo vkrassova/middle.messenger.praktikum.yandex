@@ -1,7 +1,7 @@
-import Block from './block'
-import { render } from './render-DOM'
-import { Routes } from '../utils/constants'
-import { isEqual } from '../utils'
+import Block from './block.ts'
+import { render } from './render-DOM.ts'
+import { Routes } from '../utils/constants.ts'
+import { isEqual } from '../utils/index.ts'
 
 class Route {
   private block: Block | null = null
