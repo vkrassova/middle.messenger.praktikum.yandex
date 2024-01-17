@@ -1,34 +1,40 @@
-import sinon, { SinonFakeXMLHttpRequest, SinonFakeXMLHttpRequestStatic } from 'sinon'
+import sinon, { SinonFakeXMLHttpRequest } from 'sinon'
 import { HTTPTransport } from './httpTransport.ts'
 import { expect } from 'chai'
 
 describe('HTTPTransport', () => {
-  let xhr: SinonFakeXMLHttpRequestStatic
-  let instance: HTTPTransport
-  let requests: SinonFakeXMLHttpRequest[] = []
+  const xhr = sinon.useFakeXMLHttpRequest()
+  const testUrl = '/test'
+  const requests: sinon.SinonFakeXMLHttpRequest[] = []
+  let transport: HTTPTransport
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  global.XMLHttpRequest = xhr
+
+  xhr.onCreate = (request: SinonFakeXMLHttpRequest) => {
+    requests.push(request)
+  }
 
   beforeEach(() => {
-    xhr = sinon.useFakeXMLHttpRequest()
-
-    // @ts-ignore
-    global.XMLHttpRequest = xhr
-
-    xhr.onCreate = (request: SinonFakeXMLHttpRequest) => {
-      requests.push(request)
-    }
-
-    instance = new HTTPTransport('/auth')
+    transport = new HTTPTransport(testUrl)
   })
 
   afterEach(() => {
-    requests = []
+    requests.length = 0
   })
 
   it('.get() should send GET request', () => {
-    instance.get('/user')
+    transport.get(testUrl)
 
     const [request] = requests
 
     expect(request.method).to.eq('Get')
+  })
+
+  it('.post() should send POST request', () => {
+    transport.post('/url', { data: { test: 'test' } })
+
+    expect(requests[0].method).to.eq('Post')
   })
 })
