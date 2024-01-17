@@ -48,7 +48,7 @@
     "stylelint-config-rational-order": "^0.1.2",
     "stylelint-config-standard": "^34.0.0",
     "stylelint-config-standard-scss": "^10.0.0",
-    "stylelint-order": "^6.0.3",
+    "stylelint-order": "^6.0.4",
     "stylelint-prettier": "^3.0.0",
     "stylelint-scss": "^5.0.1",
     "ts-mocha": "^10.0.0",
