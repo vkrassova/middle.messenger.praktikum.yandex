@@ -103,6 +103,8 @@ export const messageValidation = (value: string) => {
   } else return
 }
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 const FORM_VALIDATORS: FormValidators | any = {
   login: loginValidation,
   form: formValidate,

@@ -1,10 +1,10 @@
-import template from './index.tmpl'
+import { template } from './index.tmpl'
 import Block from '../../core/block'
 
 type Props = { [key: string]: unknown }
 
 interface buttonProps extends Props {
-  class: string
+  class?: string
   type?: string
   title?: string
   modificator?: string

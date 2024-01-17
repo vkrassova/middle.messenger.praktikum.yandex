@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import { EventBus } from './event-bus'
+import { EventBus } from './event-bus.ts'
 import Handlebars from 'handlebars'
 import { nanoid } from 'nanoid'
 
@@ -12,7 +12,7 @@ export enum EVENTS {
 }
 
 export class Block<P extends Record<string, any> = any> {
-  private static EVENTS = {
+  static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
     FLOW_CDU: 'flow:component-did-update',
